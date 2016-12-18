@@ -45,12 +45,42 @@ int		figurka_postavlena(char **pt_arr, size_t i_fig)
 	}
 	return (0);
 }
-/*
+
 t_point	possible_field(char** pt_arr, t_figure fig, size_t field_size)
 {
-	int	
+	t_point		res;
+	size_t		x;
+	size_t		y;
+	size_t		i_pt_in_fig;
+
+
+	y = 0;
+	while (y < field_size)
+	{
+		x = 0;
+		while (x < field_size)
+		{
+			i_pt_in_fig = 0;
+			while (i_pt_in_fig < 4)
+			{
+				if (pt_arr[y + (size_t)fig[i_pt_in_fig].y][x + (size_t)fig[i_pt_in_fig].x] != '.')
+					break;
+				i_pt_in_fig++;
+			}
+			if (i_pt_in_fig == 4)
+			{
+				res.x = x;
+				res.y = y;
+				return (res);
+			}
+			x++;
+		}
+		y++;
+	}
+	res.x = -1;
+	return (res);
 }
-*/
+
 
 void	put_figure_to_field(char **pt_arr, t_figure fig, size_t i_fig, t_point pt)
 {
@@ -74,12 +104,17 @@ int		recur_func(char **pt_arr, t_figure *figs, size_t n_figs, size_t field_size)
 	{
 		if(figurka_postavena(pt_arr, i_fig) == 0)
 		{
-			if(есть возможное полe)
+			possible_field = possible_field(pt_arr, figs[i_fig], field_size);
+			if(possible_field.x != -1)
 			{
-				Ставим фигурку на поле;
+				put_figure_to_field(pt_arr, figs[i_fig], i_fig, possible_field);
 				is_ok = recur_func(pt_arr, figs, n_figs, field_size);
 				if (is_ok == 1)
 					break;
+			}
+			else
+			{
+				remove_figure_from_field(pt_arr, figs[i_fig], i_fig, possible_field);
 			}
 		}
 	}
