@@ -17,6 +17,7 @@ int			main(int argc, char **argv)
 		char *s = get_s_from_file(argv[1]);
 		printf("%c\n", s[0]);
 		printf("*************\n");
+		
 		char **arr = get_figure_from_string(s);
 		int i = 0;
 		while (arr[i] != NULL)
@@ -43,8 +44,10 @@ int			main(int argc, char **argv)
 		answer = (t_point*)malloc(n_f * sizeof(t_point));
 
 		printf("Creating answer\n");
+		
+
 		/*
-		int arr_len = 10;
+		int arr_len = 14;
 		size_t *arr = (size_t*)malloc(arr_len * sizeof(size_t));
 
 		int i = 0;
@@ -64,18 +67,21 @@ int			main(int argc, char **argv)
 			ft_next_perestanovka(arr, arr_len, &its_zero);
 		}
 		*/
+		
 	//ft_arr_putstr(array_of_figure(a, i));
+
 	size_t size = 2;
 	int	is_ok = 0;
 	while (is_ok == 0)
 	{
 		printf("Testing size %lu\n", size);
-		is_ok = test_size (size, answer, f_arr, n_f);
+		is_ok = test_size (size, f_arr, n_f);
 		if (is_ok == 0)
 			size++;
 	}
-	char **answ1 = array_of_figure(size);
-	print_answer(answ1, answer, f_arr, n_f);
+	//char **answ1 = array_of_figure(size);
+	//print_answer(answ1, answer, f_arr, n_f);
+
 	//	test_size(size, answer, is_ok);//Длинная рекурсивная функция, работающая по принципу судоку
 	//	if (is_ok == 1)
 			//все найдено, выводим ответ

@@ -15,7 +15,7 @@ void	ft_next_sadic_number(size_t *arr, size_t arr_len, size_t basis, int *its_ze
 	while (plus1 != 0)
 	{
 		arr[i]++;
-		if (arr[i] == basis)
+		if (arr[i] >= basis)
 			arr[i] = 0;
 		else
 			plus1 = 0;

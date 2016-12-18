@@ -1,5 +1,3 @@
-#!/bin/sh
-
 cat \
 	| sed "s|A|$(echo "\033[0;31mA\033[0m")|" \
 	| sed "s|B|$(echo "\033[0;32mB\033[0m")|" \
