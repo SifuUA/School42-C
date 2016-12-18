@@ -53,7 +53,35 @@ void read_figure(char *s, t_figure a)
 	}
 }
 
-int min(void)
+void	norm_figure(t_figure a)
+{
+	int		i_pt;
+	int		x_min;
+	int		y_min;
+
+	x_min = 3;
+	y_min = 3;
+	i_pt = 0;
+	while (i_pt < 4)
+	{
+		if (a[i_pt].x < x_min)
+			x_min = a[i_pt].x;
+		if (a[i_pt].y < y_min)
+			y_min = a[i_pt].y;
+		i_pt++;
+	}
+	if (x_min == 0 && y_min == 0)
+		return ;
+	i_pt = 0;
+	while (i_pt < 4)
+	{
+		a[i_pt].x -= x_min;
+		a[i_pt].y -= y_min;
+		i_pt++;
+	}
+}
+
+int min_size(void)
 {
 	return (2);
 }
