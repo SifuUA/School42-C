@@ -6,23 +6,23 @@
 #    By: oslutsky <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 11:49:34 by oslutsky          #+#    #+#              #
-#    Updated: 2016/11/16 14:41:30 by oslutsky         ###   ########.fr        #
+#    Updated: 2016/12/16 14:29:30 by oslutsky         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bsq
-SRC = help_funcs.c input.c main.c map_creating.c map_processing.c
+NAME = fillit
+SRC = main.c ft_arr_putstr.c get_figure_from_string.c
 OBJ = $(SRC:.c=.o)
-CFLAGS = -c -Wall -Wextra -Werror
-OFLAGS = -o
+CFLAGS = -c -Wall -Wextra -Werror 
+OFLAGS = -L"./" -lft -o $(NAME)
 CC = gcc 
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(OFLAGS) $(NAME)
+	$(CC) $(OBJ) $(OFLAGS)
 .c.o:
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $<
 clean:
 	rm -f $(OBJ)
 fclean:
