@@ -81,11 +81,6 @@ void	norm_figure(t_figure a)
 	}
 }
 
-int min_size(void)
-{
-	return (2);
-}
-
 char	**array_of_figure(size_t field_size)
 {
 	char **answer;
