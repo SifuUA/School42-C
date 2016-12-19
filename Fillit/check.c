@@ -4,21 +4,25 @@ int	check(char *s)
 {
 	int i;
 	int y;
+	int n;
+	int j;
 	int sharps;
 
 	i = 0;
 	y = 0;
-	while (*s)
+	n = 0;
+	j = 0;
+	while (s[j])
 	{
 		if (DEBUG_CHECK == 0)printf("Внешний цикл *s = %c\n", *s);
 		i = 0;
 		sharps = 0;
 		while (i < 21)
 		{
-			if (DEBUG_CHECK == 0)printf("%d.Внутрениий цикл *s = %c\n",i, *s);
-			if (*s != '.' && *s != '#' && *s != '\n')
+			if (DEBUG_CHECK == 0)printf("%d.Внутрениий цикл *s = %c\n",i, s[j]);
+			if (s[j] != '.' && s[j] != '#' && s[j] != '\n')
 			{
-				if (DEBUG_CHECK == 0)printf("Первый if: *s = %c\n", *s);
+				if (DEBUG_CHECK == 1)printf("Первый if: *s = %c\n", s[j]);
 
 				write(1, "aerror\n", 5);
 				return (1);
@@ -28,13 +32,15 @@ int	check(char *s)
 				write(1, "berror\n", 5);
 				return (1);
 			}
-			if (*s == '#' && ((*(s + 1)) == '#' || (*(s - 1)) == '#' || (*(s + 5)) == '#' || (*(s - 5)) == '#'))
+			i++;
+			if (s[j] == '#')
+				n = j;
+			if (s[j] == '#' && (s[j + 1] == '#' || s[j - 5] == '#' || s[j - 1] == '#' || s[j + 5] == '#'))  
 			{
-				if (DEBUG_CHECK == 1)printf("Проверка на валидность фигуры: *s = %c\n", *s);
+				if (DEBUG_CHECK == 1)printf("Проверка на валидность фигуры: *s = %c\n", s[j]);
 				sharps++;
 			}
-			i++;
-			s++;
+			j++;
 		}
 		if (sharps != 4)
 		{
@@ -44,16 +50,3 @@ int	check(char *s)
 	}
 	return (0);
 }
-
-/*int check_sharps(*s)
-{
-	int i;
-
-	i = 0;
-	while (*s)
-	{
-		if (*s == '.')
-			s++;
-		else if (*s == '#' && )
-	}
-}*/
