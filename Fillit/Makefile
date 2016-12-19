@@ -6,12 +6,12 @@
 #    By: oslutsky <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 11:49:34 by oslutsky          #+#    #+#              #
-#    Updated: 2016/12/17 20:42:48 by oslutsky         ###   ########.fr        #
+#    Updated: 2016/12/19 14:22:28 by okres            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-SRC = main.c ft_arr_putstr.c get_figure_from_string.c perebor.c analize.c
+SRC = main.c ft_arr_putstr.c get_figure_from_string.c perebor.c analize.c check.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -c -Wall -Wextra -Werror 
 OFLAGS = -L"./" -lft -o $(NAME)

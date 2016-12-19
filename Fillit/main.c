@@ -9,8 +9,9 @@ int			main(int argc, char **argv)
 		ft_putstr("error\n");
 	else
 	{
-		
 		char *s = get_s_from_file(argv[1]);
+		if (check(s) == 1)
+			return (0);
 		char **arr = get_figure_from_string(s);
 		int i = 0;
 		while (arr[i] != NULL)
