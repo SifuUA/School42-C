@@ -1,6 +1,6 @@
 #include "inc.h"
 
-void 	replace(char *s)
+void 	replace(char *s)// 2. Замена /n на а
 {
 	while (*s)
 	{
@@ -13,16 +13,16 @@ void 	replace(char *s)
 	}
 }
 
-char **get_figure_from_string(char *s)
+char **get_figure_from_string(char *s)//1. Считываем все фигуры с файла в одну строку
 {
 	char const *tmp;
 
-	replace(s);
+	replace(s);//2. Заменяем все /n которые повторяются 2 раза подряд на буквы а
 	tmp = s;
 	return (ft_strsplit(tmp, 'a'));
 }
 
-void read_figure(char *s, t_figure a)
+void read_figure(char *s, t_figure a)// Записываем координаты 4 точек каждой с фигур в массив
 {
 	int x;
 	int y;
@@ -37,7 +37,8 @@ void read_figure(char *s, t_figure a)
 	while (y < 4)
 	{
 		x = 0;
-		while (x < 4)
+		while (x < 4)// Перебираем все елементы в отдельном квадрате 4 * 4
+					// и каждый раз считываем 4 каждой фигуры
 		{
 			if (s[i_s] == '#')
 			{
@@ -53,30 +54,31 @@ void read_figure(char *s, t_figure a)
 	}
 }
 
-void	norm_figure(t_figure a)
+void	norm_figure(t_figure a)// Перемещаем фигуру "а" в верхний левый угол
 {
 	int		i_pt;
 	int		x_min;
 	int		y_min;
 
-	x_min = 3;
-	y_min = 3;
+	x_min = 3;// Максимальные координат по х нижнего углового символа
+	y_min = 3;// Максимальные координат по у нижнего углового символа
 	i_pt = 0;
 	while (i_pt < 4)
 	{
 		if (a[i_pt].x < x_min)
-			x_min = a[i_pt].x;
+			x_min = a[i_pt].x;// Минимальные координаты фигуры по х
 		if (a[i_pt].y < y_min)
-			y_min = a[i_pt].y;
+			y_min = a[i_pt].y;// Минимальные координаты фигуры по y
 		i_pt++;
 	}
-	if (x_min == 0 && y_min == 0)
+	if (x_min == 0 && y_min == 0)// Если мы дошли до левого верхнего угла то выходим с ф-и.
 		return ;
 	i_pt = 0;
 	while (i_pt < 4)
 	{
-		a[i_pt].x -= x_min;
-		a[i_pt].y -= y_min;
+		a[i_pt].x -= x_min;// Отнимаем мин х от 4 координат по х  изаписываем новый координат
+						   // в  "а"
+		a[i_pt].y -= y_min;// Отнимаем мин y от 4 координат по y  изаписываем новый координат
 		i_pt++;
 	}
 }

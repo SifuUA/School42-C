@@ -1,52 +1,80 @@
 #include "inc.h"
+int		mod(int x, int y, int x1, int y1)
+{
+	int res;
+	int res1;
 
-int	check(char *s)
+	res = (x - x1);
+	res1 = (y - y1);
+	if (res < 0)
+		res = -res;
+	if (res1 < 0)
+		res1 = -res1;
+	if (DEBUG_CHECK == 0)
+	{
+		printf("x = %d y = %d x1 = %d y1 = %d\n", x, y, x1, y1);
+	}
+	return (res + res1);
+}
+
+int		sharps_count(char*s)
 {
 	int i;
-	int y;
-	int n;
-	int j;
 	int sharps;
 
 	i = 0;
-	y = 0;
-	n = 0;
-	j = 0;
-	while (s[j])
+	sharps = 0;
+	if (DEBUG_CHECK == 0)
 	{
-		if (DEBUG_CHECK == 0)printf("Внешний цикл *s = %c\n", *s);
-		i = 0;
-		sharps = 0;
-		while (i < 21)
-		{
-			if (DEBUG_CHECK == 0)printf("%d.Внутрениий цикл *s = %c\n",i, s[j]);
-			if (s[j] != '.' && s[j] != '#' && s[j] != '\n')
-			{
-				if (DEBUG_CHECK == 1)printf("Первый if: *s = %c\n", s[j]);
-
-				write(1, "aerror\n", 5);
-				return (1);
-			}
-			if (i >= 21)
-			{
-				write(1, "berror\n", 5);
-				return (1);
-			}
+		printf("%s", s);
+	}
+	while (s[i])
+	{
+		if (DEBUG_CHECK == 0)
+			printf("%c", *s);
+		if (s[i] != '.' && s[i] != '#' && s[i] != '\n')
+			return (0);
+		if (s[i] == '#')
+			sharps++;
 			i++;
-			if (s[j] == '#')
-				n = j;
-			if (s[j] == '#' && (s[j + 1] == '#' || s[j - 5] == '#' || s[j - 1] == '#' || s[j + 5] == '#'))  
-			{
-				if (DEBUG_CHECK == 1)printf("Проверка на валидность фигуры: *s = %c\n", s[j]);
-				sharps++;
-			}
+	}
+	if (i >= 20)
+		return (0);
+	return (sharps);
+}
+int		check(t_figure arr,char *s)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (i < 4)
+	{
+		j = 0;
+		x = arr[i].x;
+		y = arr[i].y;
+		while (j < 4)
+		{
+			if (mod(x, y, arr[j].x, arr[j].y) == 1)
+				count++;
+			if (DEBUG_CHECK == 0)
+				printf("%d\n",mod(x, arr[j].x, y, arr[j].y));
 			j++;
 		}
-		if (sharps != 4)
-		{
-			write(1, "cerror\n", 5);
-			return (1);
-		}
+		i++;
 	}
-	return (0);
+	if (sharps_count(s) != 4)
+	{
+		write(1, "error\n", 5);
+
+	printf ("%d", sharps_count(s));
+		return (1);
+	}
+	if (count >= 6)
+		return (0);
+	return (1);
 }

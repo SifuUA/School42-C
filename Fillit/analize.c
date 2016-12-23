@@ -1,39 +1,40 @@
 #include "inc.h"
 
-size_t min_size(size_t n_figs)
+size_t min_size(size_t n_figs)// Подсчет минимального поля для входящих фигур
 {
 	size_t	res;
 	size_t	n_cells;
 
-	n_cells = n_figs * 4;
+	n_cells = n_figs * 4;// Кол-во клеток которые занимают все фигуры если их сложить
 	res = 2;
-	while (res * res < n_cells)
+	while (res * res < n_cells)// Находи подходящее поле под фигуры, оно всегда бдет больше
 		res++;
 	return (res);
 }
 
-int     test_size(size_t field_size, t_figure *figs, size_t n_figs)
+int     test_size(size_t field_size, t_figure *figs, size_t n_figs)// 
 {
 	size_t		y;
 	size_t		x;
 	char		**pt_arr;
 	int			is_ok;
 
-	pt_arr = (char**)malloc((field_size + 1) * sizeof(char*));
+	pt_arr = (char**)malloc((field_size + 1) * sizeof(char*));// Выделяем память по y
 	y = 0;
-	while (y < field_size)
+	while (y < field_size)// Размер поля по y
 	{
-		pt_arr[y] = (char*)malloc((field_size + 1) * sizeof(char));
+		pt_arr[y] = (char*)malloc((field_size + 1) * sizeof(char));// Выделяем память по x
 		x = 0;
-		while (x < field_size)
-			pt_arr[y][x++] = '.';
-		pt_arr[y][x] = '\0';
+		while (x < field_size)// Размер поля по х
+			pt_arr[y][x++] = '.';// Заполняем поле "."
+		pt_arr[y][x] = '\0';// Последний символ \0
 		y++;
 	}
 	pt_arr[y] = NULL;
 
 	if (DEBUG_TEST_SIZE == 1) printf("test_size: before recur_func\n");
-	is_ok = recur_func(pt_arr, figs, n_figs, field_size);
+	is_ok = recur_func(pt_arr, figs, n_figs, field_size);// Вызов рекурсивной ф-и для попытки
+														// поставить фигуру
 	if (DEBUG_TEST_SIZE == 1) printf("test_size: after recur_func\n");
 	if (is_ok == 1)
 	{
@@ -146,7 +147,8 @@ void	remove_figure_from_field(char **pt_arr, t_figure fig, t_point pt)
 
 }
 
-int		recur_func(char **pt_arr, t_figure *figs, size_t n_figs, size_t field_size)
+int		recur_func(char **pt_arr, t_figure *figs, size_t n_figs, size_t field_size)// Рекурсивная ф-я 
+		//возвращающая 0 - если не возможно поставить фигуры и 1 - если раставлены.
 {
 	size_t	i_fig;
 	int		is_ok;
@@ -156,10 +158,10 @@ int		recur_func(char **pt_arr, t_figure *figs, size_t n_figs, size_t field_size)
 	vse_figurki_postavleni = 1;
 	is_ok = 0;
 	i_fig = 0;
-	while (i_fig < n_figs && is_ok != 1)
+	while (i_fig < n_figs && is_ok != 1)// Пока не перебрали все фигурки и is_ok не вернула 1
 	{
 		if (DEBUG_RECUR_FUNC == 1) printf("recur_func: i_fig = %lu\n", i_fig);
-		if(figurka_postavlena(pt_arr, i_fig) == 0)
+		if(figurka_postavlena(pt_arr, i_fig) == 0)//????????????????
 		{
 			vse_figurki_postavleni = 0;
 			possible_field = get_possible_field(pt_arr, figs[i_fig], field_size);

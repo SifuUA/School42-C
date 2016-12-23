@@ -37,7 +37,8 @@ void    put_figure_to_field(char **pt_arr, t_figure fig, size_t i_fig, t_point p
 void    remove_figure_from_field(char **pt_arr, t_figure fig, t_point pt);
 int     figurka_postavlena(char **pt_arr, size_t i_fig);
 size_t	min_size(size_t n_figs);
-int    check(char *s);
+int     check(t_figure arr, char *s);
+//int    check(char *s);
 /* 
 *Например:
  ##..
