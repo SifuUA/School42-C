@@ -5,5 +5,6 @@
 # include <unistd.h>
 # include <string.h>
 # include "libft.h"
+# include <stdlib.h>
 
 #endif
