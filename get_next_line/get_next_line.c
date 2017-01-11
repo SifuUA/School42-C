@@ -1,90 +1,86 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-int		check(int const fd, char **line, char *buffer)
+t_gnl *create(char *buff, int fd)
 {
-	if (buffer == NULL)
+	t_gnl *ptr;
+	
+	ptr = (t_gnl *)malloc(sizeof(t_gnl));
+	if (!ptr)
+		return (NULL);
+	if (!buff)
 	{
-	char	tmp[100];
-	char	*p = ft_strnew(0);
-	int i = 0;
-	while ((i = read(fd, tmp, BUFF_SIZE)) > 0)
-	{
-		tmp[i] = '\0';
-		p = ft_strjoin(p,tmp);
+		ptr->buff = NULL;
+		fd = 0;
 	}
-	i = 0;
-	while (p[i])
+	else
 	{
-	   if (p[i] == '\n')
-	   	i++;
-	}	   
-	*line = ft_strdup(p);
-	if (ft_strchr(p, '\n') == NULL)
-	{
-			return (1);
+		ptr->buff = buff;
+		ptr->fd = fd;
+		ptr->next = NULL;
 	}
-	}
-	return (0);
-}
-char    *read_in_buffer(char *buffer, const int fd, int *read_return)
-{
-    char    str[BUFF_SIZE + 1];
-    char    *p;
-
-    *read_return = read(fd, str, BUFF_SIZE);
-    str[*read_return] = '\0';
-    p = buffer;
-    buffer = ft_strjoin(buffer, str);
-    ft_strdel(&p);
-    return (buffer);
+	return (ptr);
 }
 
-int     get_next_line(int const fd, char **line)
+void		read_in_buffer(const int fd, char **buffer, int *read_return)
 {
-    static char *buffer;
+    char    tmp[BUFF_SIZE + 1];
+	char	*p;
+
+    *read_return = read(fd, tmp, BUFF_SIZE);
+	//printf("Read = %d fd = %d\n", *read_return, fd);
+    tmp[*read_return] = '\0';
+	p = *buffer;
+    *buffer = ft_strjoin(*buffer, tmp);
+	ft_strdel(&p);
+    //return (1);
+}
+
+int     get_next_line(const int fd, char **line)
+{
+	static		t_gnl *begin;
+	t_gnl 		*p;
     char        *ptr;
     int         read_return;
-    int		count_of_enter;
-    int		flag;
 
     if (fd < 0 || fd > 65534 || !line)
         return (-1);
-	printf ("Begin: buff = %s enter = %d, flag = %d line = %s fd = %d\n", buffer, count_of_enter, flag, *line, fd);
-    if (buffer == NULL )
+		p = begin;
+    if (begin == NULL)
 	{
-		buffer = ft_strnew(0);
+		write(1, "N\n", 2);
+	   	begin = create(ft_strnew(0), fd);
+		p = begin;
 	}
-    else 
-    	{
-		count_of_enter = 0;
-		flag = 1;
- 	}
-	printf ("After initial: buff = %s enter = %d, flag = %d\n", buffer, count_of_enter, flag);
+	else 
+	{
+		while (p)
+		{
+		write(1, "L\n", 2);
+
+			if (p->fd == fd )
+				break;
+			p = p->next;
+		}
+	}
     read_return = 1;
     while (read_return > 0)
     {
-        if ((ptr = ft_strchr(buffer, '\n')) != NULL)
+	//	write(1, "A\n", 2);
+        if ((ptr = ft_strchr(p->buff, '\n')) != NULL)
         {
-			count_of_enter++;
+			//printf("ptr = %s p->buf v nachale if = %s\n", ptr, p->buff);
             *ptr = '\0';
-            *line = ft_strdup(buffer);
-            ft_memmove(buffer, ptr + 1, ft_strlen(ptr + 1) + 1);
-	    printf ("before return 1\n");
-	    //buffer = NULL;
+            *line = ft_strdup(p->buff);
+            ft_memmove(p->buff, ptr + 1, ft_strlen(ptr + 1) + 1);
+	//	printf("p->buff in if = %s read_reaturn = %d\n", p->buff, read_return);
+	//	write(1, "B\n", 2);
             return (1);
         }
-        	buffer = read_in_buffer(buffer, fd, &read_return);
-			printf ("buffer = %s read_return = %d\n", buffer, read_return);
-	}
-	printf ("*line = %s\n", *line);
-	printf ("buffer = %s enter = %d\n", buffer, count_of_enter);
-	if (count_of_enter == 0)
-	{	
-		printf ("IN ENTER buffer = %s\n", buffer);
-		*line = ft_strdup(buffer);
-		printf ("before return flag%d\n", flag);
-		return (flag--);
-	}
+	//	write(1, "C\n", 2);
+        read_in_buffer(fd, &(p->buff), &read_return);
+	//	printf("p->buff = %s read_reaturn = %d\n", p->buff, read_return);
+	//	printf ("3fd = %d\n", fd);
+    }
     return (read_return);
 }
