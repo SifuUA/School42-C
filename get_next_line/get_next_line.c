@@ -41,14 +41,16 @@ int     get_next_line(const int fd, char **line)
 	static		t_gnl *begin;
 	t_gnl 		*p;
     char        *ptr;
+	t_gnl		*ptr1;
     int         read_return;
+	int		flag;
 
+	flag = 0;
     if (fd < 0 || fd > 65534 || !line)
         return (-1);
 		p = begin;
     if (begin == NULL)
 	{
-		write(1, "N\n", 2);
 	   	begin = create(ft_strnew(0), fd);
 		p = begin;
 	}
@@ -56,31 +58,33 @@ int     get_next_line(const int fd, char **line)
 	{
 		while (p)
 		{
-		write(1, "L\n", 2);
-
-			if (p->fd == fd )
+			ptr1 = p;
+			if (p->fd == fd)
+			{
+				flag = 1;
 				break;
+			}
 			p = p->next;
+		}
+		if (flag == 0)
+		{
+			ptr1->next = create(ft_strnew(0), fd);
+			p = ptr1->next;
 		}
 	}
     read_return = 1;
     while (read_return > 0)
     {
-	//	write(1, "A\n", 2);
+        read_in_buffer(fd, &(p->buff), &read_return);
         if ((ptr = ft_strchr(p->buff, '\n')) != NULL)
         {
-			//printf("ptr = %s p->buf v nachale if = %s\n", ptr, p->buff);
             *ptr = '\0';
             *line = ft_strdup(p->buff);
             ft_memmove(p->buff, ptr + 1, ft_strlen(ptr + 1) + 1);
-	//	printf("p->buff in if = %s read_reaturn = %d\n", p->buff, read_return);
-	//	write(1, "B\n", 2);
             return (1);
         }
-	//	write(1, "C\n", 2);
-        read_in_buffer(fd, &(p->buff), &read_return);
-	//	printf("p->buff = %s read_reaturn = %d\n", p->buff, read_return);
-	//	printf ("3fd = %d\n", fd);
+		else if (read_return == 0)
+            *line = ft_strdup(p->buff);
     }
     return (read_return);
 }
