@@ -6,14 +6,14 @@
 /*   By: dburtnja <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 15:34:32 by dburtnja          #+#    #+#             */
-/*   Updated: 2017/01/11 18:43:03 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/12 21:47:24 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _GET_NEXT_LINE_H_
 # define _GET_NEXT_LINE_H_
 
-# define BUFF_SIZE 30
+# define BUFF_SIZE 50000
 # include "../libft/libft.h"
 
 typedef	struct		s_gnl

@@ -26,14 +26,14 @@ void		read_in_buffer(const int fd, char **buffer, int *read_return)
 {
     char    tmp[BUFF_SIZE + 1];
 	char	*p;
-
+	ft_bzero(tmp, BUFF_SIZE + 1);
     *read_return = read(fd, tmp, BUFF_SIZE);
-	//printf("Read = %d fd = %d\n", *read_return, fd);
+	if (*read_return == 0)
+		return ;
     tmp[*read_return] = '\0';
-	p = *buffer;
-    *buffer = ft_strjoin(*buffer, tmp);
-	ft_strdel(&p);
-    //return (1);
+    p = ft_strjoin(*buffer, tmp);
+	ft_strdel(buffer);
+	*buffer = p;
 }
 
 int     get_next_line(const int fd, char **line)
@@ -75,16 +75,23 @@ int     get_next_line(const int fd, char **line)
     read_return = 1;
     while (read_return > 0)
     {
-        read_in_buffer(fd, &(p->buff), &read_return);
-        if ((ptr = ft_strchr(p->buff, '\n')) != NULL)
+		read_in_buffer(fd, &(p->buff), &read_return);
+        if (p->buff && ((ptr = ft_strchr(p->buff, '\n')) != NULL))
         {
             *ptr = '\0';
             *line = ft_strdup(p->buff);
             ft_memmove(p->buff, ptr + 1, ft_strlen(ptr + 1) + 1);
-            return (1);
+			if (**line != '\0')
+				return (1);
         }
-		else if (read_return == 0)
-            *line = ft_strdup(p->buff);
     }
+	 if (read_return == 0 && p->buff && *(p->buff) != '\0' )
+	 {
+            *line = ft_strdup(p->buff);
+			ft_strdel(&(p->buff));
+			return (1);
+	 }
+	 else if (*line)
+		 *line = ft_strnew(0);
     return (read_return);
 }
