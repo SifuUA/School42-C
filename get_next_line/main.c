@@ -6,7 +6,7 @@
 /*   By: dburtnja <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 21:12:35 by dburtnja          #+#    #+#             */
-/*   Updated: 2017/01/12 22:27:00 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/13 13:44:00 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,18 @@ int				main(void)
 
 		ret = get_next_line(fd3, &line);
 		printf("%s", line);
+		
+		ret = get_next_line(fd3, &line);
+		printf("%s", line);
 
+		ret = get_next_line(fd3, &line);
+		printf("%s", line);
+		
+		ret = get_next_line(fd3, &line);
+		printf("%s", line);
+
+		ret = get_next_line(fd3, &line);
+		printf("%s", line);
 	/*while(ret > 0)
 	{
 		ret = get_next_line(fd, &line);

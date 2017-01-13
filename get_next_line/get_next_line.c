@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 13:20:48 by okres             #+#    #+#             */
-/*   Updated: 2017/01/13 13:23:20 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/13 13:39:11 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int			get_next_line(const int fd, char **line)
 	char				*ptr;
 	int					read_return;
 
-	if (fd < 0 || fd > 65534 || !line)
+	if (fd < 0 || BUFF_SIZE > 65534 || !line)
 		return (-1);
 	p = begin;
 	chek_and_add_node(&begin, &p, &p1, fd);
