@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dburtnja <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/29 15:34:32 by dburtnja          #+#    #+#             */
-/*   Updated: 2017/01/12 21:47:24 by okres            ###   ########.fr       */
+/*   Created: 2017/01/13 13:22:14 by okres             #+#    #+#             */
+/*   Updated: 2017/01/13 13:23:12 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define _GET_NEXT_LINE_H_
 
 # define BUFF_SIZE 50
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
 typedef	struct		s_gnl
 {
