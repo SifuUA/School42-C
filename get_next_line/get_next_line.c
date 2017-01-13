@@ -46,7 +46,7 @@ int     get_next_line(const int fd, char **line)
 	int		flag;
 
 	flag = 0;
-    if (fd < 0 || fd > 65534 || !line)
+    if (fd < 0 || BUFF_SIZE > 65534 || !line )
         return (-1);
 		p = begin;
     if (begin == NULL)
