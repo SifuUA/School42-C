@@ -26,6 +26,7 @@ void		read_in_buffer(const int fd, char **buffer, int *read_return)
 {
     char    tmp[BUFF_SIZE + 1];
 	char	*p;
+
 	ft_bzero(tmp, BUFF_SIZE + 1);
     *read_return = read(fd, tmp, BUFF_SIZE);
 	if (*read_return == 0)
@@ -36,42 +37,62 @@ void		read_in_buffer(const int fd, char **buffer, int *read_return)
 	*buffer = p;
 }
 
-int     get_next_line(const int fd, char **line)
+
+void	chek_and_add_node(t_gnl **begin, t_gnl **p, t_gnl **p1, int fd)
 {
-	static		t_gnl *begin;
-	t_gnl 		*p;
-    char        *ptr;
-	t_gnl		*ptr1;
-    int         read_return;
 	int		flag;
 
 	flag = 0;
-    if (fd < 0 || fd > 65534 || !line)
-        return (-1);
-		p = begin;
-    if (begin == NULL)
+	*p = *begin;
+    if (*begin == NULL)
 	{
-	   	begin = create(ft_strnew(0), fd);
-		p = begin;
+	   *begin = create(ft_strnew(0), fd);
+		*p = *begin;
 	}
 	else 
 	{
-		while (p)
+		while (*p)
 		{
-			ptr1 = p;
-			if (p->fd == fd)
+			*p1 = *p;
+			if ((*p)->fd == fd)
 			{
 				flag = 1;
 				break;
 			}
-			p = p->next;
+			*p = (*p1)->next;
 		}
 		if (flag == 0)
 		{
-			ptr1->next = create(ft_strnew(0), fd);
-			p = ptr1->next;
+			(*p1)->next = create(ft_strnew(0), fd);
+			*p = (*p1)->next;
 		}
 	}
+}
+
+int		end(int *read_return, char **buff, char **line)
+{
+	 if (*read_return == 0 && *buff && **buff != '\0')
+	 {
+            *line = ft_strdup(*buff);
+			ft_strdel(&(*buff));
+			return (1);
+	 }
+	 else if (*line)
+		 *line = ft_strnew(0);
+    return (*read_return);
+}
+
+int     get_next_line(const int fd, char **line)
+{
+	static		t_gnl	*begin;
+	t_gnl 				*p;
+	t_gnl				*p1;
+    char        		*ptr;
+    int         		read_return;
+
+    if (fd < 0 || fd > 65534 || !line)
+        return (-1);
+	chek_and_add_node(&begin, &p, &p1, fd);
     read_return = 1;
     while (read_return > 0)
     {
@@ -81,17 +102,9 @@ int     get_next_line(const int fd, char **line)
             *ptr = '\0';
             *line = ft_strdup(p->buff);
             ft_memmove(p->buff, ptr + 1, ft_strlen(ptr + 1) + 1);
-			if (**line != '\0')
+			if (ft_strlen(*line) > 0 || **line == '\0')
 				return (1);
         }
     }
-	 if (read_return == 0 && p->buff && *(p->buff) != '\0' )
-	 {
-            *line = ft_strdup(p->buff);
-			ft_strdel(&(p->buff));
-			return (1);
-	 }
-	 else if (*line)
-		 *line = ft_strnew(0);
-    return (read_return);
+	return(end(&read_return, &(p->buff), &(*line)));
 }
