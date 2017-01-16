@@ -37,7 +37,6 @@ int    ft_atoi_base(const char *str, int str_base)
 			value = value * str_base + (*str - 'a' + 10);
 		else
 			value = value * str_base + *str -  '0';
-		printf("%d\n", value);
 		str++;
 	}
 	return (value);
@@ -45,6 +44,6 @@ int    ft_atoi_base(const char *str, int str_base)
 
 int		main(void)
 {
-	printf("%d\n", ft_atoi_base("abcde", 16));
+	printf("%d\n", ft_atoi_base("123a", 10));
 }
 
