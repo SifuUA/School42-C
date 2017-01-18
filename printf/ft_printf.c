@@ -6,26 +6,40 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/01/14 17:46:49 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/17 17:17:36 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char * restrict str, ...)
+void	ft_choose()
 {
-	va_list vl;
-	char *ptr;
 
-	ptr = str;
-	va_start (vl, str);
-	while (ptr)
+}
+
+void	ft_flags(char*)
+{
+	if ()
+}
+
+int 	ft_printf(const char * restrict format, ...)
+{
+	va_list 		vl;
+	char 			*ptr;
+	char 			*ptr_1;
+	static t_pf 	*begin;
+
+	ptr = format;
+	begin = (t_pf *)malloc(sizeof(t_pf));
+	fill_struct(&begin);
+	va_start (vl, format);
+	ptr_1 = ft_strchr(ptr, '%');
+	while (*(++ptr_1))
 	{
-		if (*ptr == '%')
-		{
-			//запуск функции которая будет проверять наличие спецификаторов после %
-		}
+		if (*ptr_1 == '-' || *ptr_1 == '+' || *ptr_1 == ' ' || *ptr_1 == '#' || *ptr == '0')
+			ft_flags(*ptr_1);
+		if ()
 	}
-
+	
 	return (0);
 }
