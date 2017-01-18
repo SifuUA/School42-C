@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/01/18 19:03:49 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/18 20:16:18 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	fill_struct(t_pf **st)
 	(*st)->specifier = (*st)->str[i];
 }
 
-int 	ft_printf(const char * restrict format, ...)
+void	 		ft_printf(const char * restrict format, ...)
 {
 	va_list 		vl;
 	char 			*str;
@@ -108,6 +108,7 @@ int 	ft_printf(const char * restrict format, ...)
 		ft_putstr(format);
 	else
 		fill_struct(&st);
+
 	printf("%s\n", st->flag);
 	printf("%s\n", st->width);
 	printf("%s\n", st->precision);
