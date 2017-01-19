@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/01/19 18:14:41 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/19 21:37:41 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		find(char *str, char c)
 }
 
 // функция заполнения сруктуры флагами, спец.,..итд
-void	fill_struct(t_pf *st)
+void	fill_struct(t_pf *st, va_list vl)
 {
 	int	i;
 	int j;
@@ -93,6 +93,15 @@ void	fill_struct(t_pf *st)
 	}
 	st->specifier = st->str[i];
 	(st->str) += i;
+	f_1(st->specifier, st->size, vl, &(st->buffer));
+	printf("%s\n", st->flag);
+	printf("%s\n", st->width);
+	printf("%s\n", st->precision);
+	printf("%s\n", st->size);
+	printf("%c\n", st->specifier);
+	ft_putnbr(*(st->buffer));
+	ft_putnbr(ft_atoi(st->buffer));
+	
 }
 
 // основная ф-я
@@ -112,16 +121,11 @@ int	 		ft_printf(const char * restrict format, ...)
 	while (*(st->str))
 	{
 		if (*(st->str) == '%')
-			fill_struct(st);
+			fill_struct(st, vl);
 		else
 			ft_putchar(st->str[i]);
 		(st->str)++;
 	}
-	printf("%s\n", st->flag);
-	printf("%s\n", st->width);
-	printf("%s\n", st->precision);
-	printf("%s\n", st->size);
-	printf("%c\n", st->specifier);
 
 	return (0);
 }
