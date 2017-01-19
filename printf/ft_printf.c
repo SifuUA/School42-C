@@ -6,14 +6,14 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/01/18 20:16:18 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/19 15:54:15 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // функция для поиска символа в массиве
-static int		find(char *str, char c)
+int		find(char *str, char c)
 {
 	int i;
 
@@ -28,7 +28,7 @@ static int		find(char *str, char c)
 }
 
 // функция заполнения сруктуры флагами, спец.,..итд
-void	fill_struct(t_pf **st)
+void	fill_struct(t_pf *st)
 {
 	int	i;
 	int j;
@@ -36,54 +36,54 @@ void	fill_struct(t_pf **st)
 	char sizes[] = "llLhlhhjzt";
 	char flags[] = "-+ #0";
 	
-	(*st)->flag = ft_strnew(4);
-	(*st)->width = ft_strnew(ft_strlen((*st)->str));
-	(*st)->precision = ft_strnew(ft_strlen((*st)->str));
-	(*st)->size = ft_strnew(ft_strlen((*st)->str));
+	st->flag = ft_strnew(4);
+	st->width = ft_strnew(ft_strlen(st->str));
+	st->precision = ft_strnew(ft_strlen(st->str));
+	st->size = ft_strnew(2);
 
 	i = 0;
-	while ((*st)->str[i] && (find(spec, (*st)->str[i]) == 0))
+	while (st->str[i] && (find(spec, st->str[i]) == 0))
 	{
 		j = 0;
-		if (find (flags, (*st)->str[i]) == 1)
+		if (find (flags, st->str[i]) == 1)
 		{
-			while (find (flags, (*st)->str[i]) == 1)
+			while (find (flags, st->str[i]) == 1)
 			{
-				if (find((*st)->flag, (*st)->str[i]) == 0)
+				if (find(st->flag, st->str[i]) == 0)
 				{
-					(*st)->flag[j] = (*st)->str[i];
+					st->flag[j] = st->str[i];
 					j++;
 				}
 				i++;
 			}
 		}
-		else if ((ft_isdigit((*st)->str[i]) == 1 || ((*st)->str[i] == '*' )))
+		else if ((ft_isdigit(st->str[i]) == 1 || (st->str[i] == '*' )))
 		{
 			j = 0;
-			while ((ft_isdigit((*st)->str[i]) == 1 || ((*st)->str[i] == '*' )))
+			while ((ft_isdigit(st->str[i]) == 1 || (st->str[i] == '*' )))
 			{
-				(*st)->width[j] = (*st)->str[i];
+				st->width[j] = st->str[i];
 				j++;
 				i++;
 			}
 		}
-		else if ((*st)->str[i] == '.')
+		else if (st->str[i] == '.')
 		{
 			j = 0;
 			i++;
-			while ((*st)->str[i] == '*' || ft_isdigit((*st)->str[i]) == 1)
+			while (st->str[i] == '*' || ft_isdigit(st->str[i]) == 1)
 			{
-				(*st)->precision[j] = (*st)->str[i];
+				st->precision[j] = st->str[i];
 				i++;
 				j++;
 			}
 		}
-		else if (find(sizes, (*st)->str[i]) == 1)
+		else if (find(sizes, st->str[i]) == 1)
 		{
 			j = 0;
-			while (find(sizes, (*st)->str[i]) == 1)
+			while (find(sizes, st->str[i]) == 1)
 			{
-				(*st)->size[j] = (*st)->str[i];
+				st->size[j] = st->str[i];
 				i++;
 				j++;
 			}
@@ -91,24 +91,32 @@ void	fill_struct(t_pf **st)
 		else
 			i++;
 	}
-	(*st)->specifier = (*st)->str[i];
+	st->specifier = st->str[i];
+	(st->str) += i;
 }
 
-void	 		ft_printf(const char * restrict format, ...)
+// основная ф-я
+int	 		ft_printf(const char * restrict format, ...)
 {
 	va_list 		vl;
 	char 			*str;
 	char 			*ptr;
 	static t_pf 	*st;
+	int				i;
 
+	//ptr_f [10];
+	i = 0;
 	va_start (vl, format);
 	st = (t_pf *)malloc(sizeof(t_pf));
 	st->str = (char*) format;
-	if ((st->str = ft_strchr(st->str, '%')) == NULL)
-		ft_putstr(format);
-	else
-		fill_struct(&st);
-
+	while (*(st->str))
+	{
+		if (*(st->str) == '%')
+			fill_struct(st);
+		else
+			ft_putchar(st->str[i]);
+		(st->str)++;
+	}
 	printf("%s\n", st->flag);
 	printf("%s\n", st->width);
 	printf("%s\n", st->precision);

@@ -9,6 +9,7 @@ typedef struct		s_pf
 {
 	struct s_pf 	*next;
 	char			*str;
+	char			*buffer;
 
 	char			*flag;
 	char			*width;
@@ -19,6 +20,7 @@ typedef struct		s_pf
 
 typedef void ((*ptr_f)());
 
-int		ft_printf(const char * restrict format, ...);
-
+int					ft_printf(const char * restrict format, ...);
+char				*ft_itoa_base(unsigned long long int value,unsigned long long int base);
+int					find(char *str, char c);
 #endif
