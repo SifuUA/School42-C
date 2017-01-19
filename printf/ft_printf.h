@@ -17,6 +17,8 @@ typedef struct		s_pf
 	char			specifier;
 }					t_pf;
 
+typedef void ((*ptr_f)());
+
 int		ft_printf(const char * restrict format, ...);
 
 #endif
