@@ -12,7 +12,8 @@ typedef struct		s_pf
 	char			*buffer;
 
 	char			*flag;
-	char			*width;
+	char			*width_arg;
+	int				width_num;
 	char			*precision;
 	char			*size;
 	char			specifier;
@@ -31,7 +32,7 @@ void    			memory_allocate(t_pf *st);
 void    			fill_struct(t_pf *st, va_list vl);
 void				f_1(char cpecif, char *size, va_list vl, char **buffer);
 void    			fill_flags(char **str, char *flags, char *flag);
-void    			fill_width(char **str, char *width);
+void    			fill_width(char **str, char *width_arg, int *width_num);
 void    			fill_precision(char **str, char *precision);
 void    			fill_size(char **str, char *sizes, char *size);
 

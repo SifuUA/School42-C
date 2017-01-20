@@ -1,34 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fill.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
+/*   Updated: 2017/01/20 19:50:15 by okres            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-// функция заполнения сруктуры флагами, спец.,..итд
+// функция заполнения структуры флагами, спец.,..итд
 void	fill_struct(t_pf *st, va_list vl)
 {
-    int		i;
     char	spec[] = "diuoxXfFeEgGaAcspn";
     char	sizes[] = "llLhlhhjzt";
     char	flags[] = "-+ #0";
-    
-    i = 0;
+    char	*ptr;
+	
+	ptr = st->str;
     memory_allocate(st);
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
         (st->str)++;
-        fill_flags(&(st->str), flags, st->flag);
-        fill_width(&(st->str), st->width);
+        fill_flags(&(ptr), flags, st->flag);
+        fill_width(&(st->str), st->width_arg, &(st->width_num));
         fill_precision(&(st->str), st->precision);
         fill_size(&(st->str), sizes, st->size);
     }
     st->specifier = *(st->str);
-    //f_1(st->specifier, st->size, vl, &(st->buffer));
-    
-    
-    printf("f %s\n", st->flag);
-    printf("w %s\n", st->width);
-    printf("p %s\n", st->precision);
-    printf("s %s\n", st->size);
-    printf("c %c\n", st->specifier);
-    //ft_putnbr(*(st->buffer));
-    //ft_putnbr(ft_atoi(st->buffer));
 }
 
 void	fill_flags(char **str, char *flags, char *flag)
@@ -47,14 +49,22 @@ void	fill_flags(char **str, char *flags, char *flag)
     }
 }
 
-void	fill_width(char **str, char *width)
+void	fill_width(char **str, char *width_arg, int *width_num )
 {
-    while (ft_isdigit(**str) == 1 || **str == '*')
-    {
-        *width = **str;
-        width++;
-        (*str)++;
+	if (ft_isdigit(**str) == 1)
+	{
+        	*width_num = ft_atoi(*str);
+       		(*str)++;
     }
+	else if (**str == '*')
+	{
+    	while (**str == '*')
+   		{
+        	*width_arg = **str;
+       		 width_arg++;
+       		 (*str)++;
+		}
+	}
 }
 
 void    fill_precision(char **str, char *precision)

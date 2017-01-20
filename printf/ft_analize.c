@@ -6,12 +6,12 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 18:05:11 by okres             #+#    #+#             */
-/*   Updated: 2017/01/20 18:05:19 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/20 19:09:08 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-void	f_1(char cpecif, char *size, va_list vl, char **buffer)
+/*void	f_1(char cpecif, char *size, va_list vl, char **buffer)
 {
 	if (cpecif == 'd' || cpecif == 'i')
 	{
@@ -24,3 +24,4 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer)
 		else if (size[0] == )
 
 	}
+}*/
