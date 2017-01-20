@@ -24,14 +24,15 @@ int					ft_printf(const char * restrict format, ...);
 
 char				*ft_itoa_base(unsigned long long int value,
 	   				unsigned long long int base);
-char				*ft_itoa_base_mod( long long int value, long long int base);
+char				*ft_itoa_base_m( long long int value, long long int base);
 
 int					find(char *str, char c);
+void    			memory_allocate(t_pf *st);
 void    			fill_struct(t_pf *st, va_list vl);
 void				f_1(char cpecif, char *size, va_list vl, char **buffer);
 void    			fill_flags(char **str, char *flags, char *flag);
 void    			fill_width(char **str, char *width);
-void    			fill_precision(char **str, int *i, char **precision);
-void    			fill_size(char **str, int *i, char *sizes, char **size);
+void    			fill_precision(char **str, char *precision);
+void    			fill_size(char **str, char *sizes, char *size);
 
 #endif
