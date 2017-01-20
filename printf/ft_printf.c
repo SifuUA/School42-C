@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/01/19 21:37:41 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/20 16:27:40 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,81 +27,99 @@ int		find(char *str, char c)
 	return (0);
 }
 
-// функция заполнения сруктуры флагами, спец.,..итд
-void	fill_struct(t_pf *st, va_list vl)
+void	memory_allocate(t_pf *st)
 {
-	int	i;
-	int j;
-	char spec[] = "diuoxXfFeEgGaAcspn";
-	char sizes[] = "llLhlhhjzt";
-	char flags[] = "-+ #0";
-	
-	st->flag = ft_strnew(4);
+	st->flag = ft_strnew(5);
 	st->width = ft_strnew(ft_strlen(st->str));
 	st->precision = ft_strnew(ft_strlen(st->str));
 	st->size = ft_strnew(2);
 
-	i = 0;
-	while (st->str[i] && (find(spec, st->str[i]) == 0))
-	{
-		j = 0;
-		if (find (flags, st->str[i]) == 1)
-		{
-			while (find (flags, st->str[i]) == 1)
-			{
-				if (find(st->flag, st->str[i]) == 0)
-				{
-					st->flag[j] = st->str[i];
-					j++;
-				}
-				i++;
-			}
-		}
-		else if ((ft_isdigit(st->str[i]) == 1 || (st->str[i] == '*' )))
-		{
-			j = 0;
-			while ((ft_isdigit(st->str[i]) == 1 || (st->str[i] == '*' )))
-			{
-				st->width[j] = st->str[i];
-				j++;
-				i++;
-			}
-		}
-		else if (st->str[i] == '.')
-		{
-			j = 0;
-			i++;
-			while (st->str[i] == '*' || ft_isdigit(st->str[i]) == 1)
-			{
-				st->precision[j] = st->str[i];
-				i++;
-				j++;
-			}
-		}
-		else if (find(sizes, st->str[i]) == 1)
-		{
-			j = 0;
-			while (find(sizes, st->str[i]) == 1)
-			{
-				st->size[j] = st->str[i];
-				i++;
-				j++;
-			}
-		}
-		else
-			i++;
-	}
-	st->specifier = st->str[i];
-	(st->str) += i;
-	f_1(st->specifier, st->size, vl, &(st->buffer));
-	printf("%s\n", st->flag);
-	printf("%s\n", st->width);
-	printf("%s\n", st->precision);
-	printf("%s\n", st->size);
-	printf("%c\n", st->specifier);
-	ft_putnbr(*(st->buffer));
-	ft_putnbr(ft_atoi(st->buffer));
+}
+// функция заполнения сруктуры флагами, спец.,..итд
+void	fill_struct(t_pf *st, va_list vl)
+{
+	int		i;
+	char	spec[] = "diuoxXfFeEgGaAcspn";
+	char	sizes[] = "llLhlhhjzt";
+	char	flags[] = "-+ #0";
 	
+	i = 0;
+	memory_allocate(st);
+	while (*(st->str) && (find(spec, *(st->str)) == 0))
+	{
+		fill_flags(&(st->str), flags, st->flag);
+		fill_width(&(st->str), st->width);
+		fill_precision(&(st->str), &i, &(st->flag));
+		fill_size(&(st->str), &i, sizes, &(st->size));
+		(st->str)++;
+	}
+	st->specifier = *(st->str);
+	//f_1(st->specifier, st->size, vl, &(st->buffer));
+	
+
+	printf("f %s\n", st->flag);
+	printf("w %s\n", st->width);
+	printf("p %s\n", st->precision);
+	printf("s %s\n", st->size);
+	printf("c %c\n", st->specifier);
+	//ft_putnbr(*(st->buffer));
+	//ft_putnbr(ft_atoi(st->buffer));
+}
+void	fill_flags(char **str, char *flags, char *flag)
+{
+	char	*ptr;
+
+	ptr = flag;
+	while (find (flags, **str) == 1)
+	{
+		if (find(flag, **str) == 0)
+		{
+			*ptr = **str;
+			ptr++;
+		}
+		(*str)++;
+	}
+}
+
+void	fill_width(char **str, char *width)
+{
+	while (ft_isdigit(**str) == 1 || **str == '*')
+	{
+		*width = **str;
+		width++;
+		(*str)++;
+	}
+}
+
+void    fill_precision(char **str, int *i, char **precision)
+{	
+	int j;
+
+	j = 0;
+	if (*str[*i] == '.')
+	{
+		(*i)++;
+		while (*str[*i] == '*' || ft_isdigit(*str[*i]) == 1)
+		{
+			*precision[j] = *str[*i];
+			(*i)++;
+			j++;
+		}
+	}
+}
+
+
+void    fill_size(char **str, int *i, char *sizes, char **size)
+{
+	int j;
+
+	j = 0;	
+	while (find(sizes, *str[*i]) == 1)
+	{
+		*size[j] = *str[*i];
+		(*i)++;
+		j++;
+	}
 }
 
 // основная ф-я
