@@ -21,43 +21,45 @@ void	fill_struct(t_pf *st, va_list vl)
     char	*ptr;
 	
     memory_allocate(st);
-	st->width = 0;
-	st->precision = 0;
+	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
-		printf("Start %c\n", *(st->str));
-        fill_flags((st->str), flags, st->flag);
-		printf("F %c\n", *(st->flag));
         fill_width(&(st->str), &(st->width), vl);
         fill_precision(&(st->str), &(st->precision), vl);
         fill_size(&(st->str), sizes, st->size);
-        (st->str)++;
+		if (!ft_isdigit(*(st->str)) && !find_mod(spec, sizes, flags, *(st->str)))
+			(st->str)++;
     }
     st->specifier = *(st->str);
 }
 
-void	fill_flags(char *str, char *flags, char *flag)
+void	fill_flags(char *str, char *flags, char **flag)
 {
+	char *ptr;
 
-    if (*str && find (flags, *str) == 1)
+	ptr = *flag;
+    while (*str)
     {
-            *flag = *str;
-            flag++;
-			}
-        (str)++;
-    }
+		if (find(flags, *str) == 1 && find(*flag, *str) == 0)
+		{
+            *ptr = *str;
+			ptr++;
+		}
+        str++;
+	}
 }
 
 void	fill_width(char **str, int *width, va_list vl)
 {
 	while (**str == '*' || ft_isdigit(**str))
 	{
+		*width = 0;
 		if (**str == '*')
 		{
         	*width = va_arg(vl, int);
        		(*str)++;
 		}
-		if (ft_isdigit(**str))
+		else if (ft_isdigit(**str))
 		{
 			while (ft_isdigit(**str))
 			{
@@ -79,10 +81,11 @@ void    fill_precision(char **str, int *precision, va_list vl)
 			*precision = va_arg(vl, int);
 			(*str)++;
         }
-		else
+		else if (ft_isdigit(**str))
 		{
 			while(ft_isdigit(**str))
 			{
+				printf("P%d\n", *precision);
             	*precision = *precision * 10 + **str - '0';
             	(*str)++;
 			}

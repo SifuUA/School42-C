@@ -28,9 +28,11 @@ char				*ft_itoa_base(unsigned long long int value,
 char				*ft_itoa_base_m( long long int value, long long int base);
 
 int					find(char *str, char c);
+int     			find_mod(char *a, char *b, char *c, char tmp);
 void    			memory_allocate(t_pf *st);
+
 void    			fill_struct(t_pf *st, va_list vl);
-void    			fill_flags(char *str, char *flags, char *flag);
+void    			fill_flags(char *str, char *flags, char **flag);
 void    			fill_width(char **str, int *width, va_list vl);
 void    			fill_precision(char **str, int *precision, va_list vl);
 void    			fill_size(char **str, char *sizes, char *size);

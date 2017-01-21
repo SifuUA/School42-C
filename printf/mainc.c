@@ -3,11 +3,11 @@
 
 int		main(void)
 {
-	char *str = "%0 #20.5ll+-d\n";
+	char *str = "%\n";
 	
 	printf("my :\n");
-	ft_printf(str, 12);
+	ft_printf(str, 10, 30, 4);
 	printf("man = ");
-	printf(str, 12);
+	printf(str, 10, 30, 4);
 }
 
