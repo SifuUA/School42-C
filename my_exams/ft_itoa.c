@@ -33,7 +33,23 @@ char    	*ft_itoa(int nbr)
 	return (str);
 }
 
+void			dfd(int num)
+{
+	int tmp;
+
+	if (num > 9)
+	{
+		dfd(num / 10);
+		dfd(num % 10);
+	}
+	else
+	{
+		tmp = num + '0';	
+		write(1, &tmp, 1);
+	}
+}
 int			main(void)
 {
 	printf("%s\n", ft_itoa(12345));
+	dfd(12345);
 }
