@@ -25,16 +25,18 @@ int	 		ft_printf(const char * restrict format, ...)
 	while (*(st->str))
 	{
 		if (*(st->str) == '%')
+		{
+			(st->str)++;
 			fill_struct(st, vl);
+		}
 		else
 			ft_putchar((*st->str));
 		(st->str)++;
 	}
     
 	printf("f %s\n", st->flag);
-    printf("w %s\n", st->width_arg);
-    printf("w %d\n", st->width_num);
-    printf("p %s\n", st->precision);
+    printf("w %d\n", st->width);
+    printf("p %d\n", st->precision);
     printf("s %s\n", st->size);
     printf("c %c\n", st->specifier);
     //ft_putnbr(*(st->buffer));

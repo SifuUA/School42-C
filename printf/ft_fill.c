@@ -20,65 +20,74 @@ void	fill_struct(t_pf *st, va_list vl)
     char	flags[] = "-+ #0";
     char	*ptr;
 	
-	ptr = st->str;
     memory_allocate(st);
+	st->width = 0;
+	st->precision = 0;
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
-        (st->str)++;
-        fill_flags(&(ptr), flags, st->flag);
-        fill_width(&(st->str), st->width_arg, &(st->width_num));
-        fill_precision(&(st->str), st->precision);
+		printf("Start %c\n", *(st->str));
+        fill_flags((st->str), flags, st->flag);
+		printf("F %c\n", *(st->flag));
+        fill_width(&(st->str), &(st->width), vl);
+        fill_precision(&(st->str), &(st->precision), vl);
         fill_size(&(st->str), sizes, st->size);
+        (st->str)++;
     }
     st->specifier = *(st->str);
 }
 
-void	fill_flags(char **str, char *flags, char *flag)
+void	fill_flags(char *str, char *flags, char *flag)
 {
-    char	*ptr;
-    
-    ptr = flag;
-    while (find (flags, **str) == 1)
+
+    if (*str && find (flags, *str) == 1)
     {
-        if (find(flag, **str) == 0)
-        {
-            *ptr = **str;
-            ptr++;
-        }
-        (*str)++;
+            *flag = *str;
+            flag++;
+			}
+        (str)++;
     }
 }
 
-void	fill_width(char **str, char *width_arg, int *width_num )
+void	fill_width(char **str, int *width, va_list vl)
 {
-	if (ft_isdigit(**str) == 1)
+	while (**str == '*' || ft_isdigit(**str))
 	{
-        	*width_num = ft_atoi(*str);
+		if (**str == '*')
+		{
+        	*width = va_arg(vl, int);
        		(*str)++;
-    }
-	else if (**str == '*')
-	{
-    	while (**str == '*')
-   		{
-        	*width_arg = **str;
-       		 width_arg++;
-       		 (*str)++;
 		}
+		if (ft_isdigit(**str))
+		{
+			while (ft_isdigit(**str))
+			{
+        		*width = *width * 10 + **str - '0';
+				printf("W%d\n", *width);
+       			(*str)++;
+			}
+    	}
 	}
 }
 
-void    fill_precision(char **str, char *precision)
+void    fill_precision(char **str, int *precision, va_list vl)
 {
-    if (**str == '.')
+	if (**str == '.')
     {
         (*str)++;
-        while (**str == '*' || ft_isdigit(**str) == 1)
+        if (**str == '*')
         {
-            *precision = **str;
-            precision++;
-            (*str)++;
+			*precision = va_arg(vl, int);
+			(*str)++;
         }
-    }
+		else
+		{
+			while(ft_isdigit(**str))
+			{
+            	*precision = *precision * 10 + **str - '0';
+            	(*str)++;
+			}
+		}
+	}
 }
 
 

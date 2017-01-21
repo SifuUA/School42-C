@@ -3,7 +3,7 @@
 
 int		main(void)
 {
-	char *str = "%-0 #+1234.*22lld\n";
+	char *str = "%0 #20.5ll+-d\n";
 	
 	printf("my :\n");
 	ft_printf(str, 12);

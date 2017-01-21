@@ -12,9 +12,9 @@ typedef struct		s_pf
 	char			*buffer;
 
 	char			*flag;
-	char			*width_arg;
-	int				width_num;
-	char			*precision;
+	int				width;
+	int				precision;
+
 	char			*size;
 	char			specifier;
 }					t_pf;
@@ -30,10 +30,10 @@ char				*ft_itoa_base_m( long long int value, long long int base);
 int					find(char *str, char c);
 void    			memory_allocate(t_pf *st);
 void    			fill_struct(t_pf *st, va_list vl);
-void				f_1(char cpecif, char *size, va_list vl, char **buffer);
-void    			fill_flags(char **str, char *flags, char *flag);
-void    			fill_width(char **str, char *width_arg, int *width_num);
-void    			fill_precision(char **str, char *precision);
+void    			fill_flags(char *str, char *flags, char *flag);
+void    			fill_width(char **str, int *width, va_list vl);
+void    			fill_precision(char **str, int *precision, va_list vl);
 void    			fill_size(char **str, char *sizes, char *size);
+void				f_1(char cpecif, char *size, va_list vl, char **buffer);
 
 #endif
