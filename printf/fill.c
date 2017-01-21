@@ -31,6 +31,8 @@ void	fill_struct(t_pf *st, va_list vl)
 			(st->str)++;
     }
     st->specifier = *(st->str);
+	f_1(st->specifier, st->size, vl, &(st->buffer));
+
 }
 
 void	fill_flags(char *str, char *flags, char **flag)
@@ -96,10 +98,13 @@ void    fill_precision(char **str, int *precision, va_list vl)
 
 void    fill_size(char **str, char *sizes, char *size)
 {
+	char	*ptr;
+
+	ptr = size;
     while (find(sizes, **str) == 1)
     {
-        *size = **str;
-        size++;
+        *ptr = **str;
+        ptr++;
         (*str)++;
     }
 }

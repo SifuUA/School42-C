@@ -3,11 +3,11 @@
 
 int		main(void)
 {
-	char *str = "%\n";
+	char *str = "%hd\n";
 	
 	printf("my :\n");
-	ft_printf(str, 10, 30, 4);
+	ft_printf(str, 'a');
 	printf("man = ");
-	printf(str, 10, 30, 4);
+	printf(str, 32768);
 }
 
