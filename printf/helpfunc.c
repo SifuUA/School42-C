@@ -1,5 +1,10 @@
 #include "ft_printf.h"
 
+void	upper_case(char *str)
+{
+	
+}
+
 int		find_mod(char *a, char *b, char *c, char tmp)
 {
 	int i;

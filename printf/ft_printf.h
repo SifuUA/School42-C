@@ -38,5 +38,7 @@ void    			fill_size(char **str, char *sizes, char *size);
 
 void				f_1(char cpecif, char *size, va_list vl, char **buffer);
 void				f_2(char cpecif, char *size, va_list vl, char **buffer);
+void				f_3(char cpecif, char *size, va_list vl, char **buffer);
+void				f_4(char cpecif, char *size, va_list vl, char **buffer);
 
 #endif

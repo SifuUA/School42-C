@@ -3,11 +3,19 @@
 
 int		main(void)
 {
-	char *str = "%td\n";
-	
-	printf("my :\n");
-	ft_printf(str, 9223372036854775808);
-	printf("man = ");
-	printf(str, 9223372036854775808);
+/*
+	unsigned short int = 65535;
+	unsigned long int = 4294967295;
+	unsigned long long int = 18446744073709551615;
+*/
+	char *str = "%jo";
+	int num = 4294967295;
+
+	printf("%12s\n", "MY");
+	ft_printf(str, num);
+
+	printf("%12s\n %s","MAN", "---> ");
+	printf(str, num);
+	printf(" <---\n");
 }
 
