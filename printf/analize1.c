@@ -88,16 +88,14 @@ void	f_3(char cpecif, char *size, va_list vl, char **buffer)
 
 void	f_4(char cpecif, char *size, va_list vl, char **buffer)
 {
-	int			i;
 	double		tmp;
 	size_t		value;
 	char		*ptr;
 	char		*ptr1;
 
-	i = 0;
 	if (cpecif == 'f')
 	{
-		if (size[i] == '\0')
+		if (size[0] == '\0')
 		{
 			tmp = (double)va_arg(vl, double);
 			value = tmp;
@@ -107,9 +105,37 @@ void	f_4(char cpecif, char *size, va_list vl, char **buffer)
 			printf ("ptr = %s ptr1 = %s\n", ptr, ptr1);
 			ptr1 += (ft_strlen(ptr) - 1);
 			*buffer = ft_strcat(ptr, ptr1);
+			ft_strdel(&ptr);
 		}
-		printf("---> %s <---\n", *buffer);
+		else if (size[0] == 'L')
+			f_5(cpecif, size, vl, buffer);
 	}
 	else
-		f_4(cpecif, size, vl, buffer);
+		f_5(cpecif, size, vl, buffer);
+}
+
+void	f_5(char cpecif, char *size, va_list vl, char **buffer)
+{
+	double		tmp;
+	size_t		value;
+	char		*ptr;
+	char		*ptr1;
+
+	if (cpecif == 'f' || cpecif == 'F')
+	{
+		if (size[0] == '\0' || size[0] == 'L')
+		{
+			tmp = (long double)va_arg(vl, long double);
+			value = tmp;
+			*buffer = ft_itoa_mod(value);
+			ptr = *buffer;
+			ptr1 = ft_itoa_base((tmp * ft_pow(10, num_len(tmp))), 10);
+			printf ("ptr = %s ptr1 = %s\n", ptr, ptr1);
+			ptr1 += (ft_strlen(ptr) - 1);
+			*buffer = ft_strcat(ptr, ptr1);
+			ft_strdel(&ptr);
+		}
+	}
+	else
+		f_6(cpecif, size, vl, buffer);
 }

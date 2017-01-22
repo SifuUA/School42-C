@@ -34,7 +34,6 @@ static void	write_in_ar(int n, char *ptr, int i)
 		ptr[0] = '-';
 		n = -n;
 	}
-	printf("IIII%d\n", i);
 	ptr[i + 1] = '\0';
 	ptr[i--] = '.';
 	while (n != 0)

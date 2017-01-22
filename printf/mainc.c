@@ -8,8 +8,8 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char *str = "%f";
-	double num = 2;
+	char *str = "%.20e";
+	double num = -22121.123;
 
 	printf("%12s\n", "MY");
 	ft_printf(str, num);
