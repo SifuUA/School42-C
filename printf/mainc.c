@@ -9,7 +9,7 @@ int		main(void)
 	unsigned long long int = 18446744073709551615;
 */
 	char *str = "%f";
-	double num = 21234567.8912345;
+	double num = 2;
 
 	printf("%12s\n", "MY");
 	ft_printf(str, num);
