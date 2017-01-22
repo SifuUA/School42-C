@@ -1,8 +1,17 @@
 #include "ft_printf.h"
 
-void	upper_case(char *str)
+char	*upper_case(char **str)
 {
-	
+	char	*ptr;
+
+	ptr = *str;
+	while (ptr)
+	{
+		if (**str >= 'a' && **str <= 'z')
+			*ptr = *ptr + 32;
+		ptr++;
+	}
+	return (*str);
 }
 
 int		find_mod(char *a, char *b, char *c, char tmp)
