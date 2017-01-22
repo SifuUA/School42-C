@@ -23,6 +23,7 @@ typedef void ((*ptr_f)());
 
 int					ft_printf(const char * restrict format, ...);
 
+char        		*ft_itoa_mod(int n);
 char				*ft_itoa_base(long long int value, long long int base);
 char				*ft_itoa_base_low(long long int value, long long int base);
 char				*ft_itoa_base_unsign( unsigned long long int value, unsigned long long int base);
