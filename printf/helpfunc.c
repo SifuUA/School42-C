@@ -1,5 +1,21 @@
 #include "ft_printf.h"
 
+int		num_len(double num)
+{
+	size_t	tmp;
+	int		len;
+
+	len = 0;
+	tmp = num;
+	while (num - tmp > 0)
+	{
+		num = num * 10;
+		tmp = num;
+		len++;
+	}
+	return (len);
+}
+
 char	*upper_case(char **str)
 {
 	char	*ptr;
