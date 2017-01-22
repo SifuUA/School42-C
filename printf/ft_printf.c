@@ -40,7 +40,7 @@ int	 		ft_printf(const char * restrict format, ...)
     printf("s %s\n", st->size);
     printf("c %c\n", st->specifier);
 	ft_putstr("buffer = ");
-    //ft_putnbr(*(st->buffer));
+    ft_putnbr(*(st->buffer));
 	printf("\n");
     //ft_putnbr(ft_atoi(st->buffer));
 	return (0);

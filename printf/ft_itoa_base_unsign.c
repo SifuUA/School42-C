@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	nbr_to_str(unsigned int value, unsigned int base, char **str)
+void	nbr_to_str(unsigned long long int value, unsigned long long int base, char **str)
 {
 	char c;
 

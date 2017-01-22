@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static void	nbr_to_str(unsigned int value, unsigned int base, char **str)
+static void	nbr_to_str(unsigned long long int value, unsigned long long int base, char **str)
 {
 	char c;
 
@@ -25,7 +25,6 @@ char	*ft_itoa_base(long long int value, long long int base)
 {
 	char	*str;
 	char	*s;
-	
 	str = (char*)malloc(sizeof(char) * 33);
 	*str = 0;
 	s = str;
@@ -40,6 +39,6 @@ char	*ft_itoa_base(long long int value, long long int base)
 	}
 	if (base < 2 || base > 16)
 		return (s);
-	nbr_to_str((unsigned int)value, (unsigned int)base, &str);
+	nbr_to_str((unsigned long long int)value, (unsigned long long int)base, &str);
 	return (s);
 }

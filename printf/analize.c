@@ -16,23 +16,18 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer)
 {
 	if (cpecif == 'd' || cpecif == 'i')
 	{
-				printf("S %s", size);
 		if (size[0] == '\0')
-			{
-				*buffer = ft_itoa_base(va_arg(vl, int), 10);}
+		*buffer = ft_itoa_base(va_arg(vl, int), 10);
 		else if (size[0] == 'h' && size[1] == 'h')
 			**buffer = (signed char)(va_arg(vl, int));
 		else if (size[0] == 'h')
-			**buffer = (short int)(va_arg(vl, int));
-		else if (size[0] == 'l')
-			**buffer = (long int)(va_arg(vl, int));
-		else if (size[0] == 'j')
-			**buffer = (intmax_t)(va_arg(vl, int));
-		else if (size[0] == 'z')
-			**buffer = (size_t)(va_arg(vl, int));
-		//else
-		//	**buffer = (ptrdiff_t)(va_arg(vl, int));
+			*buffer = ft_itoa_base((short int)(va_arg(vl, int)) , 10);
+		else if (size[0] == 'l' || size[0] == 'j' || size[0] == 'z' || size[0] == 't')
+			*buffer = ft_itoa_base(va_arg(vl, long long int), 10);
+			printf("!!!%s", *buffer);
 	}
-	//else
-		//f_2(cpecif, size, vl, &buffer);
+	else
+		f_2(cpecif, size, vl, &buffer);
 }
+
+void	f_2(char cpecif, char *size, va_list vl, char **buffer)
