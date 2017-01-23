@@ -9,7 +9,7 @@ void	f_6(char cpecif, char *size, va_list vl, char **buffer)
 
 	if (cpecif == 'e')
 	{
-		if (size[0] == '\0')
+/*		if (size[0] == '\0')
 		{
 			tmp = (long double)va_arg(vl, long double);
 			value = tmp;
@@ -21,9 +21,20 @@ void	f_6(char cpecif, char *size, va_list vl, char **buffer)
 			*buffer = ft_strcat(ptr, ptr1);
 			ft_strdel(&ptr);
 		}
-	}
-//	else
+*/	}
+//	else if (cpecif == 'c' || cpecif == 's')
 //		f_7(cpecif, size, vl, buffer);
-printf("---> %s <---\n", *buffer);
 }
 
+void	f_7(char cpecif, char *size, va_list vl, char **buffer)
+{
+	if (cpecif == 'c')
+	{
+		if (size[0] == '\0' || size[0] == 'l')
+			**buffer = (char)va_arg(vl, int);
+	}
+	else
+		if (size[0] == '\0')
+			*buffer = va_arg(vl, char *);
+//printf("---> %s <---\n", *buffer);
+}

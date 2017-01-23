@@ -66,7 +66,6 @@ void	fill_width(char **str, int *width, va_list vl)
 			while (ft_isdigit(**str))
 			{
         		*width = *width * 10 + **str - '0';
-				printf("W%d\n", *width);
        			(*str)++;
 			}
     	}

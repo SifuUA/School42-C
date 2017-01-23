@@ -15,10 +15,9 @@
 int	 		ft_printf(const char * restrict format, ...)
 {
 	va_list 		vl;
-	char 			*str;
 	static t_pf 	*st;
+	size_t			count;
 
-	//ptr_f [10];
 	va_start (vl, format);
 	st = (t_pf *)malloc(sizeof(t_pf));
 	st->str = (char*) format;
@@ -28,6 +27,7 @@ int	 		ft_printf(const char * restrict format, ...)
 		{
 			(st->str)++;
 			fill_struct(st, vl);
+			print_buff(st);
 		}
 		else
 			ft_putchar((*st->str));

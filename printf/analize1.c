@@ -30,6 +30,8 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer)
 	else if (cpecif == 'f' || cpecif == 'F' || cpecif == 'e' || cpecif == 'E'
 	|| cpecif == 'g' || cpecif == 'G' || cpecif == 'a' || cpecif == 'A')
 		f_4(cpecif, size, vl, buffer);
+	else if (cpecif == 'c' || cpecif == 's')
+		f_7(cpecif, size, vl, buffer);
 }
 
 void	f_2(char cpecif, char *size, va_list vl, char **buffer)

@@ -46,5 +46,7 @@ void				f_3(char cpecif, char *size, va_list vl, char **buffer);
 void				f_4(char cpecif, char *size, va_list vl, char **buffer);
 void				f_5(char cpecif, char *size, va_list vl, char **buffer);
 void				f_6(char cpecif, char *size, va_list vl, char **buffer);
+void				f_7(char cpecif, char *size, va_list vl, char **buffer);
 
+int					print_buff(t_pf *st);
 #endif
