@@ -43,3 +43,8 @@ char    		*ft_itoa_base(int value, int base)
 	conv_num((unsigned int)value, base, &str);
 	return (ptr);
 }
+
+int		main(void)
+{
+	printf("%s\n", ft_itoa_base(123123, 16));
+}
