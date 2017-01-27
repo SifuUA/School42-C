@@ -69,8 +69,23 @@ void		modif_buff(t_pf *st)
 {
 	char	*ptr;
 	char	*tmp;
+	char	*ptr1;
 
 	ptr = ft_strjoin(get_space(st), get_zero(st));
-	tmp = ft_strjoin(ptr, st->buffer);
+	if (find(st->flag, '-') == 1)
+	{
+		tmp = ft_strjoin(st->buffer, ptr);
+		st->buffer = tmp;
+	}
+	if (find(st->flag, '+') == 1 && ft_atoi(st->buffer) > 0)
+	{
+		tmp = ft_strjoin("+", st->buffer);
+		st->buffer = tmp;
+	}
+	//else
+	//	tmp = ft_strjoin(ptr, st->buffer);
 	st->buffer = tmp;
+	ft_strdel(&ptr);
+	ft_strdel(&tmp);
+
 }
