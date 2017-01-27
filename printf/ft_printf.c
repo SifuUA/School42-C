@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/01/27 15:30:50 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/27 20:08:51 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	 		ft_printf(const char * restrict format, ...)
 		{
 			(st->str)++;
 			fill_struct(st, vl);
-			print_buff(st);
+			modif_buff(st);
 		}
 		else
 			ft_putchar((*st->str));
@@ -39,9 +39,7 @@ int	 		ft_printf(const char * restrict format, ...)
     //printf("p %d\n", st->precision);
    // printf("s %s\n", st->size);
    // printf("c %c\n", st->specifier);
-	ft_putstr("buffer = ");
     ft_putstr(st->buffer);
-	printf("\n");
     //ft_putnbr(ft_atoi(st->buffer));
 	return (0);
 }

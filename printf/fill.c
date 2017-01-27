@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
-/*   Updated: 2017/01/20 19:50:15 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/27 16:11:29 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void    fill_precision(char **str, int *precision, va_list vl)
 		{
 			while(ft_isdigit(**str))
 			{
-				printf("P%d\n", *precision);
             	*precision = *precision * 10 + **str - '0';
             	(*str)++;
 			}

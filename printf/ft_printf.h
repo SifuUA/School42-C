@@ -48,5 +48,7 @@ void				f_5(char cpecif, char *size, va_list vl, char **buffer);
 void				f_6(char cpecif, char *size, va_list vl, char **buffer);
 void				f_7(char cpecif, char *size, va_list vl, char **buffer);
 
-int					print_buff(t_pf *st);
+void				modif_buff(t_pf *st);
+char				*get_zero(t_pf *st);
+char				*get_space(t_pf *st);
 #endif

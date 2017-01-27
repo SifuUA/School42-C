@@ -8,14 +8,17 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char	*str = "%017.9d";
-	int		num = 15;
-
-	printf("%12s\n %s %s","MY", "--->", "<---\n");
-	ft_printf(str, num, 7);
+	char	*str = "%-12.4ld";
+	int		num = 123456;
+	
+	printf("%12s\n","MY");
+	ft_putstr(" --->");
+	ft_printf(str, num);
+	printf("<---\n\n");
 
 	printf("%12s\n %s","MAN", "--->");
-	printf(str, num, 732);
+	printf(str, num);
 	printf("<---\n");
+
 }
 
