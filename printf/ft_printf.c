@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/01/20 19:26:56 by okres            ###   ########.fr       */
+/*   Updated: 2017/01/27 15:30:50 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	 		ft_printf(const char * restrict format, ...)
 		(st->str)++;
 	}
     
-	printf("f %s\n", st->flag);
-    printf("w %d\n", st->width);
-    printf("p %d\n", st->precision);
-    printf("s %s\n", st->size);
-    printf("c %c\n", st->specifier);
+	//printf("f %s\n", st->flag);
+   // printf("w %d\n", st->width);
+    //printf("p %d\n", st->precision);
+   // printf("s %s\n", st->size);
+   // printf("c %c\n", st->specifier);
 	ft_putstr("buffer = ");
-    ft_putnbr(*(st->buffer));
+    ft_putstr(st->buffer);
 	printf("\n");
     //ft_putnbr(ft_atoi(st->buffer));
 	return (0);

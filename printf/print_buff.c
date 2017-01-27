@@ -19,15 +19,21 @@ int		print_buff(t_pf *st)
 	int		str_w;
 	int		num_l;
 	int		space_c;
+	int		zero_c;
 
 	str_w = get_width(st);
 	num_l = ft_strlen(st->buffer);
-	space_c = str_w - num_l + st->precision;
+	space_c = str_w - st->precision;
+	zero_c = str_w - space_c + num_l;
 	while (space_c > 0)
 	{
 		ft_putchar(' ');
 		space_c--;
 	}
-
-
+	while (zero_c > 0)
+	{
+		ft_putchar('0');
+		zero_c--;
+	}
+	return (0);
 }
