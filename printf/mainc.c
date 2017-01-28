@@ -8,7 +8,7 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char	*str = "%-12d";
+	char	*str = "%24.22+d";
 	int		num = 123456;
 	
 	printf("%12s\n","MY");

@@ -44,7 +44,10 @@ void	fill_flags(char *str, char *flags, char **flag)
     {
 		if (find(flags, *str) == 1 && find(*flag, *str) == 0)
 		{
-            *ptr = *str;
+			if (*str == '0' && ft_isdigit(*(str - 1)))
+            	ptr++;
+			else
+            	*ptr = *str;
 			ptr++;
 		}
         str++;
