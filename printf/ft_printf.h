@@ -51,4 +51,6 @@ void				f_7(char cpecif, char *size, va_list vl, char **buffer);
 void				modif_buff(t_pf *st);
 char				*get_zero(t_pf *st);
 char				*get_space(t_pf *st);
+void				mod_zer_and_min(t_pf *st, char *spaces, char *zeros);
+void				mod_sp_and_plus(t_pf *st, char *spaces, char *zeros);
 #endif
