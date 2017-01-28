@@ -13,7 +13,7 @@ void		mod_plus2(t_pf *st, char *spaces, char *zeros, char *ptr)
 	}
 		else if (ft_strlen(spaces) > 0 && zeros == NULL && spaces != NULL)
 		{
-			tmp = ft_strjoin("+", st->buffer);
+			tmp = ft_strjoin("-", st->buffer);
 			ft_strdel(&(st->buffer));
 			ptr++;
 			st->buffer = ft_strjoin(ptr, tmp);
@@ -58,7 +58,7 @@ void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr)
 		{
 			tmp = ft_strjoin("+", st->buffer);
 			ft_strdel(&(st->buffer));
-			tmp[ft_strlen(tmp) - 1] = '\0';
+			tmp[ft_strlen(tmp)] = '\0';
 			st->buffer = tmp;
 		}
 		else if (ft_strlen(spaces) > 0 && zeros == NULL && spaces != NULL)

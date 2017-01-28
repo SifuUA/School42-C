@@ -57,12 +57,9 @@ char		*get_space(t_pf *st)
 		space_c = get_width(st) - ft_strlen(st->buffer);
 	n_str = ft_strnew(space_c);
 	while (i < space_c)
-		{
-			n_str[i] = ' ';
-			i++;
-		}
+	{
+		n_str[i] = ' ';
+		i++;
+	}
 	return (n_str);
 }
-
-
-
