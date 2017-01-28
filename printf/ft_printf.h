@@ -52,10 +52,10 @@ void				modif_buff(t_pf *st);
 char				*get_zero(t_pf *st);
 char				*get_space(t_pf *st);
 
-void				mod_zer(t_pf *st, char *spaces, char *zeros, char *ptr);
-void				mod_min(t_pf *st, char *spaces, char *zeros, char *ptr);
-void				mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr);
-void				mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr);
-void				mod_plus2(t_pf *st, char *spaces, char *zeros, char *ptr);
-void				mod_sp(t_pf *st, char *spaces, char *zeros, char *ptr);
+void				mod_zer(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak);
+void				mod_min(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak);
+void				mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak);
+void				mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak);
+void				mod_plus2(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak);
+void				mod_sp(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak);
 #endif

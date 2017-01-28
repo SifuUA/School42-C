@@ -1,10 +1,18 @@
 #include "ft_printf.h"
 
-void		mod_plus2(t_pf *st, char *spaces, char *zeros, char *ptr)
+void		mod_plus2(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 {
 	char	*tmp;
 	
-	(st->buffer)++;
+	(st->buffer)++;	if (find(st->flag, '-') || find(st->flag, '0'))
+		{
+			tmp = ft_strjoin("+", st->buffer);
+			ft_strdel(&(st->buffer));
+			if (st->width > st->precision)
+				tmp[ft_strlen(tmp) - 1] = '\0';
+			st->buffer = tmp;
+		}
+
 	if (find(st->flag, '-'))
 	{
 		tmp = ft_strjoin("-", st->buffer);
@@ -20,10 +28,10 @@ void		mod_plus2(t_pf *st, char *spaces, char *zeros, char *ptr)
 			ft_strdel(&(tmp));
 		}
 		else
-			mod_plus1(st, spaces, zeros, ptr);
+			mod_plus1(st, spaces, zeros, ptr, znak);
 }
 
-void		mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr)
+void		mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 {
 	char	*tmp;
 	char	*tmp1;
@@ -48,17 +56,18 @@ void		mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr)
 	}
 }
 
-void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr)
+void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 {
 	char	*tmp;
 
-	if (ft_atoi(st->buffer) > 0)
+	if (znak > 0)
 	{
-		if (find(st->flag, '-'))
+		if (find(st->flag, '-') || find(st->flag, '0'))
 		{
 			tmp = ft_strjoin("+", st->buffer);
 			ft_strdel(&(st->buffer));
-			tmp[ft_strlen(tmp)] = '\0';
+			if (st->width > st->precision)
+				tmp[ft_strlen(tmp) - 1] = '\0';
 			st->buffer = tmp;
 		}
 		else if (ft_strlen(spaces) > 0 && zeros == NULL && spaces != NULL)
@@ -70,9 +79,9 @@ void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr)
 			ft_strdel(&(tmp));
 		}
 		else
-			mod_plus1(st, spaces, zeros, ptr);
+			mod_plus1(st, spaces, zeros, ptr, znak);
 	}
 	else
-		mod_plus2(st, spaces, zeros, ptr);
+		mod_plus2(st, spaces, zeros, ptr, znak);
 }
 
