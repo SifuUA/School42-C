@@ -19,10 +19,20 @@ void		mod_zer(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 			tmp = ft_strjoin(ptr, st->buffer);
 		}
 			st->buffer = tmp;
+		i = 0;
 		if (znak < 0)
 		{
-			tmp = ft_strjoin("-", st->buffer);
-			st->buffer = tmp;
+			if(st->buffer[0] == ' ')
+			{
+				while (st->buffer[i] == ' ')
+				i++;
+				tmp[i - 1] = '-';
+				st->buffer = tmp;
+			}
+			else
+				tmp = ft_strjoin("-", st->buffer);
+				ft_strdel(&(st->buffer));
+				st->buffer = tmp;
 		}
 	}
 }
@@ -78,11 +88,11 @@ void		modif_buff(t_pf *st)
 	char		*ptr;
 	long long	znak;
 
-	spaces = get_space(st);
-	zeros = get_zero(st);
 	znak = ft_atoi(st->buffer);
 	if(znak < 0)
-		(st->buffer)++;
+		(st->buffer) = (st->buffer) + 1;
+	spaces = get_space(st);
+	zeros = get_zero(st);
 	ptr = ft_strjoin(spaces, zeros);
 	if (find(st->flag, '-') == 1 || find(st->flag, '0') == 1)
 		mod_min(st, spaces, zeros, ptr, znak);

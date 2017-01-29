@@ -28,6 +28,7 @@ char		*get_zero(t_pf *st)
 	else
 		space_c = get_width(st) - ft_strlen(st->buffer);
 	zero_c = get_width(st) - (space_c + ft_strlen(st->buffer));
+	//printf("Z%d W%d S%d L%zu SL%s", zero_c, get_width(st), space_c, ft_strlen(st->buffer), st->buffer);
 	if (zero_c > 0)
 	{
 		n_str = ft_strnew(zero_c);

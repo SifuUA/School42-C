@@ -10,6 +10,7 @@ typedef struct		s_pf
 	struct s_pf 	*next;
 	char			*str;
 	char			*buffer;
+	long long		znak;
 
 	char			*flag;
 	int				width;
