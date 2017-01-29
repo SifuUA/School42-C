@@ -46,5 +46,5 @@ char    		*ft_itoa_base(int value, int base)
 
 int		main(void)
 {
-	printf("%s\n", ft_itoa_base(123123, 16));
+	printf("%s\n", ft_itoa_base(-2147483648, 10));
 }
