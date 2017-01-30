@@ -22,10 +22,10 @@ char    *ft_strdup(char *src)
     return (str);
 }
 
-int     main(void)
+/*int     main(void)
 {
     char *a = "abcdef";
     printf("my = %s\n", ft_strdup(a));
     printf("man = %s\n", strdup(a));
 
-}
+}*/
