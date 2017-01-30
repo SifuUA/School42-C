@@ -14,6 +14,20 @@
 #include <stdio.h>
 char    *ft_strdup(char *src);
 
+char	*to_low(char *s)
+{
+	int i;
+	
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] >= 'A' && s[i] <= 'Z')
+			s[i] = s[i] + 32;
+		i++;
+	}
+	return (s);
+}
+
 int		find(char *str)
 {
 	int i;
@@ -36,34 +50,40 @@ void	alpha(char *str)
 	char *tmp;
 
 	i = 0;
-	count = 0;
-	tmp = str;
 	while (str[i])
 	{
-		j = 0;
-		count = 0;
-		while(tmp[j])
+		if (str[i] >= 'a' && str[i] <= 'z')
 		{
-			if (tmp[j] == str[i])
+			j = 0;
+			count = 0;
+			tmp = str;
+			while(tmp[j])
 			{
-			printf("tmp%c\n", tmp[j]);
-				count++;
-				tmp[j] = ' ';
+				if (tmp[j] == str[i])
+				{
+					count++;
+					if (count != 1)
+						tmp[j] = ' ';
+				}	
+				j++;
 			}
-			j++;
-		}
-		if (count != 0)
 			printf("%d%c", count, str[i]);
-		if (find(&str[i + 1]))
-			printf(", ");
+			if (find(&str[i + 1]) == 1)
+				printf(", ");
+		}
 		i++;
 	}
 }
 
 int		main(int argc, char **argv)
 {
+	char	*str;
+	char	*copy;
+
 	if (argc == 2)
-		alpha(argv[1]);
-	else	
-		printf("\n");
+	{
+		str = to_low(argv[1]);
+		alpha(str);
+	}
+	printf("\n");
 }
