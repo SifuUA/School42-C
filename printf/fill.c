@@ -20,7 +20,7 @@ void	fill_struct(t_pf *st, va_list vl)
     char	flags[] = "-+ #0";
     char	*ptr;
 	
-    memory_allocate(st);
+    //memory_allocate(st);
 	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {

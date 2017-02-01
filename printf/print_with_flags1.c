@@ -40,21 +40,34 @@ void		mod_min(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 {
 	char	*tmp;
 	char	*tmp1;
+	int		i;
 
+	i = 0;
 	if (find(st->flag, '-') == 1)
 	{
-		if (st->width > st->precision)
+		if (st->width >= st->precision)
 		{
 			tmp = ft_strjoin(st->buffer, spaces);
-			free(st->buffer);
 			st->buffer = ft_strjoin(zeros, tmp);
-			ft_strdel(&tmp);
+			if (znak < 0)
+			{
+				i = ft_strlen(st->buffer);
+				if (st->buffer[i - 1] == ' ')
+					st->buffer[i - 1] = '\0';
+				tmp = ft_strjoin("-", st->buffer);
+				st->buffer = tmp;
+			}
 		}
 		else
 		{
 			tmp = ft_strjoin(ptr, st->buffer);
-			free(st->buffer);
-			st->buffer = tmp;
+			if (znak < 0)
+			{
+				st->buffer = ft_strjoin("-", tmp);
+				free(tmp);
+			}
+			else
+				st->buffer = tmp;
 		}
 	}
 	else 
@@ -62,27 +75,55 @@ void		mod_min(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 }
 
 
-void		mod_sp(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
+void		mod_sp1(t_pf *st, char *spaces, char *zeros, long long znak)
 {
-	/*else if (find (st->flag, ' ') == 1)
+	char	*tmp;
+	char	*tmp1;
+
+	if (st->precision >= st->width)
+		tmp = ft_strjoin(" ", st->buffer);
+	else
 	{
-		i = ft_strlen(st->buffer);
-		if (find(st->flag, '-') == 1 && st->buffer[i - 1] == ' ')
+		tmp1 = ft_strjoin(spaces, zeros);
+		tmp = ft_strjoin(tmp1, st->buffer);
+	}
+	st->buffer = tmp;
+}
+
+void		mod_sp(t_pf *st, char *spaces, char *zeros, long long znak)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	if (find (st->flag, '-') == 1 || find (st->flag, '0') == 1)
+	{
+		tmp = ft_strjoin(" ", st->buffer);
+		i = ft_strlen(tmp);
+		if (tmp[i - 1] == ' ')
+			tmp[i - 1] = '\0';
+		st->buffer = tmp;
+	}
+	else
+	{
+		if (ft_strlen(spaces) > 0 && spaces != NULL && (zeros == NULL || *zeros == '\0'))
 		{
-			st->buffer[i - 1] = '\0';
-			tmp = ft_strjoin(" ", st->buffer);
+			tmp = ft_strjoin(spaces, st->buffer);
 			st->buffer = tmp;
 		}
-		else if (ft_strlen(ptr) > 0)
+		else if (zeros != NULL && (spaces == NULL || *spaces == '\0'))
 		{
-			tmp = ft_strjoin(ptr, st->buffer);
-			st->buffer = tmp;
+			tmp = ft_strjoin(zeros, st->buffer);
+			st->buffer = ft_strjoin(" ", tmp);
 		}
-	}*/
+		else
+			mod_sp1(st, spaces, zeros, znak);
+	}
 }
 
 void		modif_buff(t_pf *st)
 {
+	char		a;
 	char		*spaces;
 	char		*zeros;
 	char		*ptr;
@@ -91,15 +132,21 @@ void		modif_buff(t_pf *st)
 	znak = ft_atoi(st->buffer);
 	if(znak < 0)
 		(st->buffer) = (st->buffer) + 1;
+
 	spaces = get_space(st);
-	zeros = get_zero(st);
+	zeros = get_zero(st, a);
 	ptr = ft_strjoin(spaces, zeros);
 	if (find(st->flag, '-') == 1 || find(st->flag, '0') == 1)
 		mod_min(st, spaces, zeros, ptr, znak);
 	if (find(st->flag, '+') == 1)
 		mod_plus(st, spaces, zeros, ptr, znak);
 	else if (find(st->flag, ' ') == 1)
-		mod_sp(st, spaces, zeros, ptr, znak);
-	//if (st->flag[0] == '\0')
-	//	st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+		mod_sp(st, spaces, zeros, znak);
+	if (st->flag[0] == '\0')
+	{
+		if (st->specifier != 'c' && st->specifier != 's')
+			st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+		else
+			st->buffer = ft_strjoin(spaces, st->buffer);
+	}
 }

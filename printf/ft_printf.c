@@ -17,9 +17,12 @@ int	 		ft_printf(const char * restrict format, ...)
 	va_list 		vl;
 	static t_pf 	*st;
 	size_t			count;
+	int				i;
 
+	i = 0;
 	va_start (vl, format);
 	st = (t_pf *)malloc(sizeof(t_pf));
+	memory_allocate(st);
 	st->str = (char*) format;
 	while (*(st->str))
 	{
@@ -30,7 +33,10 @@ int	 		ft_printf(const char * restrict format, ...)
 			modif_buff(st);
 		}
 		else
+		{
 			ft_putchar((*st->str));
+			i++;
+		}
 		(st->str)++;
 	}
     
@@ -41,5 +47,5 @@ int	 		ft_printf(const char * restrict format, ...)
    // printf("c %c\n", st->specifier);
     ft_putstr(st->buffer);
     //ft_putnbr(ft_atoi(st->buffer));
-	return (0);
+	return (ft_strlen(st->buffer) + i);
 }

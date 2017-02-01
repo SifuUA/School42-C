@@ -104,10 +104,9 @@ void	f_4(char cpecif, char *size, va_list vl, char **buffer)
 			*buffer = ft_itoa_mod(value);
 			ptr = *buffer;
 			ptr1 = ft_itoa_base((tmp * ft_pow(10, num_len(tmp))), 10);
-			printf ("ptr = %s ptr1 = %s\n", ptr, ptr1);
+			//printf ("ptr = %s ptr1 = %s\n", ptr, ptr1);
 			ptr1 += (ft_strlen(ptr) - 1);
 			*buffer = ft_strcat(ptr, ptr1);
-			ft_strdel(&ptr);
 		}
 		else if (size[0] == 'L')
 			f_5(cpecif, size, vl, buffer);
