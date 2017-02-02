@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 18:05:11 by okres             #+#    #+#             */
-/*   Updated: 2017/01/27 20:29:39 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/02 15:50:16 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	f_2(char cpecif, char *size, va_list vl, char **buffer)
 	}
 	else if (cpecif == 'o')
 	{
+
 		if (size[0] == '\0')
 			*buffer = ft_itoa_base(va_arg(vl, unsigned int), 8);
 		else if (size[0] == 'h' && size[1] == 'h')

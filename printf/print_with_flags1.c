@@ -142,6 +142,8 @@ void		modif_buff(t_pf *st)
 		mod_plus(st, spaces, zeros, ptr, znak);
 	else if (find(st->flag, ' ') == 1)
 		mod_sp(st, spaces, zeros, znak);
+	if (find(st->flag, '#'))
+		mod_sharp(st);
 	if (st->flag[0] == '\0')
 	{
 		if (st->specifier != 'c' && st->specifier != 's' && *(st->buffer) != '%')
