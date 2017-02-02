@@ -144,7 +144,7 @@ void		modif_buff(t_pf *st)
 		mod_sp(st, spaces, zeros, znak);
 	if (st->flag[0] == '\0')
 	{
-		if (st->specifier != 'c' && st->specifier != 's')
+		if (st->specifier != 'c' && st->specifier != 's' && *(st->buffer) != '%')
 			st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
 		else
 			st->buffer = ft_strjoin(spaces, st->buffer);

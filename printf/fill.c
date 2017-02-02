@@ -13,14 +13,21 @@
 #include "ft_printf.h"
 
 // функция заполнения структуры флагами, спец.,..итд
-void	fill_struct(t_pf *st, va_list vl)
+int		fill_struct(t_pf *st, va_list vl)
 {
     char	spec[] = "diuoxXfFeEgGaAcspn";
     char	sizes[] = "llLhlhhjzt";
     char	flags[] = "-+ #0";
     char	*ptr;
 	
-    //memory_allocate(st);
+	if (check_flag(st->str, spec) == 0)
+	{
+		if (find(st->str, '%') == 1)
+		{	
+			if (two_perc(st) == 0)
+				return (1);
+		}
+	}
 	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
@@ -32,7 +39,7 @@ void	fill_struct(t_pf *st, va_list vl)
     }
     st->specifier = *(st->str);
 	f_1(st->specifier, st->size, vl, &(st->buffer));
-
+	return (0);
 }
 
 void	fill_flags(char *str, char *flags, char **flag)

@@ -73,7 +73,7 @@ void	f_3(char cpecif, char *size, va_list vl, char **buffer)
 		else if (size[0] == 'h')
 			*buffer = ft_itoa_base_low((unsigned short int)(va_arg(vl, int)), 16);
 		else if (size[0] == 'l' || size[0] == 'j' || size[0] == 'z' || size[0] == 't')
-			*buffer = ft_itoa_base_unsign(va_arg(vl, unsigned long int), 16);
+			*buffer = ft_itoa_base_low(va_arg(vl, unsigned long int), 16);
 	}
 	else if (cpecif == 'X')
 	{

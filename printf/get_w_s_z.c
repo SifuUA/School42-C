@@ -4,11 +4,11 @@ int		get_width(t_pf *st)
 {
 	int w_str;
 	
-	if ((st->specifier == 's' || st->specifier == 'c') && st->width > ft_strlen(st->buffer))
+	if ((st->specifier == 's' || st->specifier == 'c' || *(st->buffer) == '%') && st->width > ft_strlen(st->buffer))
 		w_str = st->width;
 	else if (st->width > st->precision && st->width > ft_strlen(st->buffer))
 		w_str = st->width;
-	else if (st->precision > st->width && st->precision > ft_strlen(st->buffer))
+	else if (st->precision > st->width && st->precision > ft_strlen(st->buffer) && *(st->buffer) != '%')
 		w_str = st->precision;
 	else
 		w_str = ft_strlen(st->buffer);
@@ -54,7 +54,7 @@ char		*get_space(t_pf *st)
    	
 	i = 0;
 	n_str = NULL;
-	if (st->precision > ft_strlen(st->buffer) && st->specifier != 's' && st->specifier != 'c')
+	if (st->precision > ft_strlen(st->buffer) && st->specifier != 's' && st->specifier != 'c' && *(st->buffer) != '%')
 		space_c = get_width(st) - st->precision;
 	else
 		space_c = get_width(st) - ft_strlen(st->buffer);

@@ -50,7 +50,11 @@ int					find_mod(char *a, char *b, char *c, char tmp);
 char				*upper_case(char **str);
 void				memory_allocate(t_pf *st);
 
-void				fill_struct(t_pf *st, va_list vl);
+int					check_flag(char *str, char *flags);
+int					find_num(char *str);
+int					two_perc(t_pf *st);
+
+int					fill_struct(t_pf *st, va_list vl);
 void				fill_flags(char *str, char *flags, char **flag);
 void				fill_width(char **str, int *width, va_list vl);
 void				fill_precision(char **str, int *precision, va_list vl);

@@ -29,8 +29,9 @@ int	 		ft_printf(const char * restrict format, ...)
 		if (*(st->str) == '%')
 		{
 			(st->str)++;
-			fill_struct(st, vl);
-			modif_buff(st);
+			if (fill_struct(st, vl) == 0)
+				modif_buff(st);
+			break;
 		}
 		else
 		{
