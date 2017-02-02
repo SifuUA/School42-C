@@ -35,8 +35,13 @@ void		mod_sharp2(t_pf *st, char *zeros, char *spaces)
     int		i;
     
     i = 0;
-    if (st->specifier == 'x')
+    if (st->specifier == 'x' || st->specifier == 'X')
     {
+		if (ft_atoi(st->buffer) == 0)
+		{
+			st->buffer = "0";
+			return ;
+		}
         if (find(st->flag, '-') || find(st->flag, ' ') || find(st->flag, '0'))
         {
             if (find (st->flag, '-'))
@@ -44,8 +49,8 @@ void		mod_sharp2(t_pf *st, char *zeros, char *spaces)
                     tmp = ft_strjoin("0x", st->buffer);
 					i = ft_strlen(tmp);
                     st->buffer = tmp;
-				//	if (st->buffer[i - 1] == ' ')
-				//		st->buffer[i - 1] = '\0';
+					if (st->buffer[i - 1] == ' ')
+						st->buffer[i - 1] = '\0';
 					if (st->buffer[i - 2] == ' ')
 						st->buffer[i - 2] = '\0';
             }

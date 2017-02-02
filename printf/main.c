@@ -7,8 +7,8 @@ int		main(void)
 	char	*s;
 	int		v;
 
-	s = "%#-+9.12x";
-	v = 123456;
+	s = "%#08x";
+	v = 12345;
 	
 	printf("%12s\n", "MY");
 	ft_putstr("--->");
