@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
-/*   Updated: 2017/01/27 16:11:29 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/02 17:07:36 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ void	fill_flags(char *str, char *flags, char **flag)
 		if (find(flags, *str) == 1 && find(*flag, *str) == 0)
 		{
 			if (*str == '0' && ft_isdigit(*(str - 1)))
-            	ptr++;
+				(*flag)++;
 			else
-            	*ptr = *str;
-			ptr++;
+            	**flag = *str;
+			(*flag)++;
 		}
         str++;
 	}
+	*flag = ptr;
 }
 
 void	fill_width(char **str, int *width, va_list vl)

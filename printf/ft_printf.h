@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include <stdio.h>
 
 typedef struct		s_pf
@@ -78,4 +79,8 @@ void				mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 void				mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak);
 void				mod_sp(t_pf *st, char *spaces, char *zeros, long long znak);
 void				mod_sp1(t_pf *st, char *spaces, char *zeros, long long znak);
+void				mod_sharp(t_pf *st, char *zeros, char *spzces);
+void				mod_sharp1(t_pf *st, char *tmp, int i);
+void				mod_sharp2(t_pf *st, char *zeros, char *spzces);
+void				mod_sharp3(t_pf *st, char *tmp, int i);
 #endif

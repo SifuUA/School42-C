@@ -130,8 +130,8 @@ void		modif_buff(t_pf *st)
 	long long	znak;
 
 	znak = ft_atoi(st->buffer);
-	if(znak < 0)
-		(st->buffer) = (st->buffer) + 1;
+	//if(znak < 0)
+	//	(st->buffer) = (st->buffer) + 1;
 
 	spaces = get_space(st);
 	zeros = get_zero(st, a);
@@ -142,6 +142,8 @@ void		modif_buff(t_pf *st)
 		mod_plus(st, spaces, zeros, ptr, znak);
 	else if (find(st->flag, ' ') == 1)
 		mod_sp(st, spaces, zeros, znak);
+	if (find(st->flag, '#'))
+		mod_sharp(st, zeros, spaces);
 	if (st->flag[0] == '\0')
 	{
 		if (st->specifier != 'c' && st->specifier != 's' && *(st->buffer) != '%')
