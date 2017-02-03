@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/02/03 21:16:03 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/03 21:23:47 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@ int	 		ft_printf(const char * restrict format, ...)
 	st = (t_pf *)malloc(sizeof(t_pf));
 	memory_allocate(st);
 	st->str = ft_strdup((char*) format);
-
-	/*while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			creat();
-		}
-		else
-		{
-			
-			format += lentoc(format, '%');
-		}
-	}
-	*/
 	while (*(st->str))
 	{
 		if (*(st->str) == '%')
