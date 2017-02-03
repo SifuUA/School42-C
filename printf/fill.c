@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
-/*   Updated: 2017/02/02 17:07:36 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/03 15:38:00 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int		fill_struct(t_pf *st, va_list vl)
 				return (1);
 		}
 	}
-	//if (ptr = ft_strchr(st->str, )
 	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {

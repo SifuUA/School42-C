@@ -10,16 +10,19 @@
 typedef struct		s_pf
 {
 	struct s_pf		*next;
+	
 	char			*str;
 	char			*buffer;
+	char			*res;
+	
 	long long		znak;
 
 	char			*flag;
 	int				width;
 	int				precision;
-
 	char			*size;
 	char			specifier;
+
 }					t_pf;
 
 typedef void ((*ptr_f)());
@@ -39,6 +42,8 @@ char				*ft_strjoin(char const *s1, char const *s2);
 size_t				ft_strlen(const char *str);
 char				*ft_strnew(size_t size);
 char				*ft_strchr(const char *s, int c);
+int					ft_isascii(int c);
+char				*ft_strsub(char const *s, unsigned int start, size_t len);
 
 
 char				*ft_itoa_mod(int n);
@@ -51,6 +56,9 @@ int					find(char *str, char c);
 int					find_mod(char *a, char *b, char *c, char tmp);
 char				*upper_case(char **str);
 void				memory_allocate(t_pf *st);
+int					len_to_spec(char *s);
+int					lentoc(char *s, char c);
+void				free_s(t_pf *st);
 
 int					check_flag(char *str, char *flags);
 int					find_num(char *str);

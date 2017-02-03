@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/07 18:19:55 by okres             #+#    #+#             */
-/*   Updated: 2017/02/03 16:17:15 by okres            ###   ########.fr       */
+/*   Created: 2016/12/02 17:07:37 by okres             #+#    #+#             */
+/*   Updated: 2017/02/03 17:02:34 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	if (ft_isascii(c) == 0)
+	char	*ptr;
+	char	*res;
+
+	if (!s)
 		return (NULL);
-	while (*s != c)
+	ptr = ft_strnew(len);
+	if (!ptr)
+		return (NULL);
+	res = ptr;
+	while (len > 0)
 	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
+		*ptr++ = s[start++];
+		len--;
 	}
-	return ((char*)s);
+	*ptr = '\0';
+	return (res);
 }

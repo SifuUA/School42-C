@@ -44,3 +44,32 @@ int		two_perc(t_pf *st)
 	st->buffer = "%";
 	return (find_num(st->str) ? 1 : 0);
 }
+
+int		len_to_spec(char *s)
+{	
+	char	spec[] = "sSpdDioOuUxXcCdfFeEgGaApn";
+	int		i;
+
+	i = 0;
+	while(s[i])
+	{
+		if (find(spec, s[i]))
+			return (i + 1);
+		i++;
+	}
+	return (-1);
+}
+
+int		lentoc(char *s, char c)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	return (i);
+}
