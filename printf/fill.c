@@ -28,7 +28,7 @@ int		fill_struct(t_pf *st, va_list vl)
 				return (1);
 		}
 	}
-	if (ptr = ft_strchr(st->str, )
+	//if (ptr = ft_strchr(st->str, )
 	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
