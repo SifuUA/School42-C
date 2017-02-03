@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/02/03 21:24:58 by okres            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 int	 		ft_printf(const char * restrict format, ...)
@@ -28,18 +16,17 @@ int	 		ft_printf(const char * restrict format, ...)
 	st = (t_pf *)malloc(sizeof(t_pf));
 	memory_allocate(st);
 	st->str = ft_strdup((char*) format);
-	///////
 	while (*(st->str))
 	{
 		if (*(st->str) == '%')
 		{
 			(st->str)++;
 			j = len_to_spec(st->str);
-			if (j < 0)
+			/*if (j < 0)
 			{
 				st->buffer = va_arg(vl, char *);
 				break;
-			}
+			}*/
 			ptr = ft_strdup(st->str);
 			st->str[j] = '\0';
 			if (fill_struct(st, vl) == 0)
@@ -53,10 +40,9 @@ int	 		ft_printf(const char * restrict format, ...)
 			j = lentoc(st->str, '%');
 			ptr = ft_strsub(st->str, 0, j);
 			st->res = ft_strjoin(st->res, ptr);
-			i++;
 		(st->str) += j;
 		}
 	}
     ft_putstr(st->res);
-	return (ft_strlen(st->res) + i);
+	return (ft_strlen(st->res));
 }

@@ -57,7 +57,7 @@ int		len_to_spec(char *s)
 			return (i + 1);
 		i++;
 	}
-	return (-1);
+	return (i);
 }
 
 int		lentoc(char *s, char c)

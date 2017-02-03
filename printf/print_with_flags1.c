@@ -130,8 +130,8 @@ void		modif_buff(t_pf *st)
 	long long	znak;
 
 	znak = ft_atoi(st->buffer);
-	//if(znak < 0)
-	//	(st->buffer) = (st->buffer) + 1;
+	if(znak < 0)
+		*(st->buffer) += 1;
 
 	spaces = get_space(st);
 	zeros = get_zero(st, a);
