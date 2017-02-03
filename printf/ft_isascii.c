@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/07 18:19:55 by okres             #+#    #+#             */
-/*   Updated: 2017/02/03 16:17:15 by okres            ###   ########.fr       */
+/*   Created: 2016/11/29 12:36:05 by okres             #+#    #+#             */
+/*   Updated: 2017/02/03 16:18:39 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int		ft_isascii(int c)
 {
-	if (ft_isascii(c) == 0)
-		return (NULL);
-	while (*s != c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
-	}
-	return ((char*)s);
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
 }

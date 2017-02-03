@@ -1,4 +1,4 @@
-ft_strrchr.c/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
@@ -6,7 +6,7 @@ ft_strrchr.c/* *****************************************************************
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 16:44:18 by okres             #+#    #+#             */
-/*   Updated: 2017/02/02 15:32:03 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/03 21:16:03 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,58 @@ int	 		ft_printf(const char * restrict format, ...)
 	static t_pf 	*st;
 	size_t			count;
 	int				i;
+	int				j;
+	char			*ptr;
+	char			*ptr1;
 
 	i = 0;
+	j = 0;
 	va_start (vl, format);
 	st = (t_pf *)malloc(sizeof(t_pf));
 	memory_allocate(st);
-	st->str = (char*) format;
+	st->str = ft_strdup((char*) format);
+
+	/*while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			creat();
+		}
+		else
+		{
+			
+			format += lentoc(format, '%');
+		}
+	}
+	*/
 	while (*(st->str))
 	{
 		if (*(st->str) == '%')
 		{
 			(st->str)++;
+			j = len_to_spec(st->str);
+			if (j < 0)
+			{
+				st->buffer = va_arg(vl, char *);
+				break;
+			}
+			ptr = ft_strdup(st->str);
+			st->str[j] = '\0';
 			if (fill_struct(st, vl) == 0)
 				modif_buff(st);
-			break;
+			st->str = ptr + j;
+			st->res = ft_strjoin(st->res, st->buffer);
+			free_s(st);
 		}
 		else
 		{
-			st->buffer[ft_strlen(st->buffer)] = *(st->str);
+			j = lentoc(st->str, '%');
+			ptr = ft_strsub(st->str, 0, j);
+			st->res = ft_strjoin(st->res, ptr);
 			i++;
+		(st->str) += j;
 		}
-		(st->str)++;
 	}
-    
-	//printf("f %s\n", st->flag);
-   // printf("w %d\n", st->width);
-    //printf("p %d\n", st->precision);
-   // printf("s %s\n", st->size);
-   // printf("c %c\n", st->specifier);
-    ft_putstr(st->buffer);
-    //ft_putnbr(ft_atoi(st->buffer));
-	return (ft_strlen(st->buffer) + i);
+    ft_putstr(st->res);
+	return (ft_strlen(st->res) + i);
 }

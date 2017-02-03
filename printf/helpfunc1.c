@@ -81,5 +81,6 @@ void	memory_allocate(t_pf *st)
 	st->flag = ft_strnew(5);
 	st->size = ft_strnew(2);
 	st->buffer = ft_strnew(100);
-	ft_bzero(st->buffer, 99);
+	st->res = ft_strnew(100);
+	
 }
