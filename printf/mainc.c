@@ -8,9 +8,9 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char	*str = "%-#6o";
+	char	*str = "%0+5d";
 
-	int			val = 2500;
+	int			val = 42;
 	//char		*val = NULL;
 	//char		*val = "abcdef";
 	//char		*val1 = "111111111";

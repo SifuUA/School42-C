@@ -41,6 +41,9 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 
 void	f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 {
+	unsigned int i;
+
+	i = 0;
 	if (cpecif == 'u')
 	{
 		if (size[0] == '\0')
@@ -54,9 +57,14 @@ void	f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 	}
 	else if (cpecif == 'o')
 	{
-
 		if (size[0] == '\0')
-			*buffer = ft_itoa_base(va_arg(vl, unsigned int), 8);
+		{
+			i = va_arg(vl, unsigned int);
+			if (i == 0 && st->point == 1)
+				*buffer = "";
+			else
+				*buffer = ft_itoa_base(i, 8);
+		}
 		else if (size[0] == 'h' && size[1] == 'h')
 			*buffer = ft_itoa_base_unsign((unsigned char)(va_arg(vl, int)), 8);
 		else if (size[0] == 'h')
