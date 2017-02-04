@@ -30,9 +30,12 @@ void		mod_zer(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 				st->buffer = tmp;
 			}
 			else
+			{
+				if (st->buffer[0] == '0')
+					(st->buffer)++;
 				tmp = ft_strjoin("-", st->buffer);
-				ft_strdel(&(st->buffer));
 				st->buffer = tmp;
+			}
 		}
 	}
 }
@@ -154,9 +157,16 @@ void		modif_buff(t_pf *st)
 	{
 		if (st->specifier != 'c' && st->specifier != 's' && *(st->buffer) != '%')
 		{
-			st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
-			if (znak < 0)
-				st->buffer = ft_strjoin("-", st->buffer);
+			if (znak >= 0)
+				st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+			else
+			{
+				ptr = ft_strjoin("-", st->buffer);
+				if (spaces > 0)
+					spaces++;
+				st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), ptr);
+			}
+
 		}
 		else
 			st->buffer = ft_strjoin(spaces, st->buffer);

@@ -38,9 +38,15 @@ void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 		{
 			if (znak >= 0)
 			{
-				tmp = ft_strjoin("+", st->buffer);
-			if (st->width > st->precision && st->width > ft_strlen(st->buffer))
-				tmp[ft_strlen(tmp) - 1] = '\0';
+				if (st->buffer[0] == '0' && find(st->flag, '0'))
+				{
+					(st->buffer)++;
+					tmp = ft_strjoin("+", st->buffer);
+				}
+				else	
+					tmp = ft_strjoin("+", st->buffer);
+			//if (st->width > st->precision && st->width > ft_strlen(st->buffer))
+			//	tmp[ft_strlen(tmp) - 1] = '\0';
 			st->buffer = tmp;
 			}
 		}
