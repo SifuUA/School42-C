@@ -22,11 +22,6 @@ int	 		ft_printf(const char * restrict format, ...)
 		{
 			(st->str)++;
 			j = len_to_spec(st->str);
-			/*if (j < 0)
-			{
-				st->buffer = va_arg(vl, char *);
-				break;
-			}*/
 			ptr = ft_strdup(st->str);
 			st->str[j] = '\0';
 			if (fill_struct(st, vl) == 0)
@@ -44,5 +39,8 @@ int	 		ft_printf(const char * restrict format, ...)
 		}
 	}
     ft_putstr(st->res);
-	return (ft_strlen(st->res));
+	j = 0;
+	if (st->specifier == 'c' && (st->last_buffer == NULL || *(st->last_buffer) == '\0' || *(st->last_buffer) == '0'))
+		j = 1;
+	return (ft_strlen(st->res) + j);
 }

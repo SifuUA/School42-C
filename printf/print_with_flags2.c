@@ -7,7 +7,7 @@ void		mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 
 	if (zeros != NULL && ft_strlen(zeros) > 0)
 	{
-		if (znak > 0)
+		if (znak >= 0)
 			tmp = ft_strjoin("+", zeros);
 		else
 			tmp = ft_strjoin("-", zeros);
@@ -21,11 +21,11 @@ void		mod_plus1(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 	}
 	else
 	{
-		if(znak > 0)
+		if(znak >= 0)
 			tmp = ft_strjoin("+", st->buffer);
 		else
 			tmp = ft_strjoin("-", st->buffer);
-		ft_strdel(&(st->buffer));
+		//ft_strdel(&(st->buffer));
 		st->buffer = tmp;
 	}
 }
@@ -36,7 +36,7 @@ void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 
 		if (find(st->flag, '-') || find(st->flag, '0'))
 		{
-			if (znak > 0)
+			if (znak >= 0)
 			{
 				tmp = ft_strjoin("+", st->buffer);
 			if (st->width > st->precision && st->width > ft_strlen(st->buffer))
@@ -46,7 +46,7 @@ void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 		}
 		else if (ft_strlen(spaces) > 0 && zeros == NULL && spaces != NULL)
 		{
-			if (znak > 0)
+			if (znak >= 0)
 				tmp = ft_strjoin("+", st->buffer);
 			else
 				tmp = ft_strjoin("-", st->buffer);

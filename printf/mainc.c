@@ -8,21 +8,23 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char	*str = "%+d";
+	char	*str = "% c";
 
+	//int		val = 0;
+	//char		*val = NULL;
 	//char		*val = "abcdef";
-	char		*val1 = "111111111";
-	char		*val2 = "22222";
-	int			val = -42;
+	//char		*val1 = "111111111";
+	//char		*val2 = "22222";
+	//intmax_t	val =  -4294967296;
 	//float 	val = 2.345;
 	//long int	val = -4294967296;
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
-	ft_printf(str, val);
+	ft_printf(str, NULL);
 	printf("<---\n\n");
 
 	printf("%12s\n %s","MAN", "--->");
-	printf(str, val);
+	printf(str, NULL);
 	printf("<---\n");
 }
 

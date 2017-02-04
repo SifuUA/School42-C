@@ -45,7 +45,9 @@ void		mod_sharp2(t_pf *st, char *zeros, char *spaces)
     i = 0;
     if (st->specifier == 'x' || st->specifier == 'X')
     {
-		if (ft_atoi(st->buffer) == 0)
+		if (*(st->buffer) == '\0')
+			return ;
+		if (ft_atoi(st->buffer) == 0 && st->point != 1)
 		{
 			st->buffer = "0";
 			return ;

@@ -26,8 +26,11 @@ void	f_6(char cpecif, char *size, va_list vl, char **buffer)
 //		f_7(cpecif, size, vl, buffer);
 }
 
-void	f_7(char cpecif, char *size, va_list vl, char **buffer)
+void	f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	if (cpecif == 'c')
 	{
 		if (size[0] == '\0' || size[0] == 'l')
@@ -35,6 +38,18 @@ void	f_7(char cpecif, char *size, va_list vl, char **buffer)
 	}
 	else
 		if (size[0] == '\0')
+		{
 			*buffer = va_arg(vl, char *);
+			if (*buffer == NULL)
+				*buffer = "(null)";
+			if (st->precision < ft_strlen(*buffer) && st->precision > 0)
+			{
+				tmp = ft_strnew(st->precision);
+				tmp = ft_strncpy(tmp, st->buffer, st->precision);
+				st->buffer = tmp;
+			}
+			else
+				st->precision = 0;
+		}
 //printf("---> %s <---\n", *buffer);
 }

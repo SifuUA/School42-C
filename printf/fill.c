@@ -31,14 +31,17 @@ int		fill_struct(t_pf *st, va_list vl)
 	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
+		if (*(st->str) == '.')
+			st->point = 1;
         fill_width(&(st->str), &(st->width), vl);
-        fill_precision(&(st->str), &(st->precision), vl);
+        fill_precision(&(st->str), &(st->precision), vl, st);
         fill_size(&(st->str), sizes, st->size);
 		if (!ft_isdigit(*(st->str)) && !find_mod(spec, sizes, flags, *(st->str)))
 			(st->str)++;
     }
     st->specifier = *(st->str);
-	f_1(st->specifier, st->size, vl, &(st->buffer));
+	f_1(st->specifier, st->size, vl, &(st->buffer), st);
+	st->last_buffer = st->buffer;
 	return (0);
 }
 
@@ -51,7 +54,7 @@ void	fill_flags(char *str, char *flags, char **flag)
     {
 		if (find(flags, *str) == 1 && find(*flag, *str) == 0)
 		{
-			if (*str == '0' && ft_isdigit(*(str - 1)))
+			if (*str == '0' && (ft_isdigit(*(str - 1)) || *(str - 1) == '.'))
 				(*flag)++;
 			else
             	**flag = *str;
@@ -83,10 +86,11 @@ void	fill_width(char **str, int *width, va_list vl)
 	}
 }
 
-void    fill_precision(char **str, int *precision, va_list vl)
+void    fill_precision(char **str, int *precision, va_list vl, t_pf *st)
 {
 	if (**str == '.')
     {
+		st->point = 1;
         (*str)++;
         if (**str == '*')
         {

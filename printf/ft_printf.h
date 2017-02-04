@@ -16,6 +16,8 @@ typedef struct		s_pf
 	char			*res;
 	
 	long long		znak;
+	int				point;
+	char			*last_buffer;
 
 	char			*flag;
 	int				width;
@@ -44,12 +46,13 @@ char				*ft_strnew(size_t size);
 char				*ft_strchr(const char *s, int c);
 int					ft_isascii(int c);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
-
+char				*ft_strncpy(char *dst, const char *src, size_t len);
 
 char				*ft_itoa_mod(int n);
 char				*ft_itoa_base(long long int value, long long int base);
 char				*ft_itoa_base_low(long long int value, long long int base);
 char				*ft_itoa_base_unsign( unsigned long long int value, unsigned long long int base);
+char				*ft_itoa_base_unsign_low(unsigned long long int value, unsigned long long int base);
 
 int					num_len(double num);
 int					find(char *str, char c);
@@ -67,16 +70,16 @@ int					two_perc(t_pf *st);
 int					fill_struct(t_pf *st, va_list vl);
 void				fill_flags(char *str, char *flags, char **flag);
 void				fill_width(char **str, int *width, va_list vl);
-void				fill_precision(char **str, int *precision, va_list vl);
+void				fill_precision(char **str, int *precision, va_list vl, t_pf *st);
 void				fill_size(char **str, char *sizes, char *size);
 
-void				f_1(char cpecif, char *size, va_list vl, char **buffer);
-void				f_2(char cpecif, char *size, va_list vl, char **buffer);
-void				f_3(char cpecif, char *size, va_list vl, char **buffer);
+void				f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
+void				f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
+void				f_3(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 void				f_4(char cpecif, char *size, va_list vl, char **buffer);
 void				f_5(char cpecif, char *size, va_list vl, char **buffer);
 void				f_6(char cpecif, char *size, va_list vl, char **buffer);
-void				f_7(char cpecif, char *size, va_list vl, char **buffer);
+void				f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 
 void				modif_buff(t_pf *st);
 char				*get_zero(t_pf *st, char a);
