@@ -8,9 +8,9 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char	*str = "% c";
+	char	*str = "%-#6o";
 
-	//int		val = 0;
+	int			val = 2500;
 	//char		*val = NULL;
 	//char		*val = "abcdef";
 	//char		*val1 = "111111111";
@@ -20,11 +20,11 @@ int		main(void)
 	//long int	val = -4294967296;
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
-	ft_printf(str, NULL);
+	ft_printf(str, val);
 	printf("<---\n\n");
 
 	printf("%12s\n %s","MAN", "--->");
-	printf(str, NULL);
+	printf(str, val);
 	printf("<---\n");
 }
 

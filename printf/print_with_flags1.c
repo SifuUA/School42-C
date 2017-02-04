@@ -137,7 +137,7 @@ void		modif_buff(t_pf *st)
 	znak = ft_atoi(st->buffer);
 	if (znak < 0)
 		(st->buffer) += 1;
-	if (st->specifier == 'c' && *(st->buffer) =='\0')
+	if (st->specifier == 'c' && *(st->buffer) =='\0' && st->width == 0)
 		return ;
 	spaces = get_space(st);
 	zeros = get_zero(st, a);

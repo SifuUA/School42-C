@@ -106,6 +106,8 @@ void		mod_sharp(t_pf *st, char *zeros, char *spaces)
 				{	
 					tmp = ft_strjoin("0", st->buffer);
 					st->buffer = tmp;
+					if (st->buffer[ft_strlen(st->buffer) - 1] == ' ')
+						st->buffer[ft_strlen(st->buffer) - 1] = '\0';
 				}
 			}
 			if (find (st->flag, ' '))
