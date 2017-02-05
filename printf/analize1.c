@@ -14,10 +14,19 @@
 
 void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 {
+	int i;
+
+	i = 0;
 	if (cpecif == 'd' || cpecif == 'i')
 	{
 		if (size[0] == '\0')
-			*buffer = ft_itoa_base(va_arg(vl, int), 10);
+		{
+			i = va_arg(vl, int);
+			if (i == 0 && st->point == 1)
+				*buffer = "";
+			else
+			*buffer = ft_itoa_base(i, 10);
+		}
 		else if (size[0] == 'h' && size[1] == 'h')
 			*buffer = ft_itoa_base((signed char)va_arg(vl, int), 10);
 		else if (size[0] == 'h')
@@ -30,7 +39,7 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 			*buffer = ft_itoa_base(va_arg(vl, long long int), 10);
 
 	}
-	else if (cpecif == 'u' || cpecif == 'o' || cpecif == 'x' || cpecif == 'X')
+	else if (cpecif == 'u' || cpecif == 'U' || cpecif == 'o' || cpecif == 'x' || cpecif == 'X')
 		f_2(cpecif, size, vl, buffer, st);
 	else if (cpecif == 'f' || cpecif == 'F' || cpecif == 'e' || cpecif == 'E'
 	|| cpecif == 'g' || cpecif == 'G' || cpecif == 'a' || cpecif == 'A')
@@ -47,13 +56,17 @@ void	f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 	if (cpecif == 'u')
 	{
 		if (size[0] == '\0')
-			*buffer = ft_itoa_base(va_arg(vl, unsigned int), 10);
+			*buffer = ft_itoa_base_unsign(va_arg(vl, unsigned int), 10);
 		else if (size[0] == 'h' && size[1] == 'h')
 			**buffer = (unsigned char)(va_arg(vl, int));
 		else if (size[0] == 'h')
-			*buffer = ft_itoa_base((unsigned short int)(va_arg(vl, int)), 10);
+			*buffer = ft_itoa_base_unsign((unsigned short int)(va_arg(vl, int)), 10);
 		else if (size[0] == 'l' || size[0] == 'j' || size[0] == 'z' || size[0] == 't')
-			*buffer = ft_itoa_base_unsign(va_arg(vl, unsigned long int), 10);
+			*buffer = ft_itoa_base_unsign(va_arg(vl, unsigned long long int), 10);
+	}
+	else if (cpecif == 'U')
+	{
+		*buffer = ft_itoa_base_unsign(va_arg(vl, unsigned long long int), 10);
 	}
 	else if (cpecif == 'o')
 	{

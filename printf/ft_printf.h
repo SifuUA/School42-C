@@ -53,6 +53,7 @@ char				*ft_itoa_base(long long int value, long long int base);
 char				*ft_itoa_base_low(long long int value, long long int base);
 char				*ft_itoa_base_unsign( unsigned long long int value, unsigned long long int base);
 char				*ft_itoa_base_unsign_low(unsigned long long int value, unsigned long long int base);
+long long int		ft_atoi_mod(const char *str);
 
 int					num_len(double num);
 int					find(char *str, char c);

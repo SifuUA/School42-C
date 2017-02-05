@@ -44,9 +44,13 @@ void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 					tmp = ft_strjoin("+", st->buffer);
 				}
 				else	
+				{
+					if (st->buffer[ft_strlen(st->buffer) - 1] == ' ')
+						st->buffer[ft_strlen(st->buffer) - 1] = '\0';
 					tmp = ft_strjoin("+", st->buffer);
 			//if (st->width > st->precision && st->width > ft_strlen(st->buffer))
 			//	tmp[ft_strlen(tmp) - 1] = '\0';
+				}
 			st->buffer = tmp;
 			}
 		}

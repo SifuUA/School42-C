@@ -26,7 +26,7 @@ static int	skip(const char *str)
 int			ft_atoi(const char *str)
 {
 	int					i;
-	int					minus;
+	unsigned long long	minus;
 	unsigned long long	res;
 
 	res = 0;

@@ -15,7 +15,7 @@
 // функция заполнения структуры флагами, спец.,..итд
 int		fill_struct(t_pf *st, va_list vl)
 {
-    char	spec[] = "diuoxXfFeEgGaAcspn";
+    char	spec[] = "sSpdDioOuUxXcCdfFeEgGaApn";
     char	sizes[] = "llLhlhhjzt";
     char	flags[] = "-+ #0";
     char	*ptr;

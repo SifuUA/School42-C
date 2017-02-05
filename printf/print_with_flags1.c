@@ -104,6 +104,8 @@ void		mod_sp(t_pf *st, char *spaces, char *zeros, long long znak)
 	int		i;
 	
 	i = 0;
+	if (st->specifier == 'u')
+		return ;
 	if (find (st->flag, '-') == 1 || find (st->flag, '0') == 1)
 	{
 		tmp = ft_strjoin(" ", st->buffer);
@@ -137,9 +139,11 @@ void		modif_buff(t_pf *st)
 	char		*ptr;
 	long long	znak;
 	
-	znak = ft_atoi(st->buffer);
-	if (znak < 0)
+	if (find(st->buffer, '-'))
+	{
 		(st->buffer) += 1;
+		znak = -1;
+	}
 	if (st->specifier == 'c' && *(st->buffer) =='\0' && st->width == 0)
 		return ;
 	spaces = get_space(st);
@@ -161,10 +165,20 @@ void		modif_buff(t_pf *st)
 				st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
 			else
 			{
-				ptr = ft_strjoin("-", st->buffer);
-				if (spaces > 0)
-					spaces++;
-				st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), ptr);
+				if (st->precision > st->width)
+				{
+					if (spaces > 0)
+						spaces++;
+					ptr = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+					st->buffer = ft_strjoin("-", ptr);
+				}
+				else
+				{
+					ptr = ft_strjoin("-", st->buffer);
+					if (spaces > 0)
+						spaces++;
+					st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), ptr);
+				}
 			}
 
 		}
