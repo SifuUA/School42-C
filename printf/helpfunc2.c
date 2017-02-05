@@ -47,7 +47,7 @@ int		two_perc(t_pf *st)
 
 int		len_to_spec(char *s)
 {	
-	char	spec[] = "sSpdDioOuUxXcCdfFeEgGaApn";
+	char	spec[] = "sSpdDioOuUxXcCdfFeEgGaApn%";
 	int		i;
 
 	i = 0;

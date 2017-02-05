@@ -7,8 +7,6 @@ int	 		ft_printf(const char * restrict format, ...)
 	size_t			count;
 	int				i;
 	int				j;
-	char			*ptr;
-	char			*ptr1;
 
 	i = 0;
 	j = 0;
@@ -22,19 +20,19 @@ int	 		ft_printf(const char * restrict format, ...)
 		{
 			(st->str)++;
 			j = len_to_spec(st->str);
-			ptr = ft_strdup(st->str);
+			st->tmp = ft_strdup(st->str);
 			st->str[j] = '\0';
 			if (fill_struct(st, vl) == 0)
 				modif_buff(st);
-			st->str = ptr + j;
+			st->str = st->tmp + j;
 			st->res = ft_strjoin(st->res, st->buffer);
 			free_s(st);
 		}
 		else
 		{
 			j = lentoc(st->str, '%');
-			ptr = ft_strsub(st->str, 0, j);
-			st->res = ft_strjoin(st->res, ptr);
+			st->tmp = ft_strsub(st->str, 0, j);
+			st->res = ft_strjoin(st->res, st->tmp);
 		(st->str) += j;
 		}
 	}

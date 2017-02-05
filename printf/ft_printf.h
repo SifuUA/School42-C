@@ -17,6 +17,7 @@ typedef struct		s_pf
 	
 	long long		znak;
 	int				point;
+	char			*tmp;
 	char			*last_buffer;
 
 	char			*flag;
