@@ -51,5 +51,17 @@ void	f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 			else
 				st->precision = 0;
 		}
-//printf("---> %s <---\n", *buffer);
+}
+
+void	f_8(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
+{
+	char	*tmp;
+	void*	i;
+
+	i = va_arg(vl, void*);
+	*buffer = ft_itoa_base_low((long long)i, 16);
+	tmp = ft_strjoin("0x", *buffer);
+	*buffer = tmp;
+	
+	
 }

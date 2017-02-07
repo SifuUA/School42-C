@@ -8,13 +8,9 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char	*str = "%lld";
-	
-	long long int			val = 9223372036854775807;
-	ft_printf(str, val);
-	printf(str, val);
-
-	//char		*val = "4294967295";
+	char	*str = "%p";
+		
+	char		*val = "";
 	//char		*val = "abcdef";
 	//char		*val1 = "111111111";
 	//char		*val2 = "22222";
@@ -23,11 +19,11 @@ int		main(void)
 	//long int	val = -4294967296;
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
-	ft_printf("%S", "abcd");
+	ft_printf(str, val);
 	printf("<---\n\n");
 
 	printf("%12s\n %s","MAN", "--->");
-	printf("%S", "abcd");
+	printf(str, val);
 	printf("<---\n");
 }
 

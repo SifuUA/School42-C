@@ -17,7 +17,7 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 	int i;
 
 	i = 0;
-	if (cpecif == 'd' || cpecif == 'i')
+	if (cpecif == 'd' || cpecif == 'D' || cpecif == 'i')
 	{
 		if (size[0] == '\0')
 		{
@@ -44,8 +44,10 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 	else if (cpecif == 'f' || cpecif == 'F' || cpecif == 'e' || cpecif == 'E'
 	|| cpecif == 'g' || cpecif == 'G' || cpecif == 'a' || cpecif == 'A')
 		f_4(cpecif, size, vl, buffer);
-	else if (cpecif == 'c' || cpecif == 's')
+	else if (cpecif == 'c' || cpecif == 's' || cpecif == 'S')
 		f_7(cpecif, size, vl, buffer, st);
+	else if (cpecif == 'p')
+		f_8(cpecif, size, vl, buffer, st);
 }
 
 void	f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
