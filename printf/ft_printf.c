@@ -16,6 +16,7 @@ int	 		ft_printf(const char * restrict format, ...)
 	st->str = ft_strdup((char*) format);
 	while (*(st->str))
 	{
+		check_z(st);
 		if (*(st->str) == '%')
 		{
 			(st->str)++;

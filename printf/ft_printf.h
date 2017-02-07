@@ -68,6 +68,7 @@ void				free_s(t_pf *st);
 int					check_flag(char *str, char *flags);
 int					find_num(char *str);
 int					two_perc(t_pf *st);
+void				check_z(t_pf *s);
 
 int					fill_struct(t_pf *st, va_list vl);
 void				fill_flags(char *str, char *flags, char **flag);
