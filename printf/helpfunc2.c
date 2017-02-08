@@ -41,7 +41,7 @@ int		two_perc(t_pf *st)
 {
 	char	*tmp;
 
-	if (ft_strlen(st->tmp) % 2 == 1)
+	//if (ft_strlen(st->tmp) % 2 == 1)
 		st->buffer = "%";
 	return (find_num(st->str) ? 1 : 0);
 }

@@ -8,7 +8,7 @@ int		main(void)
 	unsigned long int = 4294967295;
 	unsigned long long int = 18446744073709551615;
 */
-	char	*str = "%%%%%";
+	char	*str = "%   %";
 		
 	char		*val = "4294967295";
 	//char		*val = "abcdef";

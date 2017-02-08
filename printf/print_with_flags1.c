@@ -104,6 +104,8 @@ void		mod_sp(t_pf *st, char *spaces, char *zeros, long long znak)
 	int		i;
 	
 	i = 0;
+	if (st->specifier == '\0' || st->specifier == '%')
+		return ;
 	if (st->specifier == 'u')
 		return ;
 	if (find (st->flag, '-') == 1 || find (st->flag, '0') == 1)
@@ -146,6 +148,11 @@ void		modif_buff(t_pf *st)
 	}
 	if (st->specifier == 'c' && *(st->buffer) =='\0' && st->width == 0)
 		return ;
+	if (st->specifier == '%')
+	{
+		st->buffer = "%";
+		(st->tmp)++;
+	}
 	spaces = get_space(st);
 	zeros = get_zero(st, a);
 	ptr = ft_strjoin(spaces, zeros);

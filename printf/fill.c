@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
-/*   Updated: 2017/02/03 15:38:00 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/08 14:18:39 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 // функция заполнения структуры флагами, спец.,..итд
 int		fill_struct(t_pf *st, va_list vl)
 {
-    char	spec[] = "sSpdDioOuUxXcCdfFeEgGaApn";
+    char	spec[] = "sSpdDioOuUxXcCdfFeEgGaApn%";
     char	sizes[] = "llLhlhhjzt";
     char	flags[] = "-+ #0";
     char	*ptr;
 	
-	if (check_flag(st->str, spec) == 0)
+	/*if (check_flag(st->str, spec) == 0)
 	{
 		if (find(st->str, '%') == 1)
 		{	
 			if (two_perc(st) == 0)
 				return (1);
 		}
-	}
+	}*/
 	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
