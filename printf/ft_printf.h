@@ -19,6 +19,7 @@ typedef struct		s_pf
 	int				point;
 	char			*tmp;
 	char			*last_buffer;
+	int				p;
 
 	char			*flag;
 	int				width;
@@ -72,9 +73,9 @@ void				check_z(t_pf *s);
 
 int					fill_struct(t_pf *st, va_list vl);
 void				fill_flags(char *str, char *flags, char **flag);
-void				fill_width(char **str, int *width, va_list vl);
+void				fill_width(char **str, int *width, va_list vl, t_pf *st);
 void				fill_precision(char **str, int *precision, va_list vl, t_pf *st);
-void				fill_size(char **str, char *sizes, char *size);
+void				fill_size(char **str, char *sizes, char *size, t_pf *st);
 
 void				f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 void				f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);

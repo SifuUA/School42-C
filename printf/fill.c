@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
-/*   Updated: 2017/02/08 14:18:39 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/08 20:43:54 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ int		fill_struct(t_pf *st, va_list vl)
 	fill_flags(st->str, flags, &(st->flag));
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
+		st->p = 0;
 		if (*(st->str) == '.')
+		{
 			st->point = 1;
-        fill_width(&(st->str), &(st->width), vl);
+			st->precision = 0;
+		}
+        fill_width(&(st->str), &(st->width), vl, st);
         fill_precision(&(st->str), &(st->precision), vl, st);
-        fill_size(&(st->str), sizes, st->size);
-		if (!ft_isdigit(*(st->str)) && !find_mod(spec, sizes, flags, *(st->str)))
+        fill_size(&(st->str), sizes, st->size, st);
+		if (!ft_isdigit(*(st->str)) && !find_mod(spec, sizes, flags, *(st->str)) && st->p == 0)
 			(st->str)++;
     }
     st->specifier = *(st->str);
@@ -65,11 +69,15 @@ void	fill_flags(char *str, char *flags, char **flag)
 	*flag = ptr;
 }
 
-void	fill_width(char **str, int *width, va_list vl)
+void	fill_width(char **str, int *width, va_list vl, t_pf *st)
 {
 	while (**str == '*' || ft_isdigit(**str))
 	{
-		*width = 0;
+		if (**str == '0')
+		{
+			(*str)++;
+			return ;
+		}
 		if (**str == '*')
 		{
         	*width = va_arg(vl, int);
@@ -83,6 +91,7 @@ void	fill_width(char **str, int *width, va_list vl)
        			(*str)++;
 			}
     	}
+	st->p = 1;
 	}
 }
 
@@ -105,11 +114,12 @@ void    fill_precision(char **str, int *precision, va_list vl, t_pf *st)
             	(*str)++;
 			}
 		}
+	st->p = 1;
 	}
 }
 
 
-void    fill_size(char **str, char *sizes, char *size)
+void    fill_size(char **str, char *sizes, char *size, t_pf *st)
 {
 	char	*ptr;
 
@@ -119,5 +129,6 @@ void    fill_size(char **str, char *sizes, char *size)
         *ptr = **str;
         ptr++;
         (*str)++;
+		st->p = 1;
     }
 }

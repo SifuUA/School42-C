@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 18:05:11 by okres             #+#    #+#             */
-/*   Updated: 2017/02/02 20:42:37 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/08 18:46:33 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 	i = 0;
 	if (cpecif == 'd' || cpecif == 'D' || cpecif == 'i')
 	{
+		i = ft_strlen(size);
+		if (i > 2)
+			size = ft_strsub(size, i - 2, 2);
 		if (size[0] == '\0')
 		{
 			i = va_arg(vl, int);

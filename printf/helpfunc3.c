@@ -7,6 +7,7 @@ void	free_s(t_pf *st)
 	ft_bzero(st->flag, ft_strlen(st->flag));
 	st->znak = 0;
 	ft_bzero(st->size, ft_strlen(st->size));
+//	ft_bzero(st->buffer, ft_strlen(st->buffer));
 //	st->specifier = '\0';
 }
 

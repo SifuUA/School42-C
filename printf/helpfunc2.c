@@ -55,7 +55,7 @@ int		len_to_spec(char *s)
 	while(s[i])
 	{
 		if (find(spec, s[i]))
-			return (i + 1);
+			return (++i);
 		i++;
 	}
 	return (i);
