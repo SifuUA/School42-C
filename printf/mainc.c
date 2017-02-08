@@ -23,6 +23,7 @@ int		main(void)
 	ft_printf("%15.4d", -42);
 	printf("<---\n\n");
 
+
 	printf("%12s\n %s","MAN", "--->");
 	printf("%15.4d", -42);
 	printf("<---\n");
