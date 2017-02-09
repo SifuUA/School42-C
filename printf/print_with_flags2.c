@@ -40,7 +40,8 @@ void		mod_plus(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 			{
 				if (st->buffer[0] == '0' && find(st->flag, '0'))
 				{
-					(st->buffer)++;
+					if (*(st->last_buffer) != '0')
+						(st->buffer)++;
 					tmp = ft_strjoin("+", st->buffer);
 				}
 				else	

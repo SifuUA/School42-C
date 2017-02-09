@@ -70,6 +70,7 @@ int					check_flag(char *str, char *flags);
 int					find_num(char *str);
 int					two_perc(t_pf *st);
 void				check_z(t_pf *s);
+int					find_char(char *str, char c);
 
 int					fill_struct(t_pf *st, va_list vl);
 void				fill_flags(t_pf *st, char *flags);

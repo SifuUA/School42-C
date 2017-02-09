@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 18:05:11 by okres             #+#    #+#             */
-/*   Updated: 2017/02/09 15:51:08 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/09 17:17:55 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 			if (i == 0 && st->point == 1)
 				*buffer = "";
 			else
-			*buffer = ft_itoa_base(i, 10);
+				*buffer = ft_itoa_base(i, 10);
 		}
 		else if (size[0] == 'h' && size[1] == 'h')
 			*buffer = ft_itoa_base((signed char)va_arg(vl, int), 10);
@@ -101,9 +101,9 @@ void	f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 		if (size[0] == '\0')
 		{
 			i = va_arg(vl, unsigned int);
-			if (i == 0 && st->point == 1)
-				*buffer = "";
-			else
+		//	if (i == 0 && st->point == 1)
+		//		*buffer = "";
+		//	else
 				*buffer = ft_itoa_base(i, 8);
 		}
 		else if (size[0] == 'h' && size[1] == 'h')

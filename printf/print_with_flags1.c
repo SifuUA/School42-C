@@ -20,7 +20,9 @@ void		mod_zer(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 		else
 		{
 			while (--i >= 0)
-			ptr[i] = '0';
+				ptr[i] = '0';
+			if (*(st->buffer) == '0')
+				ptr++;
 			tmp = ft_strjoin(ptr, st->buffer);
 		}
 			st->buffer = tmp;
@@ -165,10 +167,14 @@ void		modif_buff(t_pf *st)
 		return ;
 	if (st->specifier == '%' || (*st->buffer) == '%')
 	{
-		if ((*st->buffer) == '%')
-			ft_bzero(st->buffer, ft_strlen(st->buffer));
-		else
+		//if ((*st->buffer) == '%')
+		//	;//ft_bzero(st->buffer, ft_strlen(st->buffer));
+		 if (find_char(st->str, '%'))
+		{
 			st->buffer = "%";
+		}
+		else
+			st->buffer = "\0";
 	}
 	spaces = get_space(st);
 	zeros = get_zero(st, a);

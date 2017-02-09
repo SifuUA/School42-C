@@ -25,9 +25,12 @@ int	 		ft_printf(const char * restrict format, ...)
 			st->str[j] = '\0';
 			if (fill_struct(st, vl) == 0)
 				modif_buff(st);
-			st->str = st->tmp + j;
-			st->res = ft_strjoin(st->res, st->buffer);
-			free_s(st);
+			if (*(st->buffer) == '\0' && ft_strlen(st->tmp) == 1 && st->specifier == '\0' && *(st->flag) == '\0')
+				st->str = st->tmp;
+			else
+				st->str = st->tmp + j;
+				st->res = ft_strjoin(st->res, st->buffer);
+				free_s(st);
 		}
 		else
 		{
