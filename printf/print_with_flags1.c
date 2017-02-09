@@ -53,7 +53,7 @@ void		mod_min(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 	i = 0;
 	if (find(st->flag, '-') == 1)
 	{
-		if (st->width >= st->precision)
+		if (st->width >= st->precision && st->specifier != 'p')
 		{
 			tmp = ft_strjoin(st->buffer, spaces);
 			st->buffer = ft_strjoin(zeros, tmp);
@@ -75,7 +75,12 @@ void		mod_min(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 				free(tmp);
 			}
 			else
+			{
 				st->buffer = tmp;
+				if (st->specifier == 'p')
+				;//st->buffer = ft_strjoin("0x", st->buffer);
+			}
+
 		}
 	}
 	else 
@@ -181,7 +186,29 @@ void		modif_buff(t_pf *st)
 		if (st->specifier != 'c' && st->specifier != 's' && *(st->buffer) != '%')
 		{
 			if (znak >= 0)
-				st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+			{
+				if (st->specifier == 'p')
+				{
+					if (*(st->buffer) == '\0')
+					{
+						st->buffer = ft_strjoin("0x", st->buffer);
+						if (ft_strlen(spaces) >= 2)
+							spaces += 2;
+						st->buffer = ft_strjoin(st->buffer, ft_strjoin(spaces, zeros));
+					}
+					else if (st->precision > st->width)
+					{
+						st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+						st->buffer = ft_strjoin("0x", st->buffer);
+					}
+					else
+					st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+
+
+				}
+				else
+					st->buffer = ft_strjoin(ft_strjoin(spaces, zeros), st->buffer);
+			}
 			else
 			{
 				if (st->precision > st->width)

@@ -59,9 +59,23 @@ void	f_8(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 	void*	i;
 
 	i = va_arg(vl, void*);
-	*buffer = ft_itoa_base_low((long long)i, 16);
-	tmp = ft_strjoin("0x", *buffer);
-	*buffer = tmp;
+	if (i == 0 && st->point == 1)
+	{
+		*buffer = "";
+	}
+	else if (st->width > st->precision)
+	{
+		*buffer = ft_itoa_base_low((long long)i, 16);
+		tmp = ft_strjoin("0x", *buffer);
+		*buffer = tmp;
+	}
+	else
+		*buffer = ft_itoa_base_low((long long)i, 16);
+
+
+	/**buffer = ft_itoa_base_low((long long)i, 16);
+	tmp = ft_strjoin("0ax", *buffer);
+	*buffer = tmp;*/
 	
 	
 }
