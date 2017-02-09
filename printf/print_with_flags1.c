@@ -6,11 +6,11 @@ void		mod_zer(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 	int		i;
 
 	i = ft_strlen(ptr);
-	/*if (st->specifier == 'd' && st->precision > 0 )
+	if (st->specifier == 'd' && (st->precision == -1 || st->precision == 0) && st->point == 1)
 	{
 		st->buffer = ft_strjoin(spaces, st->buffer);
 		return ;
-	}*/
+	}
 	if (find(st->flag, '0') == 1)
 	{
 		if (st->precision < ft_strlen(st->buffer) && st->precision != 0)
@@ -117,6 +117,8 @@ void		mod_sp(t_pf *st, char *spaces, char *zeros, long long znak)
 	{
 		if (znak > 0)
 		{
+			if (st->buffer[0] == ' ')
+				return ;
 			tmp = ft_strjoin(" ", st->buffer);
 			i = ft_strlen(tmp);
 			if (tmp[i - 1] == ' ')

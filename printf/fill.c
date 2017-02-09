@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
-/*   Updated: 2017/02/08 20:43:54 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/09 12:22:24 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		fill_struct(t_pf *st, va_list vl)
 				return (1);
 		}
 	}*/
-	fill_flags(st->str, flags, &(st->flag));
+	fill_flags(st, flags);
     while (*(st->str) && (find(spec, *(st->str)) == 0))
     {
 		st->p = 0;
@@ -49,24 +49,27 @@ int		fill_struct(t_pf *st, va_list vl)
 	return (0);
 }
 
-void	fill_flags(char *str, char *flags, char **flag)
+void	fill_flags(t_pf *st, char *flags)
 {
-	char *ptr;
+	int		i;
+	int		j;
 
-	ptr = *flag;
-    while (*str)
+	i = 0;
+	j = 0;
+    while (st->str[j])
     {
-		if (find(flags, *str) == 1 && find(*flag, *str) == 0)
+		if (find(flags, st->str[j]) && !find(st->flag, st->str[j]))
 		{
-			if (*str == '0' && (ft_isdigit(*(str - 1)) || *(str - 1) == '.'))
-				(*flag)++;
+			if (st->str[j] == '0' && (ft_isdigit(st->str[j - 1]) || st->str[j - 1] == '.'))
+				;
 			else
-            	**flag = *str;
-			(*flag)++;
+			{
+				st->flag[i] = st->str[j];
+				i++;
+			}
 		}
-        str++;
+       	j++;
 	}
-	*flag = ptr;
 }
 
 void	fill_width(char **str, int *width, va_list vl, t_pf *st)
@@ -108,6 +111,7 @@ void    fill_precision(char **str, int *precision, va_list vl, t_pf *st)
         }
 		else if (ft_isdigit(**str))
 		{
+			*precision = 0;
 			while(ft_isdigit(**str))
 			{
             	*precision = *precision * 10 + **str - '0';

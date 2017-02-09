@@ -72,7 +72,7 @@ int					two_perc(t_pf *st);
 void				check_z(t_pf *s);
 
 int					fill_struct(t_pf *st, va_list vl);
-void				fill_flags(char *str, char *flags, char **flag);
+void				fill_flags(t_pf *st, char *flags);
 void				fill_width(char **str, int *width, va_list vl, t_pf *st);
 void				fill_precision(char **str, int *precision, va_list vl, t_pf *st);
 void				fill_size(char **str, char *sizes, char *size, t_pf *st);

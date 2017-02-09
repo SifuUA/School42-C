@@ -24,7 +24,7 @@ char		*get_zero(t_pf *st, char a)
 	int		i;
 	i = 0;
 	n_str = NULL;
-	if (st->precision < 0)
+	if (st->precision == -1)
 		st->precision = 0;
 	if (st->precision > ft_strlen(st->buffer))
 		space_c = get_width(st) - st->precision;
@@ -56,7 +56,7 @@ char		*get_space(t_pf *st)
    	
 	i = 0;
 	n_str = NULL;
-	if (st->precision < 0)
+	if (st->precision == -1)
 		st->precision = 0;
 	if (st->specifier == 'c' && *(st->buffer) == '\0' && st->width == 0)
 		return n_str;

@@ -77,9 +77,10 @@ int		find(char *str, char c)
 void	memory_allocate(t_pf *st)
 {
 	st->width = 0;
-	st->precision = 0;
-	st->flag = ft_strnew(5);
+	st->precision = -1;
+	st->flag = ft_strnew(20);
 	st->size = ft_strnew(2);
+	ft_bzero(st->size, ft_strlen(st->size));
 	st->buffer = ft_strnew(100);
 	st->res = ft_strnew(100);
 	
