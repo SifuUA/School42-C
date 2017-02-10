@@ -86,6 +86,9 @@ void				f_5(char cpecif, char *size, va_list vl, char **buffer);
 void				f_6(char cpecif, char *size, va_list vl, char **buffer);
 void				f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 void				f_8(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
+void				f_9(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
+void				f_10(char cpecif, char *size, char **buffer, t_pf *st);
+void				f_11(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 
 void				modif_buff(t_pf *st);
 char				*get_zero(t_pf *st, char a);

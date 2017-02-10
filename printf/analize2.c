@@ -36,8 +36,9 @@ void	f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 		if (size[0] == '\0' || size[0] == 'l')
 			**buffer = (char)va_arg(vl, int);
 	}
-	else
-		if (size[0] == '\0')
+	else if (cpecif == 's')
+	{
+		if(size[0] == '\0')
 		{
 			*buffer = va_arg(vl, char *);
 			if (*buffer == NULL)
@@ -48,9 +49,67 @@ void	f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 				tmp = ft_strncpy(tmp, st->buffer, st->precision);
 				st->buffer = tmp;
 			}
-			else
+			else if (st->precision < ft_strlen(*buffer))
+			{
+				tmp = ft_strdup(*buffer);
+				tmp[st->precision] = '\0';
+				*buffer = tmp;
+			}
+			else 
 				st->precision = 0;
 		}
+	}
+	else if (cpecif == 'S')
+		f_9(cpecif, size, vl, buffer, st);
+}
+
+void	f_9(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
+{
+	wchar_t *s;
+	int		i;
+	int		j;
+	char	*res;
+	
+	i = 0;
+	j = 0;
+	s = va_arg(vl, wchar_t*);
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	res = (char *)malloc(sizeof(char) * i + 1);
+	while (j < i)
+	{
+		res[j] = (char)s[j];
+		j++;
+	}
+	res[j] = '\0';
+	*buffer = res;
+}
+
+void	f_10(char cpecif, char *size, char **buffer, t_pf *st)
+{
+	char *tmp;
+
+	if(size[0] == '\0')
+	{
+		if (*buffer == NULL)
+			*buffer = "(null)";
+		if (st->precision < ft_strlen(*buffer) && st->precision > 0)
+		{
+			tmp = ft_strnew(st->precision);
+			tmp = ft_strncpy(tmp, st->buffer, st->precision);
+			st->buffer = tmp;
+		}
+		else if (st->precision < ft_strlen(*buffer))
+		{
+			tmp = ft_strdup(*buffer);
+			tmp[st->precision] = '\0';
+			*buffer = tmp;
+		}
+		else 
+			st->precision = 0;
+	}
 }
 
 void	f_8(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)

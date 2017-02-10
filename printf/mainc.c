@@ -20,12 +20,12 @@ int		main(void)
 	//long int	val = -4294967296;
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
-	ft_printf("%4.s", "42");
+	//ft_printf(NULL);
 	printf("<---\n\n");
 
 
 	printf("%12s\n %s","MAN", "--->");
-	printf("%4.s", "42");
+	printf(NULL);
 	printf("<---\n");
 }
 

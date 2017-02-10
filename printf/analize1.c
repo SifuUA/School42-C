@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 18:05:11 by okres             #+#    #+#             */
-/*   Updated: 2017/02/09 17:17:55 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/10 15:20:51 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 	i = 0;
 	if (cpecif == 'd' || cpecif == 'D' || cpecif == 'i')
 	{
+		if (cpecif == 'D')
+			f_11(cpecif, size, vl, buffer, st);
+		else
+		{	
 		i = ft_strlen(size);
 		if (i > 2)
 			size = ft_strsub(size, i - 2, 2);
@@ -40,7 +44,7 @@ void	f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 			*buffer = ft_itoa_base(va_arg(vl,intmax_t), 10);
 		else if (size[0] == 'z' || size[0] == 't')
 			*buffer = ft_itoa_base(va_arg(vl, long long int), 10);
-
+		}
 	}
 	else if (cpecif == 'u' || cpecif == 'U' || cpecif == 'o' || cpecif == 'O' || cpecif == 'x' || cpecif == 'X')
 		f_2(cpecif, size, vl, buffer, st);

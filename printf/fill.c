@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 17:58:33 by okres             #+#    #+#             */
-/*   Updated: 2017/02/09 12:22:24 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/10 14:32:47 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void    fill_precision(char **str, int *precision, va_list vl, t_pf *st)
 	if (**str == '.')
     {
 		st->point = 1;
+		st->precision = 0;
         (*str)++;
         if (**str == '*')
         {
