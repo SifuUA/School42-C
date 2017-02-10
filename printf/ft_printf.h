@@ -9,8 +9,6 @@
 
 typedef struct		s_pf
 {
-	struct s_pf		*next;
-	
 	char			*str;
 	char			*buffer;
 	char			*res;
@@ -21,6 +19,9 @@ typedef struct		s_pf
 	char			*last_buffer;
 	int				p;
 	int				uk;
+	char			*a_spec;
+	char			*a_sizes;
+	char			*a_flags;
 
 	char			*flag;
 	int				width;
@@ -33,7 +34,7 @@ typedef struct		s_pf
 typedef void ((*ptr_f)());
 
 int					ft_printf(const char * restrict format, ...);
-
+void				ft_printf_1(t_pf *st, va_list vl);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isdigit(int c);
@@ -80,18 +81,22 @@ void				fill_width(char **str, int *width, va_list vl, t_pf *st);
 void				fill_precision(char **str, int *precision, va_list vl, t_pf *st);
 void				fill_size(char **str, char *sizes, char *size, t_pf *st);
 
-void				f_1(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
-void				f_2(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
-void				f_3(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
-void				f_4(char cpecif, char *size, va_list vl, char **buffer);
-void				f_5(char cpecif, char *size, va_list vl, char **buffer);
-void				f_6(char cpecif, char *size, va_list vl, char **buffer);
-void				f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
-void				f_8(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
-void				f_9(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
-void				f_10(char cpecif, char *size, char **buffer, t_pf *st);
-void				f_11(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
-void				f_12(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
+void				f_1(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_2(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_3(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_4(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_5(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_6(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_7(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_8(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_9(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_10( char *size, char **buffer, t_pf *st);
+void				f_11(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_12(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_13(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_14(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_15(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_16(char *size, va_list vl, char **buffer, t_pf *st);
 
 void				modif_buff(t_pf *st);
 char				*get_zero(t_pf *st, char a);
