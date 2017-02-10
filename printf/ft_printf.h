@@ -20,6 +20,7 @@ typedef struct		s_pf
 	char			*tmp;
 	char			*last_buffer;
 	int				p;
+	int				uk;
 
 	char			*flag;
 	int				width;
@@ -39,6 +40,7 @@ int					ft_isdigit(int c);
 size_t				ft_pow(size_t nb, size_t pow);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
+void				ft_putstr_m(char const *s, int p);
 char				*ft_strcat(char *restrict str1, const char *restrict str2);
 void				ft_strdel(char **as);
 char				*ft_strdup(const char *str);
@@ -89,6 +91,7 @@ void				f_8(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 void				f_9(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 void				f_10(char cpecif, char *size, char **buffer, t_pf *st);
 void				f_11(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
+void				f_12(char cpecif, char *size, va_list vl, char **buffer, t_pf *st);
 
 void				modif_buff(t_pf *st);
 char				*get_zero(t_pf *st, char a);

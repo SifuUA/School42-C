@@ -70,7 +70,10 @@ void		mod_min(t_pf *st, char *spaces, char *zeros, char *ptr, long long znak)
 		}
 		else
 		{
-			tmp = ft_strjoin(ptr, st->buffer);
+			if (st->specifier == 'p')
+				tmp = ft_strjoin(st->buffer, ptr);
+			else
+				tmp = ft_strjoin(ptr, st->buffer);
 			if (znak < 0)
 			{
 				st->buffer = ft_strjoin("-", tmp);

@@ -29,13 +29,22 @@ void	f_6(char cpecif, char *size, va_list vl, char **buffer)
 void	f_7(char cpecif, char *size, va_list vl, char **buffer, t_pf *st)
 {
 	char	*tmp;
+	int		i;
 
+	i = 0;
 	tmp = NULL;
 	if (cpecif == 'c')
 	{
 		if (size[0] == '\0' || size[0] == 'l')
-			**buffer = (char)va_arg(vl, int);
+		{
+			i = va_arg(vl, int);
+			if (i ==0)
+				st->uk = 1;
+			**buffer = (char)i;
+		}
 	}
+	else if (cpecif == 'C')
+		f_12(cpecif, size, vl, buffer, st);
 	else if (cpecif == 's')
 	{
 		if(size[0] == '\0')

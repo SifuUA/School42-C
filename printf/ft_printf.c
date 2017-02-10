@@ -37,10 +37,10 @@ int	 		ft_printf(const char * restrict format, ...)
 			j = lentoc(st->str, '%');
 			st->tmp = ft_strsub(st->str, 0, j);
 			st->res = ft_strjoin(st->res, st->tmp);
-		(st->str) += j;
+			(st->str) += j;
 		}
 	}
-    ft_putstr(st->res);
+    ft_putstr_m(st->res, st->uk);
 	j = 0;
 	if (st->specifier == 'c' && (st->last_buffer == NULL || *(st->last_buffer) == '\0' || *(st->last_buffer) == '0'))
 		j = 1;
