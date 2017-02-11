@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 21:14:44 by okres             #+#    #+#             */
-/*   Updated: 2017/02/10 21:15:02 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/11 14:32:45 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	f_6(char *size, va_list vl, char **buffer, t_pf *st)
 		*buffer = va_arg(vl, char *);
 		if (*buffer == NULL)
 			*buffer = "(null)";
-		if (st->precision < ft_strlen(*buffer) && st->precision > 0)
+		if (st->precision < (int)ft_strlen(*buffer) && st->precision > 0)
 		{
 			tmp = ft_strnew(st->precision);
 			tmp = ft_strncpy(tmp, st->buffer, st->precision);
 			st->buffer = tmp;
 		}
-		else if (st->precision < ft_strlen(*buffer))
+		else if (st->precision < (int)ft_strlen(*buffer))
 		{
 			tmp = ft_strdup(*buffer);
 			tmp[st->precision] = '\0';
@@ -58,10 +58,10 @@ void	f_7(char *size, va_list vl, char **buffer, t_pf *st)
 	else if (st->specifier == 's')
 		f_6(size, vl, buffer, st);
 	else if (st->specifier == 'S')
-		f_9(size, vl, buffer, st);
+		f_9(vl, buffer);
 }
 
-void	f_9(char *size, va_list vl, char **buffer, t_pf *st)
+void	f_9(va_list vl, char **buffer)
 {
 	wchar_t	*s;
 	int		i;
@@ -93,13 +93,13 @@ void	f_10(char *size, char **buffer, t_pf *st)
 	{
 		if (*buffer == NULL)
 			*buffer = "(null)";
-		if (st->precision < ft_strlen(*buffer) && st->precision > 0)
+		if (st->precision < (int)ft_strlen(*buffer) && st->precision > 0)
 		{
 			tmp = ft_strnew(st->precision);
 			tmp = ft_strncpy(tmp, st->buffer, st->precision);
 			st->buffer = tmp;
 		}
-		else if (st->precision < ft_strlen(*buffer))
+		else if (st->precision < (int)ft_strlen(*buffer))
 		{
 			tmp = ft_strdup(*buffer);
 			tmp[st->precision] = '\0';
@@ -110,7 +110,7 @@ void	f_10(char *size, char **buffer, t_pf *st)
 	}
 }
 
-void	f_8(char *size, va_list vl, char **buffer, t_pf *st)
+void	f_8(va_list vl, char **buffer, t_pf *st)
 {
 	char	*tmp;
 	void	*i;

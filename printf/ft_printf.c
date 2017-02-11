@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 21:51:08 by okres             #+#    #+#             */
-/*   Updated: 2017/02/10 21:59:40 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/11 14:35:32 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	ft_printf_2(t_pf *st)
 
 void	ft_printf_1(t_pf *st, va_list vl)
 {
-	int		i;
 	int		j;
 
+	j = 0;
 	while (*(st->str))
 	{
 		check_z(st);
