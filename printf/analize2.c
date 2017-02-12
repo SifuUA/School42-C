@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 21:14:44 by okres             #+#    #+#             */
-/*   Updated: 2017/02/11 21:30:07 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/12 23:16:56 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	f_6(char *size, va_list vl, char **buffer, t_pf *st)
 		else
 			st->precision = 0;
 	}
+	else
+		f_19(vl, st);
 }
 
 void	f_7(char *size, va_list vl, char **buffer, t_pf *st)
@@ -47,14 +49,20 @@ void	f_7(char *size, va_list vl, char **buffer, t_pf *st)
 	tmp = NULL;
 	if (st->specifier == 'c' || st->specifier == 'C')
 	{
-		if (size[0] == '\0' || size[0] == 'l')
+		ft_bzero(st->buffer, ft_strlen(st->buffer));
+		if (size[0] == '\0')
 		{
 			i = va_arg(vl, int);
 			if (i == 0)
 				st->uk = 1;
 			**buffer = (char)i;
 		}
-	}
+		else if (size[0] == 'l')
+		{
+			i = va_arg(vl, int);
+			st->buffer = bit_move(i);
+		}
+	} 
 	else if (st->specifier == 's' || st->specifier == 'S')
 		f_6(size, vl, buffer, st);
 }
@@ -115,6 +123,8 @@ void	f_8(va_list vl, char **buffer, t_pf *st)
 	
 	if (st->specifier == 'n')
 		f_17(vl, st);
+	else if (st->specifier == 'b')
+		f_18(vl, st);
 	else
 	{
 		i = va_arg(vl, void*);

@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 14:11:53 by okres             #+#    #+#             */
-/*   Updated: 2017/02/11 22:38:36 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/12 23:15:22 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char				*ft_strchr(const char *s, int c);
 int					ft_isascii(int c);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
+int					ft_isalpha(int c);
 
 char				*ft_itoa_mod(int n);
 char				*ft_itoa_base(long long int value, long long int base);
@@ -108,6 +109,9 @@ void				f_14(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_15(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_16(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_17(va_list vl, t_pf *st);
+void				f_18(va_list vl, t_pf *st);
+void				f_19(va_list vl, t_pf *st);
+char				*bit_move(int i);
 
 void				modif_buff(t_pf *st);
 void				modif_buff_1(t_pf *st, char	*spaces, char *zeros);

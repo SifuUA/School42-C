@@ -1,8 +1,13 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <wchar.h>
+#include <wctype.h>
+#include <locale.h>
+
 
 int		main(void)
 {
+	setlocale(LC_ALL, "");
 /*
 	unsigned short int = 65535;
 	unsigned long int = 4294967295;
@@ -25,12 +30,12 @@ int		main(void)
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
 	//ft_printf("abcd%nabcd%njhjjk%n", &val, &val1, &val2);
-	ft_printf("%hhD, %hD", 0, 65535);
+	ft_printf("a%Sb%sc%S", L"我", "42", L"猫");
 	printf("<---\n\n");
 
 
 	printf("%12s\n %s","MAN", "--->");
-	printf("%hhD, %hD", 0, 65535);
+	printf("a%Sb%sc%S", L"我", "42", L"猫");
 	printf("<---\n");
 }
 
