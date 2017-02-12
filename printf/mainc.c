@@ -10,7 +10,11 @@ int		main(void)
 */
 	char	*str = "@main_ftprintf: %####0000 33..1..#00d";
 	
-	int			val = 128;	
+	int			val;
+	int			val1;
+	int			val2;
+
+	char		a;
 	//char		*val = "4294967295";
 	//char		*val = "abcdef";
 	//char		*val1 = "111111111";
@@ -20,12 +24,13 @@ int		main(void)
 	//long int	val = -4294967296;
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
-	ft_printf("%03.2d", -1);
+	//ft_printf("abcd%nabcd%njhjjk%n", &val, &val1, &val2);
+	ft_printf("%hhD, %hD", 0, 65535);
 	printf("<---\n\n");
 
 
 	printf("%12s\n %s","MAN", "--->");
-	printf("%03.2d", -1);
+	printf("%hhD, %hD", 0, 65535);
 	printf("<---\n");
 }
 

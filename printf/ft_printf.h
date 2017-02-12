@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 14:11:53 by okres             #+#    #+#             */
-/*   Updated: 2017/02/11 15:20:30 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/11 22:38:36 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_pf
 	int				precision;
 	char			*size;
 	char			specifier;
+	size_t			*n;
 }					t_pf;
 
 int					ft_printf(const char *restrict format, ...);
@@ -49,7 +50,7 @@ int					ft_isdigit(int c);
 size_t				ft_pow(size_t nb, size_t pow);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
-void				ft_putstr_m(char const *s, int p);
+void				ft_putstr_m(char const *s, int p, t_pf *st);
 char				*ft_strcat(char *restrict str1, const char *restrict str2);
 void				ft_strdel(char **as);
 char				*ft_strdup(const char *str);
@@ -99,14 +100,14 @@ void				f_5(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_6(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_7(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_8(va_list vl, char **buffer, t_pf *st);
-void				f_9(va_list vl, char **buffer);
 void				f_10(char *size, char **buffer, t_pf *st);
 void				f_11(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_12(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_13(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_14(char *size, va_list vl, char **buffer, t_pf *st);
-void				f_15(char *size, va_list vl, char **buffer);
+void				f_15(char *size, va_list vl, char **buffer, t_pf *st);
 void				f_16(char *size, va_list vl, char **buffer, t_pf *st);
+void				f_17(va_list vl, t_pf *st);
 
 void				modif_buff(t_pf *st);
 void				modif_buff_1(t_pf *st, char	*spaces, char *zeros);

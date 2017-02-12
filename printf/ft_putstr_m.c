@@ -6,13 +6,13 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 18:38:18 by okres             #+#    #+#             */
-/*   Updated: 2017/02/10 19:46:14 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/11 21:35:51 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr_m(char const *s, int p)
+void	ft_putstr_m(char const *s, int p, t_pf *st)
 {
 	int		i;
 
@@ -29,4 +29,6 @@ void	ft_putstr_m(char const *s, int p)
 		}
 		i++;
 	}
+	if (st->specifier == 'C' && p == 1)
+		ft_putchar('\0');
 }
