@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/10 21:20:07 by okres             #+#    #+#             */
-/*   Updated: 2017/02/15 15:05:09 by okres            ###   ########.fr       */
+/*   Created: 2017/02/15 21:54:56 by okres             #+#    #+#             */
+/*   Updated: 2017/02/15 21:54:58 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,26 @@ void	f_16(char *size, va_list vl, char **buffer, t_pf *st)
 				16);
 }
 
-void	f_17(va_list vl, t_pf *st)
+char	*bit_move1(int i)
 {
-//	size_t		*i;
-	signed char	*c;
-	int			a;
-	
-	a = ft_strlen(st->res);
-	if (st->size[0] == 'h' && st->size[1] == 'h')
-	{
-		c = (signed char *)va_arg(vl, void*);
-		*c = a;
-	}
-	else
-	{
-		st->n = (size_t *)va_arg(vl, void*);
-		*(st->n) = a;
-	}
-//	if (st->buffer)
-//		free(st->buffer);
+	unsigned char	z[4];
+
+	z[0] = (i >> 12) + 224;
+	z[1] = i >> 6;
+	z[1] = z[1] << 2;
+	z[1] = z[1] >> 2;
+	z[1] += 128;
+	z[2] = i << 2;
+	z[2] = (z[2] >> 2) + 128;
+	z[3] = 0;
+	return (ft_strdup((char *)z));
 }
 
 char	*bit_move(int i)
 {
 	unsigned char	s[3];
-	unsigned char	z[4];
 	char			*res;
-	
+
 	res = ft_strnew(3);
 	if (i < 128)
 		*res = i;
@@ -80,38 +73,28 @@ char	*bit_move(int i)
 		res = ft_strdup((char *)s);
 	}
 	else if (i > 2048)
-	{
-		z[0] = (i >> 12) + 224;
-		z[1] = i >> 6;
-		z[1] = z[1] << 2;
-		z[1] = z[1] >> 2;
-	   	z[1] += 128;
-		z[2] = i << 2;
-		z[2] = (z[2] >> 2) + 128;
-		z[3] = 0;
-		res = ft_strdup((char *)z);
-	}
+		res = bit_move1(i);
 	return (res);
 }
 
-void	f_18(va_list vl, t_pf *st)
-{
-	st->buffer = ft_itoa_base_low(va_arg(vl, int), 2);
-}
-
-/*void	f_19(va_list vl, t_pf *st)
+void	f_19(va_list vl, t_pf *st)
 {
 	int		j;
 	int		tmp;
 	int		*i;
-	
+
 	j = 0;
 	tmp = 0;
-	i = (int *)va_arg(vl, char *);
+	i = va_arg(vl, int *);
 	while (i[j])
 	{
 		tmp = i[j];
 		st->buffer = ft_strjoin(st->buffer, bit_move(tmp));
 		j++;
 	}
-}*/
+}
+
+void	f_18(va_list vl, t_pf *st)
+{
+	st->buffer = ft_itoa_base_low(va_arg(vl, int), 2);
+}

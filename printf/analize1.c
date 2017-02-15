@@ -6,7 +6,7 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 21:08:23 by okres             #+#    #+#             */
-/*   Updated: 2017/02/12 23:02:53 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/15 23:05:15 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	f_1(char *size, va_list vl, char **buffer, t_pf *st)
 	else if (st->specifier == 'c' || st->specifier == 'C' ||
 			st->specifier == 's' || st->specifier == 'S')
 		f_7(size, vl, buffer, st);
-	else if (st->specifier == 'p' || st->specifier == 'n' || st->specifier == 'b')
+	else if (st->specifier == 'p' || st->specifier == 'n' ||
+			st->specifier == 'b')
 		f_8(vl, buffer, st);
 }
 
@@ -69,7 +70,7 @@ void	f_3(char *size, va_list vl, char **buffer, t_pf *st)
 			if (i == 0 && (find(st->flag, '#') || st->point == 1))
 				*(st->buffer) = '\0';
 			else
-			*buffer = ft_itoa_base(i, 16);
+				*buffer = ft_itoa_base(i, 16);
 		}
 		else if (size[0] == 'h' && size[1] == 'h')
 			*buffer = ft_itoa_base_unsign((unsigned char)(va_arg(vl, int)), 16);
@@ -81,14 +82,28 @@ void	f_3(char *size, va_list vl, char **buffer, t_pf *st)
 	}
 }
 
+void	f_4_dop(t_pf *st, char *ptr)
+{
+	int tmp;
+
+	tmp = 0;
+	st->i = (int)ft_strlen(st->float_dec);
+	st->buffer = ft_strcat(ptr, st->float_dec);
+		tmp = st->precision > st->i ? st->precision - st->i : 6 - st->i;
+		while (tmp > 0)
+		{
+			st->buffer = ft_strjoin(st->buffer, "0");
+			tmp--;
+		}
+}
+
 void	f_4(char *size, va_list vl, char **buffer, t_pf *st)
 {
 	double		tmp;
 	size_t		value;
 	char		*ptr;
-	char		*ptr1;
-
-	if (st->specifier == 'f')
+	
+	if (st->specifier == 'f' || st->specifier == 'F')
 	{
 		if (size[0] == '\0')
 		{
@@ -96,36 +111,15 @@ void	f_4(char *size, va_list vl, char **buffer, t_pf *st)
 			value = tmp;
 			*buffer = ft_itoa_mod(value);
 			ptr = *buffer;
-			ptr1 = ft_itoa_base((tmp * ft_pow(10, num_len(tmp))), 10);
-			ptr1 += (ft_strlen(ptr) - 1);
-			*buffer = ft_strcat(ptr, ptr1);
-		}
-		else if (size[0] == 'L')
-			f_5(size, vl, buffer, st);
-	}
-	else
-		f_5(size, vl, buffer, st);
-}
-
-void	f_5(char *size, va_list vl, char **buffer, t_pf *st)
-{
-	double		tmp;
-	size_t		value;
-	char		*ptr;
-	char		*ptr1;
-
-	if (st->specifier == 'f' || st->specifier == 'F')
-	{
-		if (size[0] == '\0' || size[0] == 'L')
-		{
-			tmp = (long double)va_arg(vl, long double);
-			value = tmp;
-			*buffer = ft_itoa_mod(value);
-			ptr = *buffer;
-			ptr1 = ft_itoa_base((tmp * ft_pow(10, num_len(tmp))), 10);
-			ptr1 += (ft_strlen(ptr) - 1);
-			*buffer = ft_strcat(ptr, ptr1);
-			ft_strdel(&ptr);
+			st->float_dec = ft_itoa_base((tmp * ft_pow(10, num_len(tmp))), 10);
+			st->float_dec += (ft_strlen(ptr) - 1);
+			if (st->precision >= 0 && st->precision <= (int)ft_strlen(st->float_dec))
+			{
+				st->float_dec[st->precision] = '\0';
+				st->buffer = ft_strcat(ptr, st->float_dec);
+			}
+			else
+				f_4_dop(st, ptr);
 		}
 	}
 }
