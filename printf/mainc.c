@@ -30,12 +30,12 @@ int		main(void)
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
 	//ft_printf("abcd%nabcd%njhjjk%n", &val, &val1, &val2);
-	ft_printf("a%Sb%sc%S", L"我", "42", L"猫");
+	ft_printf("%lC", L'ÁM-^L´');
 	printf("<---\n\n");
 
 
 	printf("%12s\n %s","MAN", "--->");
-	printf("a%Sb%sc%S", L"我", "42", L"猫");
+	printf("%C", L'ÁM-^L´');
 	printf("<---\n");
 }
 
