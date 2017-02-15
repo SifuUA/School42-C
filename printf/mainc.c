@@ -18,8 +18,9 @@ int		main(void)
 	int			val;
 	int			val1;
 	int			val2;
+	int			a;
+	int			b;
 
-	char		a;
 	//char		*val = "4294967295";
 	//char		*val = "abcdef";
 	//char		*val1 = "111111111";
@@ -30,12 +31,14 @@ int		main(void)
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
 	//ft_printf("abcd%nabcd%njhjjk%n", &val, &val1, &val2);
-	ft_printf("%lC", L'ÁM-^L´');
+	a = ft_printf("%c%c%c%c%c", '\0', 'a','\0','b','\0');
 	printf("<---\n\n");
+	ft_printf("my = %d\n",a);
 
 
 	printf("%12s\n %s","MAN", "--->");
-	printf("%C", L'ÁM-^L´');
+	b = printf("%c%c%c%c%c", '\0', 'a','\0','b','\0');
 	printf("<---\n");
+	ft_printf("man = %d\n",b);
 }
 

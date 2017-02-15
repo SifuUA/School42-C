@@ -5,6 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/15 15:55:13 by okres             #+#    #+#             */
+/*   Updated: 2017/02/15 16:06:02 by okres            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 21:51:08 by okres             #+#    #+#             */
 /*   Updated: 2017/02/15 14:09:02 by okres            ###   ########.fr       */
 /*                                                                            */
@@ -16,19 +28,14 @@ int		ft_printf(const char *restrict format, ...)
 {
 	va_list			vl;
 	static t_pf		*st;
-	int				j;
 
 	va_start(vl, format);
 	st = (t_pf *)malloc(sizeof(t_pf));
 	memory_allocate(st);
 	st->str = ft_strdup((char *)format);
 	ft_printf_1(st, vl);
-	ft_putstr_m(st->res, st->uk, st);
-	j = 0;
-	if ((st->specifier == 'c' || st->specifier == 'C') && (st->last_buffer ==
-				NULL || *(st->last_buffer) == '\0' || *(st->last_buffer) == '0'))
-		j = 1;
-	return (ft_strlen(st->res) + j);
+	write(1, st->res, (int)ft_strlen(st->res) + st->uk);
+	return (ft_strlen(st->res) + st->uk);
 }
 
 void	ft_printf_2(t_pf *st)
