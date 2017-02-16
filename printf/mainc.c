@@ -30,7 +30,7 @@ int		main(void)
 	//long int	val = -4294967296;
 	printf("%12s\n","MY");
 	ft_putstr(" --->");
-	ft_printf("%-40.20f", 4.26);
+	ft_printf("%f", .0);
 	//ft_printf("val %d, val1 %d, val2 %d", val, val1, val2);
 	//a = ft_printf("%lS", L"Á±≥");
 	printf("<---\n\n");
@@ -39,7 +39,7 @@ int		main(void)
 
 	printf("%12s\n %s","MAN", "--->");
 	//b = printf("%n", );
-	printf("%-40.20f", 4.26);
+	printf("%f", .0);
 	//printf("val %d, val1 %d, val2 %d", val, val1, val2);
 	printf("<---\n");
 	ft_printf("man = %d\n",b);
