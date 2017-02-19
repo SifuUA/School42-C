@@ -6,18 +6,25 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 14:11:53 by okres             #+#    #+#             */
-/*   Updated: 2017/02/16 12:31:23 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/16 16:32:24 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdint.h>
 # include <stdio.h>
+
+# define RED     "\x1b[31m"
+# define GREEN   "\x1b[32m"
+# define YELLOW  "\x1b[33m"
+# define BLUE    "\x1b[34m"
+# define MAGENTA "\x1b[35m"
+# define CYAN    "\x1b[36m"
+# define RESET   "\x1b[0m"
 
 typedef struct		s_pf
 {
@@ -28,6 +35,7 @@ typedef struct		s_pf
 	char			*res;
 	char			*ptr;
 	long long		znak;
+	int				znak1;
 	int				point;
 	char			*tmp;
 	char			*last_buffer;
@@ -64,7 +72,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 int					ft_isalpha(int c);
 
-char				*ft_itoa_mod(long long int n);
+char				*ft_itoa_mod(long long int n, int znak);
 char				*ft_itoa_base(long long int value, long long int base);
 char				*ft_itoa_base_low(long long int value, long long int base);
 char				*ft_itoa_base_unsign(unsigned long long int value,
@@ -113,6 +121,7 @@ void				f_17(va_list vl, t_pf *st);
 void				f_18(va_list vl, t_pf *st);
 void				f_19(va_list vl, t_pf *st);
 char				*bit_move(int i);
+void				e_convert(t_pf *st);
 
 void				modif_buff(t_pf *st);
 void				modif_buff_1(t_pf *st, char	*spaces, char *zeros);
