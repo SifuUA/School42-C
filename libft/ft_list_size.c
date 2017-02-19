@@ -19,7 +19,8 @@ int	ft_list_size(t_list *begin_list)
 
 	if (begin_list == 0)
 	{
-		return (begin_list);
+//		return (begin_list);
+		return (0);
 	}
 	index = 0;
 	node = begin_list;
