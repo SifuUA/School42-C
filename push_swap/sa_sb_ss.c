@@ -1,33 +1,32 @@
 #include "push_swap.h"
 
 // sa
-void    sa(t_d_linklst *list)
+void    sa(t_d_linklst *list_a)
 {
 	T tmp;
 
-	if (list->size > 1)
+	if (list_a->size > 1)
 	{
-		tmp = list->head->value;
-		list->head->value = list->head->next->value;
-		list->head->next->value = tmp;
+		tmp = list_a->head->value;
+		list_a->head->value = list_a->head->next->value;
+		list_a->head->next->value = tmp;
 	}
 }
-
-void    sb(int *stack, int size)
+// sb
+void    sb(t_d_linklst *list_b)
 {
-	int tmp;
+	T tmp;
 
-	tmp = 0;
-	if (stack && size > 1)
+	if (list_b->size > 1)
 	{
-		tmp = stack[size - 1];
-		stack[size - 1] = stack[size - 2];
-		stack[size - 2] = tmp;
+		tmp = list_b->head->value;
+		list_b->head->value = list_b->head->next->value;
+		list_b->head->next->value = tmp;
 	}
 }
-
-void    ss(int *stack_a, int *stack_b, int size_a, int size_b)
+//ss
+void    ss(t_d_linklst *list_a, t_d_linklst *list_b)
 {
-	sa(stack_a, size_a);
-	sb(stack_b, size_b);
+	sa(list_a);
+	sb(list_a);
 }
