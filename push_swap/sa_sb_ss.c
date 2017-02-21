@@ -1,15 +1,15 @@
 #include "push_swap.h"
 
-void    sa(int *stack, int size)
+// sa
+void    sa(t_d_linklst *list)
 {
-	int tmp;
+	T tmp;
 
-	tmp = 0;
-	if (stack && size > 1)
+	if (list->size > 1)
 	{
-		tmp = stack[size - 1];
-		stack[size - 1] = stack[size - 2];
-		stack[size - 2] = tmp;
+		tmp = list->head->value;
+		list->head->value = list->head->next->value;
+		list->head->next->value = tmp;
 	}
 }
 
