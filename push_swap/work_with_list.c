@@ -28,3 +28,8 @@ void            push_front(t_d_linklst *list, int value) // добавление
 	list->head = node;
 	list->size++;
 }
+
+void 			del_node(t_node *node)
+{
+	free(node);
+}

@@ -10,6 +10,7 @@ void    sa(t_d_linklst *list_a)
 		tmp = list_a->head->value;
 		list_a->head->value = list_a->head->next->value;
 		list_a->head->next->value = tmp;
+		put("sa");
 	}
 }
 // sb
@@ -22,6 +23,7 @@ void    sb(t_d_linklst *list_b)
 		tmp = list_b->head->value;
 		list_b->head->value = list_b->head->next->value;
 		list_b->head->next->value = tmp;
+		put("sb");
 	}
 }
 //ss
@@ -29,4 +31,5 @@ void    ss(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	sa(list_a);
 	sb(list_b);
+	put("ss");
 }

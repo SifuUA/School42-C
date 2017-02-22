@@ -5,10 +5,8 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
-/*# define INIT_SIZE 10
+# define INIT_SIZE 10
 # define MULTIPLIER 2
-
-typedef int T;
 
 typedef long int T;
 
@@ -25,4 +23,13 @@ typedef struct      s_d_linklst
 	struct s_node   *tail;
 	size_t          size;
 }                   t_d_linklst;
+
+void				put(char *s);
+void   				sa(t_d_linklst *list_a);
+void   				sb(t_d_linklst *list_a);
+void    			ss(t_d_linklst *list_a, t_d_linklst *list_b);
+
+void            	push_front(t_d_linklst *list, int value);
+t_d_linklst     	*creat(void);
+void 				del_node(t_node *node);
 #endif
