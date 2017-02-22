@@ -1,7 +1,3 @@
-//
-// Created by Oleksiy Kres on 2/21/17.
-//
-
 #include "push_swap.h"
 
 t_d_linklst     *creat(void) // создание листа
@@ -19,7 +15,7 @@ void            push_front(t_d_linklst *list, int value) // добавление
 {
 	t_node  *node;
 
-	node = (t_node *)malloc(t_node);
+	node = (t_node *)malloc(sizeof(t_node));
 	if (node == NULL)
 		exit(1);
 	node->value = value;

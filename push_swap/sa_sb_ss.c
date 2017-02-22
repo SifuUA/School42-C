@@ -28,5 +28,5 @@ void    sb(t_d_linklst *list_b)
 void    ss(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	sa(list_a);
-	sb(list_a);
+	sb(list_b);
 }
