@@ -29,6 +29,9 @@ void				pa(s_d_linklst *list_a, s_d_linklst *list_b);
 void 				ra(t_d_linklst *list);
 void 				rb(t_d_linklst *list);
 void 				rr(t_d_linklst *list_a, t_d_linklst *list_b);
+void 				rra(t_d_linklst *list);
+void 				rra(t_d_linklst *list);
+void 				rrr(t_d_linklst *list_a, t_d_linklst *list_b);
 
 t_d_linklst     	*creat(void);
 void				put(char *s);
