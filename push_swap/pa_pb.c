@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	pa(s_d_linklst *list_a, s_d_linklst *list_b)
+void	pa(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	t_node	*tmp;
 
@@ -11,7 +11,7 @@ void	pa(s_d_linklst *list_a, s_d_linklst *list_b)
 	put("pa");
 }
 
-void	pb(s_d_linklst *list_a, s_d_linklst *list_b)
+void	pb(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	t_node	*tmp;
 

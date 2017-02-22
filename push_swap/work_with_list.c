@@ -29,7 +29,7 @@ void            push_front(t_d_linklst *list, int value) // добавление
 	list->size++;
 }
 
-void 			del_node(s_d_linklst *list, s_node *node)
+void 			del_node(t_d_linklst *list, s_node *node)
 {
 	s_node	*tmp;
 

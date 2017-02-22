@@ -1,8 +1,6 @@
-
 #include "push_swap.h"
 
-int main()
+int main(int argc, char **argv)
 {
-	ft_putstr("URRA");
-	return 0;
+	return (0);
 }
