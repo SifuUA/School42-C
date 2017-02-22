@@ -24,12 +24,14 @@ typedef struct      s_d_linklst
 	size_t          size;
 }                   t_d_linklst;
 
-void				put(char *s);
+
 void   				sa(t_d_linklst *list_a);
 void   				sb(t_d_linklst *list_a);
 void    			ss(t_d_linklst *list_a, t_d_linklst *list_b);
+void				pa(s_d_linklst *list_a, s_d_linklst *list_b);
 
-void            	push_front(t_d_linklst *list, int value);
 t_d_linklst     	*creat(void);
-void 				del_node(t_node *node);
+void				put(char *s);
+void            	push_front(t_d_linklst *list, int value);
+void 				del_node(s_d_linklst *list, s_node *node);
 #endif
