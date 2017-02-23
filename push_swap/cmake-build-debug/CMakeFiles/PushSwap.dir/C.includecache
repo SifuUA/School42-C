@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../libft/libft.h
+unistd.h
+-
+stdlib.h
+-
+string.h
+-
+
+/nfs/2016/o/okres/ClionProjects/PushSwap/main.c
+libft.h
+/nfs/2016/o/okres/ClionProjects/PushSwap/libft.h
+

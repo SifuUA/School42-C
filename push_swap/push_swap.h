@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "../libft/libft.h"
+# include <stdio.h>
 
 typedef long int T;
 
@@ -37,4 +38,5 @@ t_d_linklst     	*creat(void);
 void				put(char *s);
 void            	push_front(t_d_linklst *list, int value);
 void 				del_node(t_d_linklst *list, t_node *node);
+
 #endif

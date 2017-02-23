@@ -6,12 +6,11 @@
 /*   By: okres <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 18:01:34 by okres             #+#    #+#             */
-/*   Updated: 2016/12/10 16:45:57 by okres            ###   ########.fr       */
+/*   Updated: 2017/02/23 14:12:36 by okres            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static const char	*split_start(const char *s, char c)
 {

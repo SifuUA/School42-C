@@ -1,49 +1,62 @@
 #include "push_swap.h"
 
-static  int     check(char *s)
+static  void    write_in_list(t_d_linklst *list, char **s)
 {
-	T tmp;
+	T   i;
+	T   j;
+	T   tmp;
 
-	tmp = ft_atoi(s);
-	if ((tmp <= 2147483647 && tmp >= -2147483648) || )
-}
-
-void            write_in_list(char **argv, int argc, t_d_linklst *list_a)
-{
-	T     i;
-	char    **str_num;
-
-	i = argc;
-	while (i > 0)
+	i = 1;
+	tmp = 0;
+	while (s[i])
 	{
-		check(argv[i]);
-	}
-	str_num = ft_strsplit(argv, ' ');
-	while (*str_num[i])
-	{
-		if (ft_atoi(*str_num[i]))
+		j = 0;
+		while (s[i][j])
 		{
-
+			tmp = ft_atoi(s[i]);
+			if (ft_strcmp(ft_itoa((int)tmp), s[i]) == 0)
+				push_front(list, tmp);
+			else
+				exit(1);
+			j++;
 		}
+		i++;
 	}
-	while (argc > 0)
-	{
-		push_front(list_a, argv[argc]);
-	}
-
 }
 
+static  int     check_if_num(char **s)
+{
+	T   i;
+	T   j;
+
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			if (!ft_isdigit(s[i][j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 int             main(int argc, char **argv)
 {
 	t_d_linklst     *list_a;
 	t_d_linklst     *list_b;
+	char            **s;
 
 	list_a = creat();
 	list_b = creat();
-
+	s = NULL;
 	if (argc > 1)
 	{
-		write_in_list(**argv, argc, list_a);
+		if (check_if_num(argv))
+			exit (1);
+		write_in_list(list_a, argv);
 	}
 	return (0);
 }

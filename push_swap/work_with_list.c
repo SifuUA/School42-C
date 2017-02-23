@@ -19,19 +19,19 @@ void            push_front(t_d_linklst *list, int value) // добавление
 	if (node == NULL)
 		exit(1);
 	node->value = value;
-	node->next = list->head;
-	node->prev = NULL;
-	if (list->head)
-		list->head->prev = node;
-	if (list->tail == NULL)
-		list->tail = node;
-	list->head = node;
+	node->next = NULL;
+	node->prev = list->tail;
+	if (list->tail)
+		list->tail->next = node;
+	list->tail = node;
+	if (list->head == NULL)
+		list->head = node;
 	list->size++;
 }
 
-void 			del_node(t_d_linklst *list, s_node *node)
+void 			del_node(t_d_linklst *list, t_node *node)
 {
-	s_node	*tmp;
+	t_node	*tmp;
 
 	if (node)
 	{
