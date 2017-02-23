@@ -79,18 +79,3 @@ char				**ft_strsplit(char const *s, char c)
 		return (NULL);
 	return (create_arr(s, c));
 }
-
-
-int	main()
-{
-	char **ans;
-	char *s1 = "\0\045AB\012 31 \0 23   ";
-	ans = ft_strsplit(s1, '\0');
-	//printf("%c\n", s1[3]);
-
-	printf("1 = %s\n", ans[0]);
-	printf("2 = %s\n", ans[1]);
-	printf("3 = %s\n", ans[2]);
-	ft_arr_putstr(ans);
-	return (0);
-}

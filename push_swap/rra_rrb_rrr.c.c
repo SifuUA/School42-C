@@ -30,7 +30,6 @@ void 	rrb(t_d_linklst *list)
 	}
 }
 
-
 void 	rrr(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	rra(list_a);
