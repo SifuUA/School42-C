@@ -3,29 +3,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "libft.h"
-
-/*# define INIT_SIZE 10
-# define MULTIPLIER 2
-
-typedef int T;
-
-typedef struct          s_stack
-{
-				T       *data; //указатель на данные
-				size_t  size; //размер массива(максимальный)
-				size_t  top; //число єлементов в массиве и заодно вершина
-}                       t_stack;
-
-void                    sa(int *stack, int size);
-void                    sb(int *stack, int size);
-void                    ss(int *stack_a, int *stack_b, int size_a, int size_b);
-size_t                  ft_intarr_len(int *arr);
-stack_t                 *creat_stack();
-void                    delete_stack(t_stack **stack);
-void                    resize(t_stack *stack);
-void                    push(t_stack *stack, T value);
-*/
+# include "../libft/libft.h"
 
 typedef long int T;
 
@@ -42,4 +20,21 @@ typedef struct      s_d_linklst
 	struct s_node   *tail;
 	size_t          size;
 }                   t_d_linklst;
+
+
+void   				sa(t_d_linklst *list_a);
+void   				sb(t_d_linklst *list_a);
+void    			ss(t_d_linklst *list_a, t_d_linklst *list_b);
+void				pa(t_d_linklst *list_a, t_d_linklst *list_b);
+void 				ra(t_d_linklst *list);
+void 				rb(t_d_linklst *list);
+void 				rr(t_d_linklst *list_a, t_d_linklst *list_b);
+void 				rra(t_d_linklst *list);
+void 				rra(t_d_linklst *list);
+void 				rrr(t_d_linklst *list_a, t_d_linklst *list_b);
+
+t_d_linklst     	*creat(void);
+void				put(char *s);
+void            	push_front(t_d_linklst *list, int value);
+void 				del_node(t_d_linklst *list, t_node *node);
 #endif
