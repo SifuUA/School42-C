@@ -36,6 +36,7 @@ void 				rrr(t_d_linklst *list_a, t_d_linklst *list_b);
 
 t_d_linklst     	*creat(void);
 void				put(char *s);
+void                printList(t_d_linklst *list);
 void            	push_front(t_d_linklst *list, int value);
 void 				del_node(t_d_linklst *list, t_node *node);
 

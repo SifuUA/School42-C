@@ -42,3 +42,16 @@ void 			del_node(t_d_linklst *list, t_node *node)
 		list->size--;
 	}
 }
+
+void            printList(t_d_linklst *list)
+{
+	t_node  *tmp;
+
+	tmp = list->head;
+	while (tmp)
+	{
+		ft_putnbr(tmp->value);
+		write(1, " ", 1);
+		tmp = tmp->next;
+	}
+}

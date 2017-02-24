@@ -35,7 +35,7 @@ static void     write_in_list(t_d_linklst *list, char **s)
 	}
 }
 
-static int      check_if_num(char **s)
+/*static int      check_if_num(char **s)
 {
 	T   i;
 	T   j;
@@ -54,23 +54,23 @@ static int      check_if_num(char **s)
 	}
 	return (0);
 }
+ */
 int             main(int argc, char **argv)
 {
 	t_d_linklst     *list_a;
 	t_d_linklst     *list_b;
-	char            **s;
 
 	list_a = creat();
 	list_b = creat();
-	s = NULL;
 	if (argc > 1)
 	{
-		if (check_if_num(argv))
+		/*if (check_if_num(argv))
 		{
 			put("Error");
 			exit(1);
-		}
+		}*/
 		write_in_list(list_a, argv);
+		printList(list_a);
 	}
 	else
 		write(1, "\n", 1);
