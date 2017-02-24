@@ -54,4 +54,5 @@ void            printList(t_d_linklst *list)
 		write(1, " ", 1);
 		tmp = tmp->next;
 	}
+	write(1, "\n", 1);
 }

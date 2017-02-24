@@ -40,4 +40,6 @@ void                printList(t_d_linklst *list);
 void            	push_front(t_d_linklst *list, int value);
 void 				del_node(t_d_linklst *list, t_node *node);
 
+void                quick_sort(t_node *head, t_node *tail);
+
 #endif

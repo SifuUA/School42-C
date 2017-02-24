@@ -70,7 +70,9 @@ int             main(int argc, char **argv)
 			exit(1);
 		}*/
 		write_in_list(list_a, argv);
-		printList(list_a);
+		printList(list_a); //before
+		quick_sort(list_a->head, list_a->tail);
+		printList(list_a); //after
 	}
 	else
 		write(1, "\n", 1);
