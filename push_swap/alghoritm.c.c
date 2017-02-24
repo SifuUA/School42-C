@@ -20,7 +20,7 @@ t_node  *partition(t_node *head, t_node *tail)
 	small = head;
 	piv  = tail;
 	curr = head;
-	while(curr!=NULL && curr!=tail)
+	while(curr != NULL && curr != tail)
 	{
 		if(curr->value < piv->value)
 		{
