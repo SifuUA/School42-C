@@ -18,12 +18,16 @@ int     is_sort(t_d_linklst *list)
 	return (0);
 }
 
-void    push_swap(t_d_linklst *list_a)
+void    push_swap(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	if (is_sort(list_a))
-
-		return ;
+		printList(list_a);
 	else
-		exit(NOT_SORT);
+	{
+		if (list_a->size <= 5)
+			little_sort(list_a, list_b);
+		else
+			norm_sort(list_a, list_b);
+	}
 }
 

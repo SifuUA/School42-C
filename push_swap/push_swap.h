@@ -8,7 +8,7 @@
 
 # define OUT_OF_MEM 1
 # define WRONG_ARG 2
-# define NOT_SORT 3
+# define ALREDY_SORT 3
 
 typedef long int T;
 
@@ -44,6 +44,7 @@ void                printList(t_d_linklst *list);
 void            	push_front(t_d_linklst *list, int value);
 void 				del_node(t_d_linklst *list, t_node *node);
 
-void                push_swap(t_d_linklst *list_a);
+void                push_swap(t_d_linklst *list_a, t_d_linklst *list_b);
+int                 is_sort(t_d_linklst *list);
 
 #endif
