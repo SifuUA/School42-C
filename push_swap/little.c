@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void    sort_three(t_d_linklst *list_a, t_d_linklst *list_b)
+void    sort_three(t_d_linklst *list_a)
 {
 	if (list_a->head->value > list_a->head->next->value &&
-			list_a->head->value < list_a->tail)
+			list_a->head->value < list_a->tail->value)
 		sa(list_a);
 	else if (list_a->head->value > list_a->head->next->value &&
 			list_a->tail->value > list_a->tail->prev->value)
@@ -11,7 +11,7 @@ void    sort_three(t_d_linklst *list_a, t_d_linklst *list_b)
 	else if (list_a->tail->value < list_a->tail->prev->value &&
 			list_a->tail->value < list_a->head->value)
 		rra(list_a);
-	else if (list_a->head->value > list_a->tail &&
+	else if (list_a->head->value > list_a->tail->value &&
 			list_a->tail->value < list_a->tail->prev->value)
 	{
 		sa(list_a);
@@ -25,23 +25,25 @@ void    sort_three(t_d_linklst *list_a, t_d_linklst *list_b)
 	}
 }
 
-
 void    sort_four_five(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	size_t i;
-	size_t j
+	size_t j;
 
 	i = 0;
 	while (i < 2)
 	{
 		j = 0;
 		get_min(list_a);
-		while (j < list_b->elem_pos - 1)
+		while (j < list_a->elem_pos - 1)
 		{
-			if (list_a->elem_pos >= list_b->size / 2)
-				ra(list_a;
-			else
+			if (list_a->elem_pos >= list_a->size / 2)
+			{
 				rra(list_a);
+				j++;
+			}
+			else
+				ra(list_a);
 			j++;
 		}
 		pb(list_a, list_b);
@@ -60,8 +62,8 @@ void    little_sort(t_d_linklst *list_a, t_d_linklst *list_b)
 			sa(list_a);
 	}
 	else if (list_a->size == 3)
-		sort_three(list_a, list_b);
-	else if (list_a->size >= 4, list_a->size <= 5)
+		sort_three(list_a);
+	else if (list_a->size >= 4 && list_a->size <= 5)
 		sort_four_five(list_a, list_b);
 
 }

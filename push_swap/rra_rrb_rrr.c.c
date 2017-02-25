@@ -8,6 +8,10 @@ void 	rra(t_d_linklst *list)
 	{
 		tmp = list->tail;
 		list->tail = tmp->prev;
+		if (list->size > 1)
+		{
+			list->tail->next = NULL;
+		}
 		tmp->next = list->head;
 		tmp->prev = NULL;
 		list->head = tmp;

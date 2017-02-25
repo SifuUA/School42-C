@@ -54,7 +54,11 @@ void            push_head(t_d_linklst *list1, t_d_linklst *list2)
 		list1->tail = tmp;
 	list2->size--;
 	list1->size++;
-
+	if (list2->size == 0)
+	{
+		list2->head = NULL;
+		list2->tail = NULL;
+	}
 }
 void 			del_node(t_d_linklst *list, t_node *node)
 {

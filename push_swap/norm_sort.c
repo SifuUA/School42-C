@@ -13,13 +13,18 @@ void    replace_to_b(t_d_linklst *list_a, t_d_linklst *list_b)
 	while (list_a->size > 5)
 	{
 		i = 0;
+		if (list_b->size > 0)
+			i = 2;
 		get_min(list_a);
 		while (i < list_a->elem_pos - 1)
 		{
-			if (list_a->elem_pos >= list_a->size / 2)
-				ra(list_a);
-			else
+			if (list_a->elem_pos > list_a->size / 2)
 				rra(list_a);
+			else
+			{
+				ra(list_a);
+				//i++;
+			}
 			i++;
 		}
 		pb(list_a, list_b);
