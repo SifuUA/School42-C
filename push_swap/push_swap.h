@@ -24,6 +24,7 @@ typedef struct      s_d_linklst
 	struct s_node   *head;
 	struct s_node   *tail;
 	size_t          size;
+	size_t          elem_pos;
 }                   t_d_linklst;
 
 
@@ -31,6 +32,7 @@ void   				sa(t_d_linklst *list_a);
 void   				sb(t_d_linklst *list_a);
 void    			ss(t_d_linklst *list_a, t_d_linklst *list_b);
 void				pa(t_d_linklst *list_a, t_d_linklst *list_b);
+void				pb(t_d_linklst *list_a, t_d_linklst *list_b);
 void 				ra(t_d_linklst *list);
 void 				rb(t_d_linklst *list);
 void 				rr(t_d_linklst *list_a, t_d_linklst *list_b);
@@ -46,5 +48,8 @@ void 				del_node(t_d_linklst *list, t_node *node);
 
 void                push_swap(t_d_linklst *list_a, t_d_linklst *list_b);
 int                 is_sort(t_d_linklst *list);
+void                norm_sort(t_d_linklst *list_a, t_d_linklst *list_b);
+T                   get_min(t_d_linklst *list);
+
 
 #endif
