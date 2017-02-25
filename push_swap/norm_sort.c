@@ -1,5 +1,15 @@
 #include "push_swap.h"
 
+void    replace_to_a(t_d_linklst *list_a, t_d_linklst *list_b)
+{
+
+}
+
+void    replace_to_b(t_d_linklst *list_a, t_d_linklst *list_b)
+{
+
+}
+
 void    check(t_d_linklst *list)
 {
 	if (list->head > list->head->next)
@@ -21,8 +31,8 @@ void    norm_sort(t_d_linklst *list_a, t_d_linklst *list_b)
 	check(list_a);
 	if (is_sort(list_a))
 		return ;
-	replace_to_b;
-	replace_to_a;
+	replace_to_b(list_a, list_b);
+	replace_to_a(list_a, list_b);
 
 }
 
