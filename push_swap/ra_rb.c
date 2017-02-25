@@ -10,6 +10,7 @@ void 	ra(t_d_linklst *list)
 		list->head = tmp->next;
 		tmp->prev = list->tail;
 		tmp->next = NULL;
+		list->tail->next = tmp;
 		list->tail = tmp;
 		put("ra");
 	}
@@ -25,6 +26,7 @@ void 	rb(t_d_linklst *list)
 		list->head = tmp->next;
 		tmp->prev = list->tail;
 		tmp->next = NULL;
+		list->tail->next = tmp;
 		list->tail = tmp;
 		put("rb");
 	}

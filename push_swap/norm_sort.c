@@ -2,34 +2,29 @@
 
 void    replace_to_a(t_d_linklst *list_a, t_d_linklst *list_b)
 {
-	t_node  *tmp;
-
-	tmp = list_b->head;
-	while (tmp)
+	while (list_b->size > 0)
 		pa(list_a, list_b);
 }
 
 void    replace_to_b(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	size_t  i;
-	T       min;
 
-	i = 0;
-	min = 0;
 	while (list_a->size > 5)
 	{
-		min = get_min(list_a);
-		while (i < list_a->elem_pos)
+		i = 0;
+		get_min(list_a);
+		while (i < list_a->elem_pos - 1)
 		{
 			if (list_a->elem_pos >= list_a->size / 2)
-				rra(list_a);
-			else
 				ra(list_a);
+			else
+				rra(list_a);
 			i++;
 		}
 		pb(list_a, list_b);
 	}
-
+	little_sort(list_a, list_b);
 }
 
 void    check(t_d_linklst *list)

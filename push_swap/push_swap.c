@@ -24,9 +24,9 @@ void    push_swap(t_d_linklst *list_a, t_d_linklst *list_b)
 		printList(list_a);
 	else
 	{
-		//if (list_a->size <= 5)
-			//little_sort(list_a, list_b);
-		//else
+		if (list_a->size <= 5)
+			little_sort(list_a, list_b);
+		else
 			norm_sort(list_a, list_b);
 	}
 }

@@ -4,8 +4,7 @@ void	pa(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	if (list_b->size == 0)
 		return ;
-	push_front(list_a, list_b->head->value);
-	del_node(list_b, list_b->head);
+	push_head(list_a, list_b);
 	put("pa");
 }
 
@@ -13,8 +12,7 @@ void	pb(t_d_linklst *list_a, t_d_linklst *list_b)
 {
 	if (list_a->size == 0)
 		return ;
-	push_front(list_b, list_a->head->value);
-	del_node(list_a, list_a->head);
+	push_head(list_b, list_a);
 	put("pb");
 }
 

@@ -11,7 +11,7 @@ t_d_linklst     *creat(void) // создание листа
 	return (tmp);
 }
 
-void            push_front(t_d_linklst *list, int value) // добавление в глову
+void            push_front(t_d_linklst *list, int value)
 {
 	t_node  *node;
 
@@ -29,6 +29,33 @@ void            push_front(t_d_linklst *list, int value) // добавление
 	list->size++;
 }
 
+void            push_head(t_d_linklst *list1, t_d_linklst *list2)
+{
+	t_node  *tmp;
+
+	tmp = list2->head;
+	if (list2->size > 1)
+	{
+		list2->head->next->prev = NULL;
+		list2->head = list2->head->next;
+	}
+	tmp->prev = NULL;
+	tmp->next = NULL;
+	if (list1->head == NULL)
+		list1->head = tmp;
+	else
+	{
+		list1->head->prev = tmp;
+		tmp->next = list1->head;
+		tmp->prev = NULL;
+		list1->head = tmp;
+	}
+	if (list1->tail == NULL)
+		list1->tail = tmp;
+	list2->size--;
+	list1->size++;
+
+}
 void 			del_node(t_d_linklst *list, t_node *node)
 {
 	t_node	*tmp;
@@ -36,9 +63,16 @@ void 			del_node(t_d_linklst *list, t_node *node)
 	if (node)
 	{
 		tmp = node->next;
-		free(node);
+		if (node != NULL)
+		{
+			node->next = NULL;
+			node->prev = NULL;
+			node->value = 0;
+			free(node);
+		}
 		list->head = tmp;
-		free(tmp);
+		if (tmp != NULL)
+			free(tmp);
 		list->size--;
 	}
 }
