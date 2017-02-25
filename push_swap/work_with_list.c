@@ -17,7 +17,7 @@ void            push_front(t_d_linklst *list, int value) // добавление
 
 	node = (t_node *)malloc(sizeof(t_node));
 	if (node == NULL)
-		exit(1);
+		exit(OUT_OF_MEM);
 	node->value = value;
 	node->next = NULL;
 	node->prev = list->tail;

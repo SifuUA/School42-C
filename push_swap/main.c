@@ -29,7 +29,7 @@ static void     write_in_list(t_d_linklst *list, char **s)
 		else
 		{
 			put("Error");
-			exit(2);
+			exit(WRONG_ARG);
 		}
 		i++;
 	}
@@ -71,7 +71,7 @@ int             main(int argc, char **argv)
 		}*/
 		write_in_list(list_a, argv);
 		printList(list_a); //before
-		quick_sort(list_a->head, list_a->tail);
+		push_swap(list_a);
 		printList(list_a); //after
 	}
 	else

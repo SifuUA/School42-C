@@ -6,6 +6,10 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 
+# define OUT_OF_MEM 1
+# define WRONG_ARG 2
+# define NOT_SORT 3
+
 typedef long int T;
 
 typedef struct      s_node
@@ -40,6 +44,6 @@ void                printList(t_d_linklst *list);
 void            	push_front(t_d_linklst *list, int value);
 void 				del_node(t_d_linklst *list, t_node *node);
 
-void                quick_sort(t_node *head, t_node *tail);
+void                push_swap(t_d_linklst *list_a);
 
 #endif
