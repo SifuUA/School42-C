@@ -59,8 +59,9 @@ void    little_sort(t_d_linklst *list_a, t_d_linklst *list_b)
 		return ;
 	if (list_a->size == 2)
 	{
-		if (list_a->head > list_a->tail)
+		if (list_a->head->value > list_a->tail->value)
 			sa(list_a);
+		replace_to_a(list_a, list_b);
 	}
 	else if (list_a->size == 3)
 		sort_three(list_a);

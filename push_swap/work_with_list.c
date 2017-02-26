@@ -60,24 +60,15 @@ void            push_head(t_d_linklst *list1, t_d_linklst *list2)
 		list2->tail = NULL;
 	}
 }
-void 			del_node(t_d_linklst *list, t_node *node)
+void 			del_list(t_d_linklst *list)
 {
 	t_node	*tmp;
 
-	if (node)
+	while (list->head)
 	{
-		tmp = node->next;
-		if (node != NULL)
-		{
-			node->next = NULL;
-			node->prev = NULL;
-			node->value = 0;
-			free(node);
-		}
-		list->head = tmp;
-		if (tmp != NULL)
-			free(tmp);
-		list->size--;
+		tmp = list->head;
+		list->head = list->head->next;
+		free(tmp);
 	}
 }
 

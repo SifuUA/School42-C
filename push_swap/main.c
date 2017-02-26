@@ -28,7 +28,7 @@ static void     write_in_list(t_d_linklst *list, char **s)
 			push_front(list, tmp);
 		else
 		{
-			put("Error");
+			write(2, "Error", 5);
 			exit(WRONG_ARG);
 		}
 		i++;
@@ -45,11 +45,12 @@ int             main(int argc, char **argv)
 	if (argc > 1)
 	{
 		write_in_list(list_a, argv);
-		printList(list_a); //before
+		printList(list_a);
 		push_swap(list_a, list_b);
-		printList(list_a); //after
+		printList(list_a);
 	}
 	else
 		write(1, "\n", 1);
+	del_list(list_a);
 	return (0);
 }

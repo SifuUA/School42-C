@@ -45,8 +45,9 @@ void				put(char *s);
 void                printList(t_d_linklst *list);
 void            	push_front(t_d_linklst *list, int value);
 void                push_head(t_d_linklst *list, t_d_linklst *list2);
-void 				del_node(t_d_linklst *list, t_node *node);
+void 				del_list(t_d_linklst *list);
 
+void    			replace_to_a(t_d_linklst *list_a, t_d_linklst *list_b);
 void                push_swap(t_d_linklst *list_a, t_d_linklst *list_b);
 void                little_sort(t_d_linklst *list_a, t_d_linklst *list_b);
 int                 is_sort(t_d_linklst *list);
