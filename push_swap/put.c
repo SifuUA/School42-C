@@ -3,5 +3,5 @@
 void	put(char *s)
 {
 	ft_putstr(s);
-	write(1,"\n",1);
+	write(2,"\n",1);
 }

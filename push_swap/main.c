@@ -44,12 +44,6 @@ int             main(int argc, char **argv)
 	list_b = creat();
 	if (argc > 1)
 	{
-		/*if (check_if_num(argv))
-		{
-			put("Error");
-			exit(1);
-		}*/
-		//ft_putstr("\033[34;01m-------- PUSH_SWAP --------\033[00m\nstack_a : ");
 		write_in_list(list_a, argv);
 		printList(list_a); //before
 		push_swap(list_a, list_b);
