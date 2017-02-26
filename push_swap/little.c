@@ -27,23 +27,24 @@ void    sort_three(t_d_linklst *list_a)
 
 void    sort_four_five(t_d_linklst *list_a, t_d_linklst *list_b)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
+	size_t	new_pos;
 
 	i = 0;
 	while (i < 2)
 	{
 		j = 0;
-		get_min(list_a);
-		while (j < list_a->elem_pos - 1)
+		new_pos = get_pos(list_a);
+		while (j < new_pos)
 		{
-			if (list_a->elem_pos >= list_a->size / 2)
-			{
+			if (list_a->elem_pos > list_a->size / 2)
 				rra(list_a);
+			else if (new_pos != 1)
+			{
+				ra(list_a);
 				j++;
 			}
-			else
-				ra(list_a);
 			j++;
 		}
 		pb(list_a, list_b);

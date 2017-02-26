@@ -51,7 +51,7 @@ void                push_swap(t_d_linklst *list_a, t_d_linklst *list_b);
 void                little_sort(t_d_linklst *list_a, t_d_linklst *list_b);
 int                 is_sort(t_d_linklst *list);
 void                norm_sort(t_d_linklst *list_a, t_d_linklst *list_b);
-void                get_min(t_d_linklst *list);
+size_t              get_pos(t_d_linklst *list);
 
 
 #endif

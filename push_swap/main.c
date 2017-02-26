@@ -35,26 +35,6 @@ static void     write_in_list(t_d_linklst *list, char **s)
 	}
 }
 
-/*static int      check_if_num(char **s)
-{
-	T   i;
-	T   j;
-
-	i = 1;
-	while (s[i])
-	{
-		j = 0;
-		while (s[i][j])
-		{
-			if (!ft_isdigit(s[i][j]))
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
- */
 int             main(int argc, char **argv)
 {
 	t_d_linklst     *list_a;

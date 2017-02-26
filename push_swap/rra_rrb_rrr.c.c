@@ -7,13 +7,12 @@ void 	rra(t_d_linklst *list)
 	if (list->size > 1)
 	{
 		tmp = list->tail;
-		list->tail = tmp->prev;
+		list->tail = list->tail->prev;
 		if (list->size > 1)
-		{
 			list->tail->next = NULL;
-		}
 		tmp->next = list->head;
 		tmp->prev = NULL;
+		list->head->prev = tmp;
 		list->head = tmp;
 		put("rra");
 	}
@@ -26,9 +25,12 @@ void 	rrb(t_d_linklst *list)
 	if (list->size > 1)
 	{
 		tmp = list->tail;
-		list->tail = tmp->prev;
+		list->tail = list->tail->prev;
+		if (list->size > 1)
+			list->tail->next = NULL;
 		tmp->next = list->head;
 		tmp->prev = NULL;
+		list->head->prev = tmp;
 		list->head = tmp;
 		put("rrb");
 	}
